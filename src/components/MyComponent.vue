@@ -1,5 +1,3 @@
 <template>
-  <div>
-    My first Component
-  </div>
+  <div>My First Component</div>
 </template>
