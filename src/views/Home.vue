@@ -1,8 +1,13 @@
 <template>
   <div>
     <nav class="topnav">
-      <div class="logo"></div>
-      <div class="menu"></div>
+      <div class="logo">logo</div>
+      <div class="menu">
+        <ul>
+          <li>菜单1</li>
+          <li>菜单2</li>
+        </ul>
+      </div>
     </nav>
     <div class="banner">
       <h1>V3-Wheel</h1>
@@ -14,3 +19,9 @@
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+nav.topnav {
+  border: 1px solid red;
+}
+</style>
