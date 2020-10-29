@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import MyComponent from './components/MyComponent.vue';
-import MySecondComponent from './components/MySecondComponent.vue';
+import Home from './views/Home.vue';
+import Doc from './views/Doc.vue';
 import './index.css';
 import { createWebHashHistory, createRouter } from 'vue-router';
 
@@ -9,8 +9,8 @@ const history = createWebHashHistory();
 const router = createRouter({
   history,
   routes: [
-    { path: '/', component: MyComponent },
-    { path: '/2', component: MySecondComponent }
+    { path: '/', component: Home },
+    { path: '/doc', component: Doc }
   ]
 });
 
