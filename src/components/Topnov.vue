@@ -1,6 +1,7 @@
 <template>
   <nav class="topnav">
-    <div class="logo" @click="toggleAside">logo</div>
+    <span class="toggleAsideBtn" @click="toggleAside"></span>
+    <div class="logo">logo</div>
     <ul class="menu">
       <li>
         <router-link to="/doc">文档</router-link>
@@ -29,6 +30,8 @@ nav.topnav {
   padding: 16px;
   position: relative;
   z-index: 10;
+  justify-content: center;
+  align-content: center;
   > .logo {
     max-width: 6em;
     margin-right: auto;
@@ -39,6 +42,28 @@ nav.topnav {
     flex-wrap: nowrap;
     > li {
       margin: 0 1em;
+    }
+  }
+  > .toggleAsideBtn {
+    display: none;
+    width: 24px;
+    height: 24px;
+    background: red;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @media (max-width: 500px) {
+    > .toggleAsideBtn {
+      display: inline-block;
+    }
+    > .menu {
+      display: none;
+    }
+    > .logo {
+      margin: 0 auto;
     }
   }
 }
