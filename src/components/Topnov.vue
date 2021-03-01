@@ -1,8 +1,6 @@
 <template>
   <nav class="topnav">
-    <div class="logo">
-      <router-link to="/">logo</router-link>
-    </div>
+    <div class="logo" @click="toggleAside">logo</div>
     <ul class="menu">
       <li>
         <router-link to="/doc">文档</router-link>
@@ -13,7 +11,16 @@
 </template>
 
 <script lang="ts">
-export default {};
+import { inject, Ref } from "vue";
+export default {
+  setup() {
+    const asideVisible = inject<Ref<boolean>>("asideVisible");
+    const toggleAside = () => {
+      asideVisible.value = !asideVisible.value;
+    };
+    return { toggleAside };
+  },
+};
 </script>
 <style lang="scss" scoped>
 nav.topnav {
