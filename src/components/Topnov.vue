@@ -1,8 +1,12 @@
 <template>
   <nav class="topnav">
-    <div class="logo">logo</div>
+    <div class="logo">
+      <router-link to="/">logo</router-link>
+    </div>
     <ul class="menu">
-      <li>菜单1</li>
+      <li>
+        <router-link to="/doc">文档</router-link>
+      </li>
       <li>菜单2</li>
     </ul>
   </nav>
@@ -16,6 +20,8 @@ nav.topnav {
   background: #ddd;
   display: flex;
   padding: 16px;
+  position: relative;
+  z-index: 10;
   > .logo {
     max-width: 6em;
     margin-right: auto;
