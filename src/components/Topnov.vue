@@ -1,14 +1,16 @@
 <template>
   <nav class="topnav">
-    <span class="toggleAsideBtn" @click="toggleAside"></span>
+    <span
+      :class="['toggleAsideBtn', asideVisible ? 'show' : 'hide']"
+      @click="toggleAside"
+    ></span>
     <div class="logo">
-      <router-link to="/">logo</router-link>
+      <router-link to="/">v3-wheel</router-link>
     </div>
     <ul class="menu">
       <li>
         <router-link to="/doc">文档</router-link>
       </li>
-      <li>菜单2</li>
     </ul>
   </nav>
 </template>
@@ -21,7 +23,7 @@ export default {
     const toggleAside = () => {
       asideVisible.value = !asideVisible.value;
     };
-    return { toggleAside };
+    return { toggleAside, asideVisible };
   },
 };
 </script>
@@ -51,13 +53,36 @@ nav.topnav {
   }
   > .toggleAsideBtn {
     display: none;
-    width: 24px;
-    height: 24px;
-    background: red;
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    transition: all 0.3s;
+    transform-origin: 9px;
+
+    &.show {
+      transform: rotate(0);
+    }
+    &.hide {
+      transform: rotate(90deg);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      border-left: 12px solid;
+      border-top: 10px solid;
+      border-right: 12px solid;
+      border-bottom: 10px solid;
+      border-color: #2dacfd transparent transparent transparent;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      border-left: 12px solid;
+      border-top: 10px solid;
+      border-right: 12px solid;
+      border-bottom: 10px solid;
+      border-color: white transparent transparent transparent;
+      left: 0;
+      top: -2px;
+    }
   }
 
   @media (max-width: 500px) {
