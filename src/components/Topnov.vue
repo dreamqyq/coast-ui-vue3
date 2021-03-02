@@ -30,7 +30,10 @@ nav.topnav {
   background: #ddd;
   display: flex;
   padding: 16px;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
   z-index: 10;
   justify-content: center;
   align-content: center;
