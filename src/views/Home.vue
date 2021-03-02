@@ -29,7 +29,7 @@ export default {
     padding: 8px 0;
     a {
       margin: 0 8px;
-      background: #fff;
+      background: #eee;
       display: inline-block;
       $h: 28px;
       height: $h;

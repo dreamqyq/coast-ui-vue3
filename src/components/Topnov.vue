@@ -1,7 +1,9 @@
 <template>
   <nav class="topnav">
     <span class="toggleAsideBtn" @click="toggleAside"></span>
-    <div class="logo">logo</div>
+    <div class="logo">
+      <router-link to="/">logo</router-link>
+    </div>
     <ul class="menu">
       <li>
         <router-link to="/doc">文档</router-link>
