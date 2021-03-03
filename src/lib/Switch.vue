@@ -39,7 +39,7 @@ button {
     background: #fff;
     top: 2px;
     left: 2px;
-    transition: left 0.25s;
+    transition: all 0.25s;
   }
   &.checked {
     background: #409eff;
@@ -49,6 +49,17 @@ button {
   }
   &:focus {
     outline: none;
+  }
+  &:active {
+    > span {
+      width: $h2 + 4px;
+    }
+  }
+  &.checked:active {
+    > span {
+      width: $h2 + 4px;
+      margin-left: -4px;
+    }
   }
 }
 </style>
