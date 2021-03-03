@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Switch 文档</h1>
-    <Switch :value="defaultValue" @input="defaultValue = $event" />
+    <Switch v-model:value="defaultValue" />
   </div>
 </template>
 
