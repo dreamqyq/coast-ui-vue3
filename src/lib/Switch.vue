@@ -1,5 +1,11 @@
 <template>
-  <button @click="toggle" :class="{ checked: value }"><span></span></button>
+  <button
+    @click="toggle"
+    class="v3wheel-switch"
+    :class="{ 'v3wheel-checked': value }"
+  >
+    <span></span>
+  </button>
 </template>
 
 <script lang="ts">
@@ -20,10 +26,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
-button {
+.v3wheel-switch {
   height: $h;
   width: $h * 2;
   border: none;
@@ -41,10 +47,10 @@ button {
     left: 2px;
     transition: all 0.25s;
   }
-  &.checked {
+  &.v3wheel-checked {
     background: #409eff;
   }
-  &.checked > span {
+  &.v3wheel-checked > span {
     left: calc(100% - #{$h2} - 2px);
   }
   &:focus {
@@ -55,7 +61,7 @@ button {
       width: $h2 + 4px;
     }
   }
-  &.checked:active {
+  &.v3wheel-checked:active {
     > span {
       width: $h2 + 4px;
       margin-left: -4px;
