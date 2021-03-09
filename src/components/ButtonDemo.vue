@@ -12,6 +12,11 @@
       <Button>普通按钮</Button>
       <Button size="small">小按钮</Button>
     </div>
+    <div>
+      <Button level="main">主要按钮</Button>
+      <Button>普通按钮</Button>
+      <Button level="danger">危险按钮</Button>
+    </div>
   </div>
 </template>
 
