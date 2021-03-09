@@ -1,10 +1,17 @@
 <template>
   <div>
     <h1>Button 文档</h1>
-    <Button>你好</Button>
-    <Button theme="button">你好</Button>
-    <Button theme="link">你好</Button>
-    <Button theme="text">你好</Button>
+    <div>
+      <Button>普通按钮</Button>
+      <Button theme="button">button 样式</Button>
+      <Button theme="link">link 样式</Button>
+      <Button theme="text">text 样式</Button>
+    </div>
+    <div>
+      <Button size="big">大按钮</Button>
+      <Button>普通按钮</Button>
+      <Button size="small">小按钮</Button>
+    </div>
   </div>
 </template>
 
@@ -17,3 +24,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+div {
+  margin: 20px 0;
+}
+</style>
