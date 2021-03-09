@@ -2,7 +2,7 @@
   <div>
     <h1>Button 文档</h1>
     <div>
-      <Button>普通按钮</Button>
+      <Button @click="onClick">普通按钮</Button>
       <Button theme="button">button 样式</Button>
       <Button theme="link">link 样式</Button>
       <Button theme="text">text 样式</Button>
@@ -34,7 +34,10 @@ import Button from "../lib/Button.vue";
 export default {
   components: { Button },
   setup() {
-    return {};
+    const onClick = () => {
+      console.log("hello");
+    };
+    return { onClick };
   },
 };
 </script>
