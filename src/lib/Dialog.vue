@@ -1,21 +1,23 @@
 <template>
   <template v-if="visible">
-    <div class="v3wheel-dialog-mask"></div>
+    <div class="v3wheel-dialog-overlay" @click="overlayClick"></div>
     <div class="v3wheel-dialog-wrapper">
       <div class="v3wheel-dialog">
-        <header>标题</header>
+        <header>
+          标题
+          <span class="v3wheel-dialog-close" @click="onClose"></span>
+        </header>
         <main>
           <p>第一段话</p>
           <p>第二段话</p>
         </main>
         <footer>
-          <Button>确定</Button>
-          <Button>取消</Button>
+          <Button level="main" @click="confirm">确定</Button>
+          <Button @click="cancel">取消</Button>
         </footer>
       </div>
     </div>
   </template>
-</template>
 </template>
 
 <script lang="ts">
@@ -27,6 +29,42 @@ export default {
       required: true,
       type: Boolean,
     },
+    overlayClosable: {
+      type: Boolean,
+      default: true,
+    },
+    onConfirm: {
+      type: Function,
+    },
+    onCancel: {
+      type: Function,
+    },
+  },
+  setup(props, context) {
+    const onClose = () => {
+      context.emit("update:visible", false);
+    };
+    const overlayClick = () => {
+      if (props.overlayClosable) {
+        onClose();
+      }
+    };
+    const confirm = () => {
+      if (props.onConfirm && props.onConfirm() !== false) {
+        onClose();
+      }
+    };
+    const cancel = () => {
+      if (props.onCancel && props.onCancel() !== false) {
+        onClose();
+      }
+    };
+    return {
+      onClose,
+      overlayClick,
+      confirm,
+      cancel,
+    };
   },
 };
 </script>
@@ -40,7 +78,7 @@ $border-color: #d9d9d9;
   box-shadow: 0 0 3px fade_out(black, 0.5);
   min-width: 15em;
   max-width: 90%;
-  &-mask {
+  &-overlay {
     position: fixed;
     top: 0;
     left: 0;

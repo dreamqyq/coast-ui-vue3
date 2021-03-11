@@ -1,7 +1,12 @@
 <template>
   <h1>Button 文档</h1>
   <Button @click="toggle">打开 Dialog</Button>
-  <Dialog :visible="visible" />
+  <Dialog
+    v-model:visible="visible"
+    :overlayClosable="false"
+    :onCancel="onCancel"
+    :onConfirm="onConfirm"
+  />
 </template>
 
 <script lang="ts">
@@ -15,7 +20,14 @@ export default {
     const toggle = () => {
       visible.value = !visible.value;
     };
-    return { visible, toggle };
+    const onConfirm = () => {
+      console.log("confirm click");
+      return false;
+    };
+    const onCancel = () => {
+      console.log("cancel click");
+    };
+    return { visible, toggle, onConfirm, onCancel };
   },
 };
 </script>
