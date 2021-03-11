@@ -4,12 +4,11 @@
     <div class="v3wheel-dialog-wrapper">
       <div class="v3wheel-dialog">
         <header>
-          标题
+          {{ title }}
           <span class="v3wheel-dialog-close" @click="onClose"></span>
         </header>
         <main>
-          <p>第一段话</p>
-          <p>第二段话</p>
+          <slot name="content" />
         </main>
         <footer>
           <Button level="main" @click="confirm">确定</Button>
@@ -25,6 +24,10 @@ import Button from "./Button.vue";
 export default {
   components: { Button },
   props: {
+    title: {
+      type: String,
+      default: "提示",
+    },
     visible: {
       required: true,
       type: Boolean,

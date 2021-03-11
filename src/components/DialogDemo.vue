@@ -6,7 +6,12 @@
     :overlayClosable="false"
     :onCancel="onCancel"
     :onConfirm="onConfirm"
-  />
+  >
+    <template v-slot:content>
+      <p>第一行内容</p>
+      <p>第二行内容</p>
+    </template>
+  </Dialog>
 </template>
 
 <script lang="ts">
