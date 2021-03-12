@@ -1,21 +1,23 @@
 <template>
   <template v-if="visible">
-    <div class="v3wheel-dialog-overlay" @click="overlayClick"></div>
-    <div class="v3wheel-dialog-wrapper">
-      <div class="v3wheel-dialog">
-        <header>
-          {{ title }}
-          <span class="v3wheel-dialog-close" @click="onClose"></span>
-        </header>
-        <main>
-          <slot name="content" />
-        </main>
-        <footer>
-          <Button level="main" @click="confirm">确定</Button>
-          <Button @click="cancel">取消</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="v3wheel-dialog-overlay" @click="overlayClick"></div>
+      <div class="v3wheel-dialog-wrapper">
+        <div class="v3wheel-dialog">
+          <header>
+            {{ title }}
+            <span class="v3wheel-dialog-close" @click="onClose"></span>
+          </header>
+          <main>
+            <slot name="content" />
+          </main>
+          <footer>
+            <Button level="main" @click="confirm">确定</Button>
+            <Button @click="cancel">取消</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
