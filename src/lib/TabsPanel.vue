@@ -1,5 +1,14 @@
-<template></template>
+<template>
+  <slot />
+</template>
 
 <script lang="ts">
-export default {};
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
+};
 </script>
