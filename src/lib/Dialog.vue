@@ -12,8 +12,8 @@
             <slot name="content" />
           </main>
           <footer>
-            <Button level="main" @click="confirm">确定</Button>
-            <Button @click="cancel">取消</Button>
+            <Button level="main" @click="onConfirm">确定</Button>
+            <Button @click="onCancel">取消</Button>
           </footer>
         </div>
       </div>
@@ -38,10 +38,10 @@ export default {
       type: Boolean,
       default: true,
     },
-    onConfirm: {
+    confirm: {
       type: Function,
     },
-    onCancel: {
+    cancel: {
       type: Function,
     },
   },
@@ -54,21 +54,21 @@ export default {
         onClose();
       }
     };
-    const confirm = () => {
-      if (props.onConfirm && props.onConfirm() !== false) {
+    const onConfirm = () => {
+      if (props.confirm && props.confirm() !== false) {
         onClose();
       }
     };
-    const cancel = () => {
-      if (props.onCancel && props.onCancel() !== false) {
+    const onCancel = () => {
+      if (props.cancel && props.cancel() !== false) {
         onClose();
       }
     };
     return {
       onClose,
       overlayClick,
-      confirm,
-      cancel,
+      onConfirm,
+      onCancel,
     };
   },
 };
