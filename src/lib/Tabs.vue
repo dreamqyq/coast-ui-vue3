@@ -4,20 +4,29 @@
       <div
         class="v3wheel-tabs-nav-item"
         v-for="(t, index) in titles"
+        :class="{ selected: t === selected }"
         :key="index"
+        @click="selectHandle(t)"
       >
         {{ t }}
       </div>
     </div>
     <div class="v3wheel-tabs-content">
-      <component v-for="(c, index) in defaults" :is="c" :key="index" />
+      <component :is="current" :key="selected" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { computed } from "vue";
 import TabsPanel from "./TabsPanel.vue";
 export default {
+  props: {
+    selected: {
+      type: String,
+      required: true,
+    },
+  },
   setup(props, context) {
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
@@ -26,7 +35,15 @@ export default {
       }
     });
     const titles = defaults.map((tag) => tag.props.title);
-    return { defaults, titles };
+
+    const current = computed(() => {
+      return defaults.filter((tag) => tag.props.title === props.selected)[0];
+    });
+
+    const selectHandle = (title) => {
+      context.emit("update:selected", title);
+    };
+    return { defaults, titles, selectHandle, current };
   },
 };
 </script>
