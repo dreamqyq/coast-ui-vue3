@@ -6,11 +6,16 @@
         v-for="(t, index) in titles"
         :class="{ selected: t === selected }"
         :key="index"
+        :ref="
+          (el) => {
+            if (el) navItems[index] = el;
+          }
+        "
         @click="selectHandle(t)"
       >
         {{ t }}
       </div>
-      <div class="v3wheel-tabs-nav-indicator"></div>
+      <div class="v3wheel-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="v3wheel-tabs-content">
       <component :is="current" :key="selected" />
@@ -19,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 import TabsPanel from "./TabsPanel.vue";
 export default {
   props: {
@@ -29,6 +34,16 @@ export default {
     },
   },
   setup(props, context) {
+    const navItems = ref<HTMLElement[]>([]);
+    const indicator = ref<HTMLElement>(null);
+    onMounted(() => {
+      const divs = navItems.value;
+      const result = divs.filter((div) =>
+        div.classList.contains("selected")
+      )[0];
+      const { width } = result.getBoundingClientRect();
+      indicator.value.style.width = width + "px";
+    });
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type !== TabsPanel) {
@@ -44,7 +59,14 @@ export default {
     const selectHandle = (title) => {
       context.emit("update:selected", title);
     };
-    return { defaults, titles, selectHandle, current };
+    return {
+      defaults,
+      titles,
+      selectHandle,
+      current,
+      navItems,
+      indicator,
+    };
   },
 };
 </script>
