@@ -3,7 +3,7 @@
     <h1>Tabs 文档</h1>
     <Tabs v-model:selected="selected">
       <TabsPanel title="导航1">内容1</TabsPanel>
-      <TabsPanel title="导航2">内容2</TabsPanel>
+      <TabsPanel title="导航222222">内容2</TabsPanel>
     </Tabs>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     TabsPanel,
   },
   setup() {
-    const selected = ref("导航1");
+    const selected = ref("导航222222");
     return { selected };
   },
 };

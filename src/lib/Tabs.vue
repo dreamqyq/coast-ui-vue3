@@ -1,6 +1,6 @@
 <template>
   <div class="v3wheel-tabs">
-    <div class="v3wheel-tabs-nav">
+    <div class="v3wheel-tabs-nav" ref="container">
       <div
         class="v3wheel-tabs-nav-item"
         v-for="(t, index) in titles"
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 import TabsPanel from "./TabsPanel.vue";
 export default {
   props: {
@@ -36,14 +36,21 @@ export default {
   setup(props, context) {
     const navItems = ref<HTMLElement[]>([]);
     const indicator = ref<HTMLElement>(null);
-    onMounted(() => {
+    const container = ref<HTMLElement>(null);
+
+    const calculateIndicatorStyle = () => {
       const divs = navItems.value;
       const result = divs.filter((div) =>
         div.classList.contains("selected")
       )[0];
-      const { width } = result.getBoundingClientRect();
+      const { width, left: navItemLeft } = result.getBoundingClientRect();
+      const { left: containerLeft } = container.value.getBoundingClientRect();
       indicator.value.style.width = width + "px";
-    });
+      indicator.value.style.left = navItemLeft - containerLeft + "px";
+    };
+    onMounted(calculateIndicatorStyle);
+    onUpdated(calculateIndicatorStyle);
+
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
       if (tag.type !== TabsPanel) {
@@ -66,6 +73,7 @@ export default {
       current,
       navItems,
       indicator,
+      container,
     };
   },
 };
@@ -99,6 +107,7 @@ $border-color: #d9d9d9;
       left: 0;
       bottom: -1px;
       width: 100px;
+      transition: all 0.25s;
     }
   }
   &-content {
