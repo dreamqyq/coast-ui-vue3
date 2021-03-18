@@ -8,7 +8,7 @@
         :key="index"
         :ref="
           (el) => {
-            if (el) navItems[index] = el;
+            if (t === selected) selectedItem = el;
           }
         "
         @click="selectHandle(t)"
@@ -34,16 +34,15 @@ export default {
     },
   },
   setup(props, context) {
-    const navItems = ref<HTMLElement[]>([]);
+    const selectedItem = ref<HTMLElement>(null);
     const indicator = ref<HTMLElement>(null);
     const container = ref<HTMLElement>(null);
 
     const calculateIndicatorStyle = () => {
-      const divs = navItems.value;
-      const result = divs.filter((div) =>
-        div.classList.contains("selected")
-      )[0];
-      const { width, left: navItemLeft } = result.getBoundingClientRect();
+      const {
+        width,
+        left: navItemLeft,
+      } = selectedItem.value.getBoundingClientRect();
       const { left: containerLeft } = container.value.getBoundingClientRect();
       indicator.value.style.width = width + "px";
       indicator.value.style.left = navItemLeft - containerLeft + "px";
@@ -71,7 +70,7 @@ export default {
       titles,
       selectHandle,
       current,
-      navItems,
+      selectedItem,
       indicator,
       container,
     };
