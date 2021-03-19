@@ -18,13 +18,13 @@
       <div class="v3wheel-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="v3wheel-tabs-content">
-      <component :is="current" :key="selected" />
+      <component :is="current" :key="current.props.title" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, onMounted, onUpdated, ref } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import TabsPanel from "./TabsPanel.vue";
 export default {
   props: {
@@ -38,17 +38,24 @@ export default {
     const indicator = ref<HTMLElement>(null);
     const container = ref<HTMLElement>(null);
 
-    const calculateIndicatorStyle = () => {
-      const {
-        width,
-        left: navItemLeft,
-      } = selectedItem.value.getBoundingClientRect();
-      const { left: containerLeft } = container.value.getBoundingClientRect();
-      indicator.value.style.width = width + "px";
-      indicator.value.style.left = navItemLeft - containerLeft + "px";
-    };
-    onMounted(calculateIndicatorStyle);
-    onUpdated(calculateIndicatorStyle);
+    // https://v3.vuejs.org/guide/reactivity-computed-watchers.html#effect-flush-timing
+    // fire after component updates so you can access the updated DOM
+    watchEffect(
+      () => {
+        const {
+          width,
+          left: navItemLeft,
+        } = selectedItem.value.getBoundingClientRect();
+        const { left: containerLeft } = container.value.getBoundingClientRect();
+        indicator.value.style.width = width + "px";
+        indicator.value.style.left = navItemLeft - containerLeft + "px";
+      },
+      {
+        // this will also defer the initial run of the effect until the
+        // component's first render is finished.
+        flush: "post",
+      }
+    );
 
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
