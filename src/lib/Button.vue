@@ -1,6 +1,6 @@
 <template>
-  <button class="v3wheel-button" :class="classes" :disabled="disabled">
-    <span v-if="loading" class="v3wheel-loadingIndicator"></span>
+  <button class="coast-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="coast-loadingIndicator"></span>
     <slot />
   </button>
 </template>
@@ -34,9 +34,9 @@ export default {
     const { theme, size, level } = props;
     const classes = computed(() => {
       return {
-        [`v3wheel-theme-${theme}`]: theme,
-        [`v3wheel-size-${size}`]: size,
-        [`v3wheel-level-${level}`]: level,
+        [`coast-theme-${theme}`]: theme,
+        [`coast-size-${size}`]: size,
+        [`coast-level-${level}`]: level,
       };
     });
     return { classes };
@@ -52,7 +52,7 @@ $blue: #40a9ff;
 $radius: 4px;
 $red: red;
 $gray: gray;
-.v3wheel-button {
+.coast-button {
   box-sizing: border-box;
   height: $h;
   padding: 0 12px;
@@ -81,7 +81,7 @@ $gray: gray;
   &::-moz-focus-inner {
     border: 0;
   }
-  &.v3wheel-theme-link {
+  &.coast-theme-link {
     border-color: transparent;
     box-shadow: none;
     color: $blue;
@@ -90,7 +90,7 @@ $gray: gray;
       color: lighten($blue, 10%);
     }
   }
-  &.v3wheel-theme-text {
+  &.coast-theme-text {
     border-color: transparent;
     box-shadow: none;
     color: inherit;
@@ -99,18 +99,18 @@ $gray: gray;
       background: darken(white, 5%);
     }
   }
-  &.v3wheel-size-big {
+  &.coast-size-big {
     font-size: 24px;
     height: 48px;
     padding: 0 16px;
   }
-  &.v3wheel-size-small {
+  &.coast-size-small {
     font-size: 12px;
     height: 20px;
     padding: 0 4px;
   }
-  &.v3wheel-theme-button {
-    &.v3wheel-level-main {
+  &.coast-theme-button {
+    &.coast-level-main {
       background: $blue;
       color: white;
       border-color: $blue;
@@ -120,7 +120,7 @@ $gray: gray;
         border-color: darken($blue, 10%);
       }
     }
-    &.v3wheel-level-danger {
+    &.coast-level-danger {
       background: $red;
       border-color: $red;
       color: white;
@@ -131,8 +131,8 @@ $gray: gray;
       }
     }
   }
-  &.v3wheel-theme-link {
-    &.v3wheel-level-danger {
+  &.coast-theme-link {
+    &.coast-level-danger {
       color: $red;
       &:hover,
       &:focus {
@@ -140,15 +140,15 @@ $gray: gray;
       }
     }
   }
-  &.v3wheel-theme-text {
-    &.v3wheel-level-main {
+  &.coast-theme-text {
+    &.coast-level-main {
       color: $blue;
       &:hover,
       &:focus {
         color: darken($blue, 10%);
       }
     }
-    &.v3wheel-level-danger {
+    &.coast-level-danger {
       color: $red;
       &:hover,
       &:focus {
@@ -156,7 +156,7 @@ $gray: gray;
       }
     }
   }
-  &.v3wheel-theme-button {
+  &.coast-theme-button {
     &[disabled] {
       cursor: not-allowed;
       color: $gray;
@@ -165,14 +165,14 @@ $gray: gray;
       }
     }
   }
-  &.v3wheel-theme-link,
-  &.v3wheel-theme-text {
+  &.coast-theme-link,
+  &.coast-theme-text {
     &[disabled] {
       cursor: not-allowed;
       color: $gray;
     }
   }
-  > .v3wheel-loadingIndicator {
+  > .coast-loadingIndicator {
     width: 14px;
     height: 14px;
     display: inline-block;
@@ -181,10 +181,10 @@ $gray: gray;
     border-color: $blue $blue $blue transparent;
     border-style: solid;
     border-width: 2px;
-    animation: v3wheel-spin 1s infinite linear;
+    animation: coast-spin 1s infinite linear;
   }
 }
-@keyframes v3wheel-spin {
+@keyframes coast-spin {
   0% {
     transform: rotate(0deg);
   }

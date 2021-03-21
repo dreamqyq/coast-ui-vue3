@@ -1,8 +1,8 @@
 <template>
-  <div class="v3wheel-tabs">
-    <div class="v3wheel-tabs-nav" ref="container">
+  <div class="coast-tabs">
+    <div class="coast-tabs-nav" ref="container">
       <div
-        class="v3wheel-tabs-nav-item"
+        class="coast-tabs-nav-item"
         v-for="(t, index) in titles"
         :class="{ selected: t === selected }"
         :key="index"
@@ -15,9 +15,9 @@
       >
         {{ t }}
       </div>
-      <div class="v3wheel-tabs-nav-indicator" ref="indicator"></div>
+      <div class="coast-tabs-nav-indicator" ref="indicator"></div>
     </div>
-    <div class="v3wheel-tabs-content">
+    <div class="coast-tabs-content">
       <component :is="current" :key="current.props.title" />
     </div>
   </div>
@@ -89,7 +89,7 @@ export default {
 $blue: #40a9ff;
 $color: #333;
 $border-color: #d9d9d9;
-.v3wheel-tabs {
+.coast-tabs {
   &-nav {
     display: flex;
     color: $color;

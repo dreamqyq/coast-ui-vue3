@@ -2,7 +2,7 @@
   <div>
     <Topnav />
     <div class="banner">
-      <h1>v3-wheel</h1>
+      <h1>coast-ui for Vue3</h1>
       <h2>一个基于 Vue3 和 TypeScript 的组件库</h2>
       <p class="actions">
         <a href="https://github.com/dreamqyq" target="_blank">Github</a>

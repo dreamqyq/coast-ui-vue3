@@ -5,7 +5,7 @@
       @click="toggleAside"
     ></span>
     <div class="logo">
-      <router-link to="/">v3-wheel</router-link>
+      <router-link to="/">coast-ui</router-link>
     </div>
     <ul class="menu">
       <li>

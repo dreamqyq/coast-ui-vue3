@@ -1,12 +1,12 @@
 <template>
   <template v-if="visible">
     <Teleport to="body">
-      <div class="v3wheel-dialog-overlay" @click="overlayClick"></div>
-      <div class="v3wheel-dialog-wrapper">
-        <div class="v3wheel-dialog">
+      <div class="coast-dialog-overlay" @click="overlayClick"></div>
+      <div class="coast-dialog-wrapper">
+        <div class="coast-dialog">
           <header>
             {{ title }}
-            <span class="v3wheel-dialog-close" @click="onClose"></span>
+            <span class="coast-dialog-close" @click="onClose"></span>
           </header>
           <main>
             <slot name="content" />
@@ -77,7 +77,7 @@ export default {
 <style lang="scss">
 $radius: 4px;
 $border-color: #d9d9d9;
-.v3wheel-dialog {
+.coast-dialog {
   background: white;
   border-radius: $radius;
   box-shadow: 0 0 3px fade_out(black, 0.5);

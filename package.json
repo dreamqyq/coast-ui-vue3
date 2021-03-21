@@ -1,6 +1,6 @@
 {
-  "name": "v3-wheel",
-  "version": "0.0.0",
+  "name": "coast-ui",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
