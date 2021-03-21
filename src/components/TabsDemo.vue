@@ -2,8 +2,8 @@
   <div>
     <h1>Tabs 文档</h1>
     <Tabs v-model:selected="selected">
-      <TabsPanel title="导航1">内容1</TabsPanel>
-      <TabsPanel title="导航222222">内容2</TabsPanel>
+      <TabPanel title="导航1">内容1</TabPanel>
+      <TabPanel title="导航222222">内容2</TabPanel>
     </Tabs>
   </div>
 </template>
@@ -11,11 +11,11 @@
 <script lang="ts">
 import { ref } from "vue";
 import Tabs from "../lib/Tabs.vue";
-import TabsPanel from "../lib/TabsPanel.vue";
+import TabPanel from "../lib/TabPanel.vue";
 export default {
   components: {
     Tabs,
-    TabsPanel,
+    TabPanel,
   },
   setup() {
     const selected = ref("导航222222");

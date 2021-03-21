@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { computed, ref, watchEffect } from "vue";
-import TabsPanel from "./TabsPanel.vue";
+import TabPanel from "./TabPanel.vue";
 export default {
   props: {
     selected: {
@@ -59,8 +59,8 @@ export default {
 
     const defaults = context.slots.default();
     defaults.forEach((tag) => {
-      if (tag.type !== TabsPanel) {
-        throw new Error("Tabs 的子标签必须为 TabsPanel");
+      if (tag.type !== TabPanel) {
+        throw new Error("Tabs 的子标签必须为 TabPanel");
       }
     });
     const titles = defaults.map((tag) => tag.props.title);
