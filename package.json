@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "vue": "^3.0.7",
-    "vue-router": "4.0.0-rc.1"
+    "vue-router": "^4.0.4"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.7",
