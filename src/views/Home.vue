@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="topnav-wrapper">
     <Topnav />
     <div class="banner">
       <h1>coast-ui for Vue3</h1>
@@ -19,6 +19,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.topnav-wrapper {
+  background: rgb(142, 134, 249);
+  background: linear-gradient(
+    90deg,
+    rgba(142, 134, 249, 1) 0%,
+    rgba(120, 111, 248, 1) 100%
+  );
+}
 .banner {
   padding: 100px 0;
   display: flex;
