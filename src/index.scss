@@ -9,7 +9,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #130844;
 }
 ul,
 ol {
@@ -19,12 +18,13 @@ a {
   text-decoration: none;
   color: inherit;
   &:hover {
-    border-bottom: 1px solid;
     cursor: pointer;
+    text-decoration: underline;
   }
 }
 
 body {
+  color: #130844;
   line-height: 1.5;
   font-size: 16px;
   font-family: -apple-system, 'Noto Sans', 'Helvetica Neue', Helvetica,

@@ -19,6 +19,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$baseColor: #786ff8;
 .topnav-wrapper {
   background: rgb(142, 134, 249);
   background: linear-gradient(
@@ -26,6 +27,7 @@ export default {
     rgba(142, 134, 249, 1) 0%,
     rgba(120, 111, 248, 1) 100%
   );
+  clip-path: ellipse(80% 60% at 50% 40%);
 }
 .banner {
   padding: 100px 0;
@@ -37,13 +39,11 @@ export default {
     padding: 8px 0;
     a {
       margin: 0 8px;
-      background: #eee;
+      background: #aca8b6;
+      color: #fff;
       display: inline-block;
-      $h: 28px;
-      height: $h;
-      line-height: $h;
-      border-radius: $h/2;
-      padding: 0 8px;
+      padding: 8px 24px;
+      border-radius: 12px;
     }
   }
 }
