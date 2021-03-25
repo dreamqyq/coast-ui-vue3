@@ -3,12 +3,37 @@
     <Topnav />
     <div class="banner">
       <h1>Coast UI for Vue3</h1>
-      <h2>一个基于 Vue3 和 TypeScript 的组件库</h2>
+      <h2>一个面向源码的 UI 框架</h2>
       <p class="actions">
         <a href="https://github.com/dreamqyq" target="_blank">Github</a>
         <router-link to="/doc">开始</router-link>
       </p>
     </div>
+  </div>
+  <div class="content">
+    <ul>
+      <li>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-vue"></use>
+        </svg>
+        <h3>基于 Vue 3</h3>
+        <p>使用了最新的 Vue3 Composition API</p>
+      </li>
+      <li>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-ts"></use>
+        </svg>
+        <h3>基于 TypeScript</h3>
+        <p>源代码采用了 TypeScript 编写</p>
+      </li>
+      <li>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-light"></use>
+        </svg>
+        <h3>代码易读</h3>
+        <p>每个组件的源代码都及其简洁</p>
+      </li>
+    </ul>
   </div>
 </template>
 
