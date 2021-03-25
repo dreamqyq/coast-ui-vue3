@@ -5,7 +5,11 @@
       @click="toggleAside"
     ></span>
     <div class="logo">
-      <router-link to="/">coast-ui</router-link>
+      <router-link to="/">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-king"></use>
+        </svg>
+      </router-link>
     </div>
     <ul class="menu">
       <li>

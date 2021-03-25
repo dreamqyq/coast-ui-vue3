@@ -2,7 +2,7 @@
   <div class="topnav-wrapper">
     <Topnav />
     <div class="banner">
-      <h1>coast-ui for Vue3</h1>
+      <h1>Coast UI for Vue3</h1>
       <h2>一个基于 Vue3 和 TypeScript 的组件库</h2>
       <p class="actions">
         <a href="https://github.com/dreamqyq" target="_blank">Github</a>
@@ -21,21 +21,26 @@ export default {
 <style lang="scss" scoped>
 $baseColor: #786ff8;
 .topnav-wrapper {
-  background: rgb(142, 134, 249);
-  background: linear-gradient(
-    90deg,
-    rgba(142, 134, 249, 1) 0%,
-    rgba(120, 111, 248, 1) 100%
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(106, 83, 251, 1) 31%,
+    rgba(109, 82, 251, 1) 63%,
+    rgba(158, 70, 252, 1) 100%
   );
   clip-path: ellipse(80% 60% at 50% 40%);
+  color: #fff;
 }
 .banner {
-  padding: 100px 0;
+  padding: 100px 0 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: #fff;
   > .actions {
+    margin-top: 40px;
     padding: 8px 0;
     a {
       margin: 0 8px;
