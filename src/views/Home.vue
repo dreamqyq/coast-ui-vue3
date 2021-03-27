@@ -77,4 +77,42 @@ $baseColor: #786ff8;
     }
   }
 }
+.content {
+  margin: 64px auto;
+  width: 400px;
+  @media (min-width: 800px) {
+    width: 800px;
+  }
+  @media (min-width: 1200px) {
+    width: 1200px;
+  }
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    > li {
+      width: 400px;
+      margin: 16px 0;
+      display: grid;
+      justify-content: start;
+      align-content: space-between;
+      grid-template-areas:
+        "icon title"
+        "icon text";
+      grid-template-columns: 80px auto;
+      grid-template-rows: 1fr auto;
+      > svg {
+        grid-area: icon;
+        width: 64px;
+        height: 64px;
+      }
+      > h3 {
+        grid-area: title;
+        font-size: 28px;
+      }
+      > p {
+        grid-area: text;
+      }
+    }
+  }
+}
 </style>
