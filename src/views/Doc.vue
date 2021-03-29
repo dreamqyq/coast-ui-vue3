@@ -3,11 +3,14 @@
     <Topnav class="nav" toggleAsideBtnVisible />
     <div class="content">
       <aside v-if="asideVisible">
-        <h2>组件列表</h2>
+        <h2>文档</h2>
         <ol>
           <li><router-link to="/doc/introduct">介绍</router-link></li>
           <li><router-link to="/doc/install">安装</router-link></li>
           <li><router-link to="/doc/get-start">开始</router-link></li>
+        </ol>
+        <h2>组件列表</h2>
+        <ol>
           <li><router-link to="/doc/switch">Switch 组件</router-link></li>
           <li><router-link to="/doc/button">Button 组件</router-link></li>
           <li><router-link to="/doc/dialog">Dialog 组件</router-link></li>
@@ -61,7 +64,6 @@ export default {
 aside {
   background: lightblue;
   width: 150px;
-  padding: 16px;
   position: fixed;
   top: 0;
   left: 0;
@@ -74,11 +76,22 @@ aside {
     padding-top: 70px;
   }
   > h2 {
-    padding: 4px 0;
+    text-align: left;
+    padding: 4px 1em;
   }
   > ol {
     li {
-      padding: 4px 0;
+      text-align: left;
+      margin: 4px 0;
+      > a {
+        display: block;
+        padding: 8px 2em;
+      }
+      .router-link-active {
+        background: #fff;
+        color: #409eff;
+        text-decoration: underline;
+      }
     }
   }
 }
