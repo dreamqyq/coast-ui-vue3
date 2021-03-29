@@ -1,9 +1,13 @@
 <template>
   <nav class="topnav">
-    <span
-      :class="['toggleAsideBtn', asideVisible ? 'show' : 'hide']"
+    <svg
+      v-if="toggleAsideBtnVisible"
+      class="icon toggleAsideBtn"
       @click="toggleAside"
-    ></span>
+      aria-hidden="true"
+    >
+      <use xlink:href="#icon-menu"></use>
+    </svg>
     <div class="logo">
       <router-link to="/">
         <svg class="icon" aria-hidden="true">
@@ -22,6 +26,12 @@
 <script lang="ts">
 import { inject, Ref } from "vue";
 export default {
+  props: {
+    toggleAsideBtnVisible: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup() {
     const asideVisible = inject<Ref<boolean>>("asideVisible");
     const toggleAside = () => {
@@ -57,15 +67,8 @@ nav.topnav {
   > .toggleAsideBtn {
     display: none;
     position: relative;
-    transition: all 0.3s;
-    transform-origin: 9px;
+    cursor: pointer;
 
-    &.show {
-      transform: rotate(0);
-    }
-    &.hide {
-      transform: rotate(90deg);
-    }
     &::before {
       content: "";
       position: absolute;
