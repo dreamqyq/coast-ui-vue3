@@ -1,6 +1,6 @@
 import Home from './views/Home.vue';
 import Doc from './views/Doc.vue';
-import Introduct from './views/Introduct.vue';
+import Introduce from './views/Introduce.vue';
 import Install from './views/Install.vue';
 import GetStart from './views/GetStart.vue';
 import SwitchDemo from './components/SwitchDemo.vue';
@@ -18,8 +18,8 @@ const router = createRouter({
       path: '/doc',
       component: Doc,
       children: [
-        { path: '', component: SwitchDemo },
-        { path: 'introduct', component: Introduct },
+        { path: '', component: Introduce },
+        { path: 'introduce', component: Introduce },
         { path: 'install', component: Install },
         { path: 'get-start', component: GetStart },
         { path: 'switch', component: SwitchDemo },
