@@ -20,7 +20,7 @@ const router = createRouter({
       path: '/doc',
       component: Doc,
       children: [
-        { path: '', component: mdRender('Introduce') },
+        { path: '', redirect: '/doc/introduce' },
         { path: 'introduce', component: mdRender('Introduce') },
         { path: 'install', component: mdRender('Install') },
         { path: 'get-start', component: mdRender('GetStart') },
