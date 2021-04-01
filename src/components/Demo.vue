@@ -29,7 +29,7 @@ export default {
   },
   components: { Button },
   setup(props) {
-    const codeVisible = ref(true);
+    const codeVisible = ref(false);
     const toggleCodeVisible = () => {
       codeVisible.value = !codeVisible.value;
     };
