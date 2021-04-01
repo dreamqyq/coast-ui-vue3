@@ -56,12 +56,12 @@ export default {
       }
     };
     const onConfirm = () => {
-      if (props.confirm && props.confirm() !== false) {
+      if (props.confirm?.() !== false) {
         onClose();
       }
     };
     const onCancel = () => {
-      if (props.cancel && props.cancel() !== false) {
+      if (props.cancel?.() !== false) {
         onClose();
       }
     };
@@ -132,7 +132,7 @@ $dialogIndex: 100;
 
     &::before,
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       height: 1px;
       background: black;

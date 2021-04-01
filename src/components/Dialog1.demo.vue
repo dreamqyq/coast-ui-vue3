@@ -3,12 +3,7 @@
 <template>
   <div>
     <Button @click="toggle">打开对话框</Button>
-    <Dialog
-      v-model:visible="visible"
-      :cancel="cancel"
-      :confirm="confirm"
-      :overlayClosable="false"
-    >
+    <Dialog v-model:visible="visible" :cancel="cancel" :confirm="confirm" :overlayClosable="false">
       <template v-slot:content>
         <strong>文本框第一行</strong>
         <div>文本框第二行</div>
@@ -25,7 +20,7 @@ import { ref } from 'vue';
 export default {
   components: {
     Dialog,
-    Button
+    Button,
   },
   setup() {
     const visible = ref(false);
@@ -34,7 +29,7 @@ export default {
     };
     const confirm = () => {
       console.log('confirm click');
-      return false;
+      return true;
     };
     const cancel = () => {
       console.log('cancel click');
@@ -43,8 +38,8 @@ export default {
       toggle,
       visible,
       confirm,
-      cancel
+      cancel,
     };
-  }
+  },
 };
 </script>
