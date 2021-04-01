@@ -8,6 +8,7 @@ interface Options {
   confirm?: () => void;
   cancel?: () => void;
 }
+
 export const openDialog = (options: Options) => {
   const { title, content, overlayClosable, confirm, cancel } = options;
   const div = document.createElement('div');

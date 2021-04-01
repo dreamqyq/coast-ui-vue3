@@ -7,7 +7,7 @@
     <div class="demo-actions">
       <Button @click="toggleCodeVisible">查看代码</Button>
     </div>
-    <div class="demo-code" v-show="codeVisible">
+    <div v-show="codeVisible" class="demo-code">
       <pre><code class="hljs" v-html="sourceCode"></code></pre>
     </div>
   </div>

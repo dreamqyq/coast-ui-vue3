@@ -5,7 +5,7 @@ import ButtonDemo from './components/ButtonDemo.vue';
 import DialogDemo from './components/DialogDemo.vue';
 import TabsDemo from './components/TabsDemo.vue';
 import Markdown from './components/Markdown.vue';
-import { createWebHashHistory, createRouter } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import { h } from '@vue/runtime-core';
 
 const mdRender = fileName =>

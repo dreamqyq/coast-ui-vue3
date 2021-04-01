@@ -1,21 +1,17 @@
 <template>
   <div class="coast-tabs">
-    <div class="coast-tabs-nav" ref="container">
+    <div ref="container" class="coast-tabs-nav">
       <div
-        class="coast-tabs-nav-item"
         v-for="(t, index) in titles"
-        :class="{ selected: t === selected }"
         :key="index"
-        :ref="
-          (el) => {
-            if (t === selected) selectedItem = el;
-          }
-        "
+        :ref=" el => { if (t === selected) selectedItem = el; } "
+        :class="{ selected: t === selected }"
+        class="coast-tabs-nav-item"
         @click="selectHandle(t)"
       >
         {{ t }}
       </div>
-      <div class="coast-tabs-nav-indicator" ref="indicator"></div>
+      <div ref="indicator" class="coast-tabs-nav-indicator"></div>
     </div>
     <div class="coast-tabs-content">
       <component :is="current" :key="current.props.title" />
@@ -24,8 +20,9 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, watchEffect } from "vue";
-import TabPanel from "./TabPanel.vue";
+import { computed, ref, watchEffect } from 'vue';
+import TabPanel from './TabPanel.vue';
+
 export default {
   props: {
     selected: {
@@ -42,35 +39,32 @@ export default {
     // fire after component updates so you can access the updated DOM
     watchEffect(
       () => {
-        const {
-          width,
-          left: navItemLeft,
-        } = selectedItem.value.getBoundingClientRect();
+        const { width, left: navItemLeft } = selectedItem.value.getBoundingClientRect();
         const { left: containerLeft } = container.value.getBoundingClientRect();
-        indicator.value.style.width = width + "px";
-        indicator.value.style.left = navItemLeft - containerLeft + "px";
+        indicator.value.style.width = width + 'px';
+        indicator.value.style.left = navItemLeft - containerLeft + 'px';
       },
       {
         // this will also defer the initial run of the effect until the
         // component's first render is finished.
-        flush: "post",
-      }
+        flush: 'post',
+      },
     );
 
     const defaults = context.slots.default();
-    defaults.forEach((tag) => {
+    defaults.forEach(tag => {
       if (tag.type !== TabPanel) {
-        throw new Error("Tabs 的子标签必须为 TabPanel");
+        throw new Error('Tabs 的子标签必须为 TabPanel');
       }
     });
-    const titles = defaults.map((tag) => tag.props.title);
+    const titles = defaults.map(tag => tag.props.title);
 
     const current = computed(() => {
-      return defaults.filter((tag) => tag.props.title === props.selected)[0];
+      return defaults.filter(tag => tag.props.title === props.selected)[0];
     });
 
-    const selectHandle = (title) => {
-      context.emit("update:selected", title);
+    const selectHandle = title => {
+      context.emit('update:selected', title);
     };
     return {
       defaults,
@@ -95,17 +89,21 @@ $border-color: #d9d9d9;
     color: $color;
     border-bottom: 1px solid $border-color;
     position: relative;
+
     &-item {
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
+
       &:first-child {
         margin-left: 0;
       }
+
       &.selected {
         color: $blue;
       }
     }
+
     &-indicator {
       position: absolute;
       height: 3px;
@@ -116,6 +114,7 @@ $border-color: #d9d9d9;
       transition: all 0.25s;
     }
   }
+
   &-content {
     padding: 8px 0;
   }

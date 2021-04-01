@@ -1,16 +1,16 @@
 <template>
   <nav class="topnav">
     <svg
-      v-if="toggleAsideBtnVisible"
-      class="icon toggleAsideBtn"
-      @click="toggleAside"
-      aria-hidden="true"
+        v-if="toggleAsideBtnVisible"
+        aria-hidden="true"
+        class="icon toggleAsideBtn"
+        @click="toggleAside"
     >
       <use xlink:href="#icon-menu"></use>
     </svg>
     <div class="logo">
       <router-link to="/">
-        <svg class="icon" aria-hidden="true">
+        <svg aria-hidden="true" class="icon">
           <use xlink:href="#icon-king"></use>
         </svg>
       </router-link>
@@ -24,7 +24,8 @@
 </template>
 
 <script lang="ts">
-import { inject, Ref } from "vue";
+import { inject, Ref } from 'vue';
+
 export default {
   props: {
     toggleAsideBtnVisible: {
@@ -33,7 +34,7 @@ export default {
     },
   },
   setup() {
-    const asideVisible = inject<Ref<boolean>>("asideVisible");
+    const asideVisible = inject<Ref<boolean>>('asideVisible');
     const toggleAside = () => {
       asideVisible.value = !asideVisible.value;
     };
@@ -52,18 +53,22 @@ nav.topnav {
   z-index: 11;
   justify-content: center;
   align-content: center;
+
   > .logo {
     max-width: 6em;
     margin-right: auto;
   }
+
   > .menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
+
     > li {
       margin: 0 1em;
     }
   }
+
   > .toggleAsideBtn {
     display: none;
     position: relative;
@@ -78,6 +83,7 @@ nav.topnav {
       border-bottom: 10px solid;
       border-color: #2dacfd transparent transparent transparent;
     }
+
     &::after {
       content: "";
       position: absolute;

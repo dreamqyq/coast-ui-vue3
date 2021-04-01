@@ -9,16 +9,17 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
-import Tabs from "../lib/Tabs.vue";
-import TabPanel from "../lib/TabPanel.vue";
+import { ref } from 'vue';
+import Tabs from '../lib/Tabs.vue';
+import TabPanel from '../lib/TabPanel.vue';
+
 export default {
   components: {
     Tabs,
     TabPanel,
   },
   setup() {
-    const selected = ref("导航222222");
+    const selected = ref('导航222222');
     return { selected };
   },
 };

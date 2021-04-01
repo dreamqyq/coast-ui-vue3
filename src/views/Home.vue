@@ -13,21 +13,21 @@
   <div class="content">
     <ul>
       <li>
-        <svg class="icon" aria-hidden="true">
+        <svg aria-hidden="true" class="icon">
           <use xlink:href="#icon-vue"></use>
         </svg>
         <h3>基于 Vue 3</h3>
         <p>使用了最新的 Vue3 Composition API</p>
       </li>
       <li>
-        <svg class="icon" aria-hidden="true">
+        <svg aria-hidden="true" class="icon">
           <use xlink:href="#icon-ts"></use>
         </svg>
         <h3>基于 TypeScript</h3>
         <p>源代码采用了 TypeScript 编写</p>
       </li>
       <li>
-        <svg class="icon" aria-hidden="true">
+        <svg aria-hidden="true" class="icon">
           <use xlink:href="#icon-light"></use>
         </svg>
         <h3>代码易读</h3>
@@ -38,7 +38,8 @@
 </template>
 
 <script lang="ts">
-import Topnav from "../components/Topnov.vue";
+import Topnav from '../components/Topnov.vue';
+
 export default {
   components: { Topnav },
 };
@@ -48,15 +49,16 @@ $baseColor: #786ff8;
 .topnav-wrapper {
   background: rgb(63, 94, 251);
   background: radial-gradient(
-    circle,
-    rgba(63, 94, 251, 1) 0%,
-    rgba(106, 83, 251, 1) 31%,
-    rgba(109, 82, 251, 1) 63%,
-    rgba(158, 70, 252, 1) 100%
+          circle,
+          rgba(63, 94, 251, 1) 0%,
+          rgba(106, 83, 251, 1) 31%,
+          rgba(109, 82, 251, 1) 63%,
+          rgba(158, 70, 252, 1) 100%
   );
   clip-path: ellipse(80% 60% at 50% 40%);
   color: #fff;
 }
+
 .banner {
   padding: 100px 0 40px;
   display: flex;
@@ -64,9 +66,11 @@ $baseColor: #786ff8;
   align-items: center;
   flex-direction: column;
   color: #fff;
+
   > .actions {
     margin-top: 40px;
     padding: 8px 0;
+
     a {
       margin: 0 8px;
       background: #aca8b6;
@@ -77,6 +81,7 @@ $baseColor: #786ff8;
     }
   }
 }
+
 .content {
   margin: 64px auto;
   padding: 0 16px;
@@ -96,9 +101,11 @@ $baseColor: #786ff8;
       }
     }
   }
+
   > ul {
     display: flex;
     flex-wrap: wrap;
+
     > li {
       margin: 16px 0;
       display: grid;
@@ -109,15 +116,18 @@ $baseColor: #786ff8;
         "icon text";
       grid-template-columns: 80px auto;
       grid-template-rows: 1fr auto;
+
       > svg {
         grid-area: icon;
         width: 64px;
         height: 64px;
       }
+
       > h3 {
         grid-area: title;
         font-size: 28px;
       }
+
       > p {
         grid-area: text;
       }

@@ -1,9 +1,5 @@
 <template>
-  <button
-    @click="toggle"
-    class="coast-switch"
-    :class="{ 'coast-checked': value }"
-  >
+  <button :class="{ 'coast-checked': value }" class="coast-switch" @click="toggle">
     <span></span>
   </button>
 </template>
@@ -18,7 +14,7 @@ export default {
   },
   setup(props, context) {
     const toggle = () => {
-      context.emit("update:value", !props.value);
+      context.emit('update:value', !props.value);
     };
     return { toggle };
   },
@@ -46,20 +42,25 @@ $h2: $h - 4px;
     left: 2px;
     transition: all 0.25s;
   }
+
   &.coast-checked {
     background: #409eff;
   }
+
   &.coast-checked > span {
     left: calc(100% - #{$h2} - 2px);
   }
+
   &:focus {
     outline: none;
   }
+
   &:active {
     > span {
       width: $h2 + 4px;
     }
   }
+
   &.coast-checked:active {
     > span {
       width: $h2 + 4px;
@@ -68,4 +69,3 @@ $h2: $h - 4px;
   }
 }
 </style>
-
