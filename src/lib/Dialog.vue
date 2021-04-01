@@ -25,6 +25,7 @@
 import Button from './Button.vue';
 
 export default {
+  name: 'CoastDialog',
   components: { Button },
   props: {
     title: {

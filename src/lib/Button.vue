@@ -9,6 +9,7 @@
 import { computed } from 'vue';
 
 export default {
+  name: 'CoastButton',
   props: {
     theme: {
       type: String,

@@ -4,7 +4,11 @@
       <div
         v-for="(t, index) in titles"
         :key="index"
-        :ref=" el => { if (t === selected) selectedItem = el; } "
+        :ref="
+          el => {
+            if (t === selected) selectedItem = el;
+          }
+        "
         :class="{ selected: t === selected }"
         class="coast-tabs-nav-item"
         @click="selectHandle(t)"
@@ -24,6 +28,7 @@ import { computed, ref, watchEffect } from 'vue';
 import TabPanel from './TabPanel.vue';
 
 export default {
+  name: 'CoastTabs',
   props: {
     selected: {
       type: String,
