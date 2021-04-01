@@ -5,11 +5,13 @@ import ButtonDemo from './components/ButtonDemo.vue';
 import DialogDemo from './components/DialogDemo.vue';
 import TabsDemo from './components/TabsDemo.vue';
 import Markdown from './components/Markdown.vue';
+import introduce from './markdown/Introduce.md';
+import install from './markdown/Install.md';
+import getStart from './markdown/GetStart.md';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { h } from '@vue/runtime-core';
 
-const mdRender = fileName =>
-  h(Markdown, { path: `../markdown/${fileName}.md`, key: fileName });
+const mdRender = content => h(Markdown, { content, key: content });
 
 const history = createWebHashHistory();
 const router = createRouter({
@@ -21,16 +23,16 @@ const router = createRouter({
       component: Doc,
       children: [
         { path: '', redirect: '/doc/introduce' },
-        { path: 'introduce', component: mdRender('Introduce') },
-        { path: 'install', component: mdRender('Install') },
-        { path: 'get-start', component: mdRender('GetStart') },
+        { path: 'introduce', component: mdRender(introduce) },
+        { path: 'install', component: mdRender(install) },
+        { path: 'get-start', component: mdRender(getStart) },
         { path: 'switch', component: SwitchDemo },
         { path: 'button', component: ButtonDemo },
         { path: 'dialog', component: DialogDemo },
-        { path: 'tabs', component: TabsDemo }
-      ]
-    }
-  ]
+        { path: 'tabs', component: TabsDemo },
+      ],
+    },
+  ],
 });
 
 export default router;
