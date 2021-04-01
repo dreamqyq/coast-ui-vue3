@@ -1,5 +1,4 @@
 <template>
-
   <div class="demo">
     <h2>{{ component.__sourceCodeTitle }}</h2>
     <div class="demo-component">
@@ -9,41 +8,39 @@
       <Button @click="toggleCodeVisible">查看代码</Button>
     </div>
     <div class="demo-code" v-show="codeVisible">
-      <pre class="language-css" v-html="html" />
+      <pre><code class="hljs" v-html="sourceCode"></code></pre>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Prism from 'prismjs';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css';
 import Button from '../lib/Button.vue';
-import 'prismjs/themes/prism.css';
 import { computed, ref } from 'vue';
 
 export default {
   name: 'Demo',
-  components: { Button },
   props: {
     component: {
       type: Object,
-      required: true
+      required: true,
     }
   },
+  components: { Button },
   setup(props) {
-    const codeVisible = ref(false)
-    const toggleCodeVisible = ()=>{
-      codeVisible.value = !codeVisible.value
-    }
-    const html = computed(() => {
-      return Prism.highlight(
-          props.component.__sourceCode,
-          Prism.languages.html,
-          'html');
+    const codeVisible = ref(true);
+    const toggleCodeVisible = () => {
+      codeVisible.value = !codeVisible.value;
+    };
+    const sourceCode = computed(() => {
+      return hljs.highlight(props.component.__sourceCode, { language: 'html' }).value;
     });
+
     return {
-      html,
       codeVisible,
-      toggleCodeVisible
+      toggleCodeVisible,
+      sourceCode
     };
   }
 };
