@@ -31,11 +31,11 @@ export const openDialog = (options: Options) => {
             if (newVisibel === false) {
               closeHandle();
             }
-          }
+          },
         },
-        { content }
+        { content },
       );
-    }
+    },
   });
   app.mount(div);
 };
