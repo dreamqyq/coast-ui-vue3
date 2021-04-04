@@ -11,7 +11,7 @@
     <div class="logo">
       <router-link to="/">
         <svg aria-hidden="true" class="icon">
-          <use xlink:href="#icon-king"></use>
+          <use xlink:href="#icon-wheel"></use>
         </svg>
       </router-link>
     </div>
@@ -27,6 +27,7 @@
 import { inject, Ref } from 'vue';
 
 export default {
+  name: 'Topnav',
   props: {
     toggleAsideBtnVisible: {
       type: Boolean,
