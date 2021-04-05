@@ -16,7 +16,7 @@
 <script lang="ts">
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
-import Button from '../lib/Button.vue';
+import { Button } from '../lib/index';
 import { computed, ref } from 'vue';
 
 export default {
