@@ -43,17 +43,17 @@ export default {
     // https://v3.vuejs.org/guide/reactivity-computed-watchers.html#effect-flush-timing
     // fire after component updates so you can access the updated DOM
     watchEffect(
-      () => {
-        const { width, left: navItemLeft } = selectedItem.value.getBoundingClientRect();
-        const { left: containerLeft } = container.value.getBoundingClientRect();
-        indicator.value.style.width = width + 'px';
-        indicator.value.style.left = navItemLeft - containerLeft + 'px';
-      },
-      {
-        // this will also defer the initial run of the effect until the
-        // component's first render is finished.
-        flush: 'post',
-      },
+        () => {
+          const { width, left: navItemLeft } = selectedItem.value.getBoundingClientRect();
+          const { left: containerLeft } = container.value.getBoundingClientRect();
+          indicator.value.style.width = width + 'px';
+          indicator.value.style.left = navItemLeft - containerLeft + 'px';
+        },
+        {
+          // this will also defer the initial run of the effect until the
+          // component's first render is finished.
+          flush: 'post',
+        },
     );
 
     const defaults = context.slots.default();
