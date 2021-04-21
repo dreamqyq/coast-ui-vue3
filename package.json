@@ -1,7 +1,9 @@
 {
   "name": "coast-ui-vue3",
   "version": "0.1.0",
-  "files": ["dist/lib/*"],
+  "files": [
+    "dist/lib/*"
+  ],
   "main": "dist/lib/coast-ui.js",
   "scripts": {
     "dev": "vite",
@@ -16,6 +18,8 @@
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.7",
+    "eslint": "^7.24.0",
+    "eslint-plugin-vue": "^7.9.0",
     "marked": "^2.0.1",
     "rollup-plugin-esbuild": "^3.0.2",
     "rollup-plugin-scss": "^2.6.1",
