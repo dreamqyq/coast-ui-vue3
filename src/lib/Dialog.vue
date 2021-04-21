@@ -24,6 +24,14 @@
 <script lang="ts">
 import Button from './Button.vue';
 
+interface DialogProps {
+  title?: string;
+  visible: boolean;
+  overlayClosable?: boolean;
+  confirm?: () => boolean;
+  cancel?: () => boolean;
+}
+
 export default {
   name: 'CoastDialog',
   components: { Button },
@@ -47,9 +55,9 @@ export default {
       type: Function,
     },
   },
-  setup(props, context) {
+  setup(props: DialogProps, { emit }) {
     const onClose = () => {
-      context.emit('update:visible', false);
+      emit('update:visible', false);
     };
     const overlayClick = () => {
       if (props.overlayClosable) {
