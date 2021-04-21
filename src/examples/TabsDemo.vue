@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts">
-import Demo from './Demo.vue';
-import TabsDemo1 from '../components/Tabs1.demo.vue';
+import Demo from '../components/Demo.vue';
+import TabsDemo1 from './Tabs1.demo.vue';
 
 export default {
   components: {

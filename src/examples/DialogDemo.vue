@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import Demo from './Demo.vue';
-import DialogDemo1 from '../components/Dialog1.demo.vue';
-import DialogDemo2 from '../components/Dialog2.demo.vue';
+import Demo from '../components/Demo.vue';
+import DialogDemo1 from './Dialog1.demo.vue';
+import DialogDemo2 from './Dialog2.demo.vue';
 
 export default {
   components: { Demo },
