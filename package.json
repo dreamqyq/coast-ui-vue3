@@ -5,7 +5,8 @@
   "main": "dist/lib/coast-ui.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 2"
   },
   "dependencies": {
     "github-markdown-css": "^4.0.0",
