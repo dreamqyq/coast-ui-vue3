@@ -6,22 +6,43 @@
 </template>
 
 <script lang="ts">
-import { computed } from 'vue';
+import { computed, PropType } from 'vue';
+
+type ButtonThemeType = PropType<'button' | 'link' | 'text'>;
+type ButtonSizeType = PropType<'normal' | 'big' | 'small'>;
+type ButtonLevelType = PropType<'normal' | 'main' | 'danger'>;
+
+interface ButtonProps {
+  theme: ButtonThemeType;
+  size: ButtonSizeType;
+  level: ButtonLevelType;
+  disabled: boolean;
+  loading: boolean;
+}
 
 export default {
   name: 'CoastButton',
   props: {
     theme: {
-      type: String,
+      type: String as ButtonThemeType,
       default: 'button',
+      validator: (val: string) => {
+        return ['button', 'link', 'text'].includes(val);
+      },
     },
     size: {
       type: String,
       default: 'normal',
+      validator: (val: string) => {
+        return ['normal', 'big', 'small'].includes(val);
+      },
     },
     level: {
       type: String,
       default: 'normal',
+      validator: (val: string) => {
+        return ['normal', 'main', 'danger'].includes(val);
+      },
     },
     disabled: {
       type: Boolean,
@@ -32,7 +53,7 @@ export default {
       default: false,
     },
   },
-  setup(props) {
+  setup(props: ButtonProps) {
     const { theme, size, level } = props;
     const classes = computed(() => {
       return {
