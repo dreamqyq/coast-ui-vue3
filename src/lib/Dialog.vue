@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import Button from './Button.vue';
 
 interface DialogProps {
@@ -32,7 +33,7 @@ interface DialogProps {
   cancel?: () => boolean;
 }
 
-export default {
+export default defineComponent({
   name: 'CoastDialog',
   components: { Button },
   props: {
@@ -81,7 +82,7 @@ export default {
       onCancel,
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

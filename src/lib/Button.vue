@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { computed, PropType } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 
 type ButtonThemeType = PropType<'button' | 'link' | 'text'>;
 type ButtonSizeType = PropType<'normal' | 'big' | 'small'>;
@@ -20,7 +20,7 @@ interface ButtonProps {
   loading: boolean;
 }
 
-export default {
+export default defineComponent({
   name: 'CoastButton',
   props: {
     theme: {
@@ -64,7 +64,7 @@ export default {
     });
     return { classes };
   },
-};
+});
 </script>
 
 <style lang="scss">
