@@ -31,14 +31,14 @@ export default defineComponent({
       },
     },
     size: {
-      type: String,
+      type: String as ButtonSizeType,
       default: 'normal',
       validator: (val: string) => {
         return ['normal', 'big', 'small'].includes(val);
       },
     },
     level: {
-      type: String,
+      type: String as ButtonLevelType,
       default: 'normal',
       validator: (val: string) => {
         return ['normal', 'main', 'danger'].includes(val);
