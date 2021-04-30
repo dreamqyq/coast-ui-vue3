@@ -11,6 +11,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    disabled: {
+      type: Boolean,
+    },
   },
 });
 </script>

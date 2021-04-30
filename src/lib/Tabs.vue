@@ -2,18 +2,18 @@
   <div class="coast-tabs">
     <div ref="container" class="coast-tabs-nav">
       <div
-        v-for="(t, index) in titles"
+        v-for="(t, index) in subElements"
         :key="index"
         :ref="
           el => {
-            if (t === selected) selectedItem = el;
+            if (t.title === selected) selectedItem = el;
           }
         "
-        :class="{ selected: t === selected }"
+        :class="{ selected: t.title === selected, disabled: t.disabled }"
         class="coast-tabs-nav-item"
         @click="selectHandle(t)"
       >
-        {{ t }}
+        {{ t.title }}
       </div>
       <div ref="indicator" class="coast-tabs-nav-indicator"></div>
     </div>
@@ -62,18 +62,22 @@ export default defineComponent({
         throw new Error('Tabs 的子标签必须为 TabPanel');
       }
     });
-    const titles = defaults.map(tag => tag.props.title);
+    const subElements = defaults.map(tag => ({
+      title: tag.props.title,
+      disabled: tag.props.disabled,
+    }));
 
     const current = computed(() => {
       return defaults.filter(tag => tag.props.title === props.selected)[0];
     });
 
-    const selectHandle = title => {
-      context.emit('update:selected', title);
+    const selectHandle = tag => {
+      if (tag.disabled) return;
+      context.emit('update:selected', tag.title);
     };
     return {
       defaults,
-      titles,
+      subElements,
       selectHandle,
       current,
       selectedItem,
@@ -109,6 +113,11 @@ $border-color: #d9d9d9;
       &.selected {
         color: $theme;
         font-weight: 500;
+      }
+      &.disabled {
+        color: #999;
+        cursor: not-allowed;
+        user-select: none;
       }
     }
 
