@@ -85,7 +85,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$blue: #40a9ff;
+$theme: #000;
 $color: #333;
 $border-color: #d9d9d9;
 .coast-tabs {
@@ -99,20 +99,23 @@ $border-color: #d9d9d9;
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
+      color: #666;
+      transition: all 0.25s;
 
       &:first-child {
         margin-left: 0;
       }
 
       &.selected {
-        color: $blue;
+        color: $theme;
+        font-weight: 500;
       }
     }
 
     &-indicator {
       position: absolute;
-      height: 3px;
-      background: $blue;
+      height: 2px;
+      background: $theme;
       left: 0;
       bottom: -1px;
       width: 100px;
