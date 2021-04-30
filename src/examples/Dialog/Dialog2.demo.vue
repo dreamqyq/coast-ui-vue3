@@ -7,11 +7,11 @@
 </template>
 
 <script lang="ts">
-import { Button, openDialog } from '../lib/index';
+import { Button, openDialog } from '../../lib/index';
 
 export default {
   components: {
-    Button
+    Button,
   },
   setup() {
     const showDialog = () => {
@@ -29,8 +29,8 @@ export default {
       });
     };
     return {
-      showDialog
+      showDialog,
     };
-  }
+  },
 };
 </script>

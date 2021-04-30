@@ -25,7 +25,7 @@ export default {
     component: {
       type: Object,
       required: true,
-    }
+    },
   },
   components: { Button },
   setup(props) {
@@ -40,9 +40,9 @@ export default {
     return {
       codeVisible,
       toggleCodeVisible,
-      sourceCode
+      sourceCode,
     };
-  }
+  },
 };
 </script>
 
@@ -73,7 +73,7 @@ $border-color: #d9d9d9;
 
     > pre {
       line-height: 1.1;
-      font-family: Consolas, "Courier New", Courier, monospace;
+      font-family: Consolas, 'Courier New', Courier, monospace;
       margin: 0;
     }
   }

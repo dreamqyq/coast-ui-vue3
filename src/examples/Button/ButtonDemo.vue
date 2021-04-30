@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import Demo from '../components/Demo.vue';
+import Demo from '../../components/Demo.vue';
 import ButtonDemo1 from './Button1.demo.vue';
 import ButtonDemo2 from './Button2.demo.vue';
 import ButtonDemo3 from './Button3.demo.vue';
@@ -27,7 +27,7 @@ export default {
       ButtonDemo4,
       ButtonDemo5,
     };
-  }
+  },
 };
 </script>
 

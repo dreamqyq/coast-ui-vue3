@@ -6,12 +6,12 @@
 </template>
 
 <script lang="ts">
-import Demo from '../components/Demo.vue';
+import Demo from '../../components/Demo.vue';
 import TabsDemo1 from './Tabs1.demo.vue';
 
 export default {
   components: {
-    Demo
+    Demo,
   },
   setup() {
     return { TabsDemo1 };

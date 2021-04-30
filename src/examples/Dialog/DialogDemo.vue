@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import Demo from '../components/Demo.vue';
+import Demo from '../../components/Demo.vue';
 import DialogDemo1 from './Dialog1.demo.vue';
 import DialogDemo2 from './Dialog2.demo.vue';
 
@@ -14,7 +14,7 @@ export default {
   setup() {
     return {
       DialogDemo1,
-      DialogDemo2
+      DialogDemo2,
     };
   },
 };
