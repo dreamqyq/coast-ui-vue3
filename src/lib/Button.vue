@@ -70,8 +70,8 @@ export default defineComponent({
 <style lang="scss">
 $h: 32px;
 $border-color: #d9d9d9;
-$color: #333;
-$blue: #40a9ff;
+$color: #666;
+$theme: #000;
 $radius: 4px;
 $red: red;
 $gray: gray;
@@ -89,7 +89,7 @@ $gray: gray;
   border: 1px solid $border-color;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
-  transition: background 0.25s;
+  transition: all 0.25s;
 
   & + & {
     margin-left: 8px;
@@ -97,8 +97,8 @@ $gray: gray;
 
   &:hover,
   &:focus {
-    color: $blue;
-    border-color: $blue;
+    color: $theme;
+    border-color: $theme;
   }
 
   &:focus {
@@ -112,11 +112,12 @@ $gray: gray;
   &.coast-theme-link {
     border-color: transparent;
     box-shadow: none;
-    color: $blue;
+    color: $theme;
+    text-decoration: underline;
 
     &:hover,
     &:focus {
-      color: lighten($blue, 10%);
+      color: #40a9ff;
     }
   }
 
@@ -145,14 +146,14 @@ $gray: gray;
 
   &.coast-theme-button {
     &.coast-level-main {
-      background: $blue;
+      background: $theme;
       color: white;
-      border-color: $blue;
+      border-color: $theme;
 
       &:hover,
       &:focus {
-        background: darken($blue, 10%);
-        border-color: darken($blue, 10%);
+        background: darken($theme, 10%);
+        border-color: darken($theme, 10%);
       }
     }
 
@@ -182,11 +183,11 @@ $gray: gray;
 
   &.coast-theme-text {
     &.coast-level-main {
-      color: $blue;
+      color: $theme;
 
       &:hover,
       &:focus {
-        color: darken($blue, 10%);
+        color: darken($theme, 10%);
       }
     }
 
@@ -225,7 +226,7 @@ $gray: gray;
     display: inline-block;
     margin-right: 4px;
     border-radius: 8px;
-    border-color: $blue $blue $blue transparent;
+    border-color: $theme $theme $theme transparent;
     border-style: solid;
     border-width: 2px;
     animation: coast-spin 1s infinite linear;
