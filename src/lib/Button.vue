@@ -207,7 +207,8 @@ $gray: gray;
       color: $gray;
 
       &:hover {
-        border-color: $gray;
+        color: $color;
+        border: 1px solid $border-color;
       }
     }
   }
@@ -217,6 +218,10 @@ $gray: gray;
     &[disabled] {
       cursor: not-allowed;
       color: $gray;
+
+      &:hover {
+        background: transparent;
+      }
     }
   }
 
