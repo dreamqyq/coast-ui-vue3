@@ -10,7 +10,7 @@ import { computed, defineComponent, PropType } from 'vue';
 
 type ButtonThemeType = PropType<'button' | 'link' | 'text'>;
 type ButtonSizeType = PropType<'normal' | 'big' | 'small'>;
-type ButtonLevelType = PropType<'normal' | 'main' | 'danger'>;
+type ButtonLevelType = PropType<'normal' | 'main' | 'danger' | 'warning'>;
 
 interface ButtonProps {
   theme: ButtonThemeType;
@@ -41,7 +41,7 @@ export default defineComponent({
       type: String as ButtonLevelType,
       default: 'normal',
       validator: (val: string) => {
-        return ['normal', 'main', 'danger'].includes(val);
+        return ['normal', 'main', 'danger', 'warning'].includes(val);
       },
     },
     disabled: {
@@ -75,6 +75,7 @@ $theme: #000;
 $radius: 4px;
 $red: red;
 $gray: gray;
+$orange: #f5a623;
 .coast-button {
   box-sizing: border-box;
   height: $h;
@@ -168,6 +169,18 @@ $gray: gray;
         border-color: darken($red, 10%);
       }
     }
+
+    &.coast-level-warning {
+      background: $orange;
+      border-color: $orange;
+      color: white;
+
+      &:hover,
+      &:focus {
+        background: darken($orange, 10%);
+        border-color: darken($orange, 10%);
+      }
+    }
   }
 
   &.coast-theme-link {
@@ -177,6 +190,14 @@ $gray: gray;
       &:hover,
       &:focus {
         color: darken($red, 10%);
+      }
+    }
+    &.coast-level-warning {
+      color: $orange;
+
+      &:hover,
+      &:focus {
+        color: darken($orange, 10%);
       }
     }
   }
@@ -197,6 +218,15 @@ $gray: gray;
       &:hover,
       &:focus {
         color: darken($red, 10%);
+      }
+    }
+
+    &.coast-level-warning {
+      color: $orange;
+
+      &:hover,
+      &:focus {
+        color: darken($orange, 10%);
       }
     }
   }
