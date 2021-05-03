@@ -1,6 +1,6 @@
 <template>
   <div class="coast-card">
-    <h2 class="coast-card-title">{{ title }}</h2>
+    <h2 class="coast-card-title" v-if="title">{{ title }}</h2>
     <main class="coast-card-content">
       <slot name="content" />
     </main>
@@ -15,7 +15,7 @@ export default defineComponent({
   props: {
     title: {
       type: String,
-      required: true,
+      required: false,
     },
   },
 });
@@ -34,6 +34,10 @@ $border-color: #eaeaea;
     font-size: 20px;
     padding: 8px 16px;
     border-bottom: 1px solid $border-color;
+  }
+
+  &-content {
+    padding: 16px;
   }
 }
 </style>
