@@ -55,12 +55,12 @@ $border-color: #d9d9d9;
 }
 
 .demo-actions {
-  padding: 8px 16px;
+  padding: 8px 0;
   border-top: 1px dashed $border-color;
 }
 
 .demo-code {
-  padding: 8px 16px;
+  padding: 8px 0;
   border-top: 1px dashed $border-color;
 
   > pre {
