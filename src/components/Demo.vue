@@ -1,12 +1,12 @@
 <template>
-  <Card :title="component.__sourceCodeTitle">
+  <Card :title="component.__sourceCodeTitle" class="demo">
     <template v-slot:content>
       <div class="demo-component">
         <component :is="component" />
       </div>
-      <div class="demo-actions">
-        <Button @click="toggleCodeVisible">查看代码</Button>
-      </div>
+    </template>
+    <template v-slot:footer>
+      <Button @click="toggleCodeVisible">查看代码</Button>
       <div v-show="codeVisible" class="demo-code">
         <pre><code class="hljs" v-html="sourceCode"></code></pre>
       </div>
@@ -50,23 +50,19 @@ export default {
 
 <style lang="scss" scoped>
 $border-color: #d9d9d9;
-.demo-component {
-  padding: 16px;
-}
+.demo {
+  margin: 16px 0 32px;
 
-.demo-actions {
-  padding: 8px 0;
-  border-top: 1px dashed $border-color;
-}
+  &-code {
+    margin-top: 16px;
+    padding: 8px 0;
+    border-top: 1px dashed $border-color;
 
-.demo-code {
-  padding: 8px 0;
-  border-top: 1px dashed $border-color;
-
-  > pre {
-    line-height: 1.1;
-    font-family: Consolas, 'Courier New', Courier, monospace;
-    margin: 0;
+    > pre {
+      line-height: 1.1;
+      font-family: Consolas, 'Courier New', Courier, monospace;
+      margin: 0;
+    }
   }
 }
 </style>
