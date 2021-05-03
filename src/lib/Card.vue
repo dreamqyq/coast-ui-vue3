@@ -8,7 +8,27 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
+
+type CardTypeType = PropType<
+  | 'secondary'
+  | 'alert'
+  | 'success'
+  | 'purple'
+  | 'warning'
+  | 'violet'
+  | 'error'
+  | 'cyan'
+  | 'dark'
+  | 'lite'
+>;
+
+interface CardProps {
+  title?: string;
+  hoverable?: boolean;
+  shadow?: boolean;
+  type?: CardTypeType;
+}
 
 export default defineComponent({
   name: 'CoastCard',
@@ -25,13 +45,32 @@ export default defineComponent({
       type: Boolean,
       required: false,
     },
+    type: {
+      type: String as CardTypeType,
+      required: false,
+      validator: (val: string) => {
+        return [
+          'secondary',
+          'alert',
+          'success',
+          'purple',
+          'warning',
+          'violet',
+          'error',
+          'cyan',
+          'dark',
+          'lite',
+        ].includes(val);
+      },
+    },
   },
-  setup(props) {
-    const { hoverable, shadow } = props;
+  setup(props: CardTypeType) {
+    const { hoverable, shadow, type } = props;
     const classes = computed(() => {
       return {
         'coast-card-hoverable': hoverable,
         'coast-card-shadow': shadow,
+        [`coast-card-${type}`]: type,
       };
     });
     return { classes };
@@ -57,6 +96,60 @@ $border-color: #eaeaea;
 
     &.coast-card-hoverable:hover {
       box-shadow: rgba(0, 0, 0, 0.12) 0 8px 30px;
+    }
+  }
+
+  &-secondary {
+    background: #5b5b5b;
+    color: #fff;
+  }
+
+  &-alert {
+    background: #ff0f74;
+    color: #fff;
+  }
+
+  &-success {
+    background: #0062ec;
+    color: #fff;
+  }
+
+  &-purple {
+    background: #fc18dc;
+    color: #fff;
+  }
+
+  &-warning {
+    background: #f69d32;
+    color: #fff;
+  }
+
+  &-violet {
+    background: #701fbe;
+    color: #fff;
+  }
+
+  &-error {
+    background: #f01217;
+    color: #fff;
+  }
+
+  &-cyan {
+    background: #39dfbb;
+    color: #fff;
+  }
+
+  &-dark {
+    background: #000000;
+    color: #fff;
+  }
+
+  &-lite {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    .coast-card-title {
+      border-bottom: none;
     }
   }
 
