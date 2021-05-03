@@ -1,5 +1,5 @@
 <template>
-  <div class="coast-card">
+  <div class="coast-card" :class="{ 'coast-card-hoverable': hoverable }">
     <h2 class="coast-card-title" v-if="title">{{ title }}</h2>
     <main class="coast-card-content">
       <slot name="content" />
@@ -17,6 +17,10 @@ export default defineComponent({
       type: String,
       required: false,
     },
+    hoverable: {
+      type: Boolean,
+      required: false,
+    },
   },
 });
 </script>
@@ -29,6 +33,10 @@ $border-color: #eaeaea;
   width: 100%;
   transition: all 0.25s;
   border-radius: 5px;
+
+  &-hoverable:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0 5px 10px;
+  }
 
   &-title {
     font-size: 20px;
