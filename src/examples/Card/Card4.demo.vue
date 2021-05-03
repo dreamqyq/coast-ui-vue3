@@ -45,6 +45,7 @@ export default {
   .coast-card {
     width: 40%;
     margin-left: 5%;
+    margin-top: 16px;
   }
 }
 </style>

@@ -5,6 +5,7 @@
     <Demo :component="CardDemo2" />
     <Demo :component="CardDemo3" />
     <Demo :component="CardDemo4" />
+    <Demo :component="CardDemo5" />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import CardDemo1 from './Card1.demo.vue';
 import CardDemo2 from './Card2.demo.vue';
 import CardDemo3 from './Card3.demo.vue';
 import CardDemo4 from './Card4.demo.vue';
+import CardDemo5 from './Card5.demo.vue';
 export default {
   components: { Demo },
   setup() {
@@ -22,6 +24,7 @@ export default {
       CardDemo2,
       CardDemo3,
       CardDemo4,
+      CardDemo5,
     };
   },
 };

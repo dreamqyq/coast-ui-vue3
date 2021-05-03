@@ -4,6 +4,9 @@
     <main class="coast-card-content">
       <slot name="content" />
     </main>
+    <footer v-if="$slots.footer" class="coast-card-footer">
+      <slot name="footer" />
+    </footer>
   </div>
 </template>
 
@@ -82,7 +85,6 @@ export default defineComponent({
 $border-color: #eaeaea;
 .coast-card {
   border: 1px solid $border-color;
-  margin: 16px 0 32px;
   width: 100%;
   transition: all 0.25s;
   border-radius: 5px;
@@ -159,8 +161,13 @@ $border-color: #eaeaea;
     border-bottom: 1px solid $border-color;
   }
 
-  &-content {
+  &-content,
+  &-footer {
     padding: 16px;
+  }
+
+  &-footer {
+    border-top: 1px dashed $border-color;
   }
 }
 </style>
