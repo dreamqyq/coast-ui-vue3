@@ -1,22 +1,24 @@
 <template>
-  <div class="demo">
-    <h2>{{ component.__sourceCodeTitle }}</h2>
-    <div class="demo-component">
-      <component :is="component" />
-    </div>
-    <div class="demo-actions">
-      <Button @click="toggleCodeVisible">查看代码</Button>
-    </div>
-    <div v-show="codeVisible" class="demo-code">
-      <pre><code class="hljs" v-html="sourceCode"></code></pre>
-    </div>
-  </div>
+  <Card :title="component.__sourceCodeTitle">
+    <template v-slot:content>
+      <div class="demo-component">
+        <component :is="component" />
+      </div>
+      <div class="demo-actions">
+        <Button @click="toggleCodeVisible">查看代码</Button>
+      </div>
+      <div v-show="codeVisible" class="demo-code">
+        <pre><code class="hljs" v-html="sourceCode"></code></pre>
+      </div>
+    </template>
+  </Card>
 </template>
 
 <script lang="ts">
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import { Button } from '../lib/index';
+import { Card } from '../lib/index';
 import { computed, ref } from 'vue';
 
 export default {
@@ -27,7 +29,7 @@ export default {
       required: true,
     },
   },
-  components: { Button },
+  components: { Button, Card },
   setup(props) {
     const codeVisible = ref(false);
     const toggleCodeVisible = () => {
@@ -48,34 +50,23 @@ export default {
 
 <style lang="scss" scoped>
 $border-color: #d9d9d9;
-.demo {
-  border: 1px solid $border-color;
-  margin: 16px 0 32px;
+.demo-component {
+  padding: 16px;
+}
 
-  > h2 {
-    font-size: 20px;
-    padding: 8px 16px;
-    border-bottom: 1px solid $border-color;
-  }
+.demo-actions {
+  padding: 8px 16px;
+  border-top: 1px dashed $border-color;
+}
 
-  &-component {
-    padding: 16px;
-  }
+.demo-code {
+  padding: 8px 16px;
+  border-top: 1px dashed $border-color;
 
-  &-actions {
-    padding: 8px 16px;
-    border-top: 1px dashed $border-color;
-  }
-
-  &-code {
-    padding: 8px 16px;
-    border-top: 1px dashed $border-color;
-
-    > pre {
-      line-height: 1.1;
-      font-family: Consolas, 'Courier New', Courier, monospace;
-      margin: 0;
-    }
+  > pre {
+    line-height: 1.1;
+    font-family: Consolas, 'Courier New', Courier, monospace;
+    margin: 0;
   }
 }
 </style>
