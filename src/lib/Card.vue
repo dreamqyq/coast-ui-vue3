@@ -1,5 +1,5 @@
 <template>
-  <div class="coast-card" :class="{ 'coast-card-hoverable': hoverable }">
+  <div class="coast-card" :class="classes">
     <h2 class="coast-card-title" v-if="title">{{ title }}</h2>
     <main class="coast-card-content">
       <slot name="content" />
@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'CoastCard',
@@ -21,6 +21,20 @@ export default defineComponent({
       type: Boolean,
       required: false,
     },
+    shadow: {
+      type: Boolean,
+      required: false,
+    },
+  },
+  setup(props) {
+    const { hoverable, shadow } = props;
+    const classes = computed(() => {
+      return {
+        'coast-card-hoverable': hoverable,
+        'coast-card-shadow': shadow,
+      };
+    });
+    return { classes };
   },
 });
 </script>
@@ -36,6 +50,14 @@ $border-color: #eaeaea;
 
   &-hoverable:hover {
     box-shadow: rgba(0, 0, 0, 0.12) 0 5px 10px;
+  }
+
+  &-shadow {
+    box-shadow: rgba(0, 0, 0, 0.12) 0 5px 10px;
+
+    &.coast-card-hoverable:hover {
+      box-shadow: rgba(0, 0, 0, 0.12) 0 8px 30px;
+    }
   }
 
   &-title {
