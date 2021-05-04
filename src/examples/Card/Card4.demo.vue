@@ -2,7 +2,7 @@
 
 <template>
   <div class="wrap">
-    <template v-for="type in types">
+    <template v-for="type in types" :key="type">
       <Card :title="type" :type="type">
         <template v-slot:content> {{ type }} card </template>
       </Card>

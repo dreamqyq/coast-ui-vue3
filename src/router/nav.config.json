@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Switch",
+    "path": "switch",
+    "componentPath": "../examples/Switch/index.vue"
+  },
+  {
+    "title": "Button",
+    "path": "button",
+    "componentPath": "../examples/Button/index.vue"
+  },
+  {
+    "title": "Dialog",
+    "path": "dialog",
+    "componentPath": "../examples/Dialog/index.vue"
+  },
+  {
+    "title": "Tabs",
+    "path": "tabs",
+    "componentPath": "../examples/Tabs/index.vue"
+  },
+  {
+    "title": "Card",
+    "path": "card",
+    "componentPath": "../examples/Card/index.vue"
+  }
+]
