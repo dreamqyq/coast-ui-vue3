@@ -1,6 +1,7 @@
 {
   "name": "coast-ui-vue3",
   "version": "0.1.1",
+  "description": "Coast UI for Vue3",
   "files": [
     "dist/lib/*"
   ],
@@ -9,6 +10,25 @@
     "dev": "vite",
     "build": "vite build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreamqyq/coast-ui-vue3.git"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "component",
+    "components",
+    "ui",
+    "frontend",
+    "typescript"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dreamqyq/coast-ui-vue3#readme",
+  "bugs": {
+    "url": "https://github.com/dreamqyq/coast-ui-vue3/issues",
+    "email": "qyqdream@gmail.com"
   },
   "dependencies": {
     "github-markdown-css": "^4.0.0",
