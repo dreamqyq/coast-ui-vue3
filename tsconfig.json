@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["vite"],
     "module": "ESNext",
     "declaration": true,
     "noImplicitAny": false,
