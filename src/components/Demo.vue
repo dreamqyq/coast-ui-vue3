@@ -1,10 +1,8 @@
 <template>
   <Card :title="component.__sourceCodeTitle" class="demo">
-    <template v-slot:content>
-      <div class="demo-component">
-        <component :is="component" />
-      </div>
-    </template>
+    <div class="demo-component">
+      <component :is="component" />
+    </div>
     <template v-slot:footer>
       <Button @click="toggleCodeVisible">查看代码</Button>
       <div v-show="codeVisible" class="demo-code">

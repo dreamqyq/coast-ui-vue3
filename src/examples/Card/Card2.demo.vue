@@ -2,9 +2,7 @@
 
 <template>
   <div>
-    <Card title="Card 支持 hover 效果" hoverable>
-      <template v-slot:content> hoverable card </template>
-    </Card>
+    <Card title="Card 支持 hover 效果" hoverable>hoverable card</Card>
   </div>
 </template>
 

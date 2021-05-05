@@ -2,7 +2,7 @@
   <div class="coast-card" :class="classes">
     <h2 class="coast-card-title" v-if="title">{{ title }}</h2>
     <main class="coast-card-content">
-      <slot name="content" />
+      <slot />
     </main>
     <footer v-if="$slots.footer" class="coast-card-footer">
       <slot name="footer" />

@@ -2,9 +2,7 @@
 
 <template>
   <div>
-    <Card title="Card 基本用法">
-      <template v-slot:content> Card 内容 </template>
-    </Card>
+    <Card title="Card 基本用法">Card 内容</Card>
   </div>
 </template>
 

@@ -2,9 +2,7 @@
 
 <template>
   <div>
-    <Card title="Card 支持 shadow 效果" hoverable shadow>
-      <template v-slot:content> shadow card </template>
-    </Card>
+    <Card title="Card 支持 shadow 效果" hoverable shadow>shadow card</Card>
   </div>
 </template>
 
