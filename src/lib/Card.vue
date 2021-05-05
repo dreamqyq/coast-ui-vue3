@@ -67,7 +67,7 @@ export default defineComponent({
       },
     },
   },
-  setup(props: CardTypeType) {
+  setup(props: CardProps) {
     const { hoverable, shadow, type } = props;
     const classes = computed(() => {
       return {
