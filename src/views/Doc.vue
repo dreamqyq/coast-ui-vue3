@@ -17,7 +17,7 @@
         </ol>
         <h2>组件列表</h2>
         <ol>
-          <li v-for="nav in navList" :key="nav.title">
+          <li v-for="nav in demoViewList" :key="nav.title">
             <router-link :to="`/doc/${nav.path}`">{{ nav.title }} 组件</router-link>
           </li>
         </ol>
@@ -32,13 +32,13 @@
 <script lang="ts">
 import { inject, Ref } from 'vue';
 import Topnav from '../components/Topnov.vue';
-import navList from '../router/nav.config.json';
+import { demoViewList } from '../router/exampleDocsRouter';
 
 export default {
   components: { Topnav },
   setup() {
     const asideVisible = inject<Ref<boolean>>('asideVisible');
-    return { asideVisible, navList };
+    return { asideVisible, demoViewList };
   },
 };
 </script>
