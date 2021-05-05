@@ -4,10 +4,8 @@
   <div>
     <Button @click="toggle">打开对话框</Button>
     <Dialog v-model:visible="visible" :cancel="cancel" :confirm="confirm" :overlayClosable="false">
-      <template v-slot:content>
-        <strong>文本框第一行</strong>
-        <div>文本框第二行</div>
-      </template>
+      <strong>文本框第一行</strong>
+      <div>文本框第二行</div>
     </Dialog>
   </div>
 </template>

@@ -33,7 +33,7 @@ export const openDialog = (options: Options) => {
             }
           },
         },
-        { content },
+        content,
       );
     },
   });

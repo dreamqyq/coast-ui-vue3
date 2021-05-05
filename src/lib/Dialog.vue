@@ -9,7 +9,7 @@
             <span class="coast-dialog-close" @click="onClose"></span>
           </header>
           <main>
-            <slot name="content" />
+            <slot />
           </main>
           <footer>
             <Button level="main" @click="onConfirm">确定</Button>
