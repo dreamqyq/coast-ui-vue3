@@ -78,7 +78,7 @@ $asideIndex: 10;
 }
 
 aside {
-  background: lightblue;
+  background: #fff;
   width: 150px;
   position: fixed;
   top: 0;
@@ -105,13 +105,14 @@ aside {
 
       > a {
         display: block;
-        padding: 8px 2em;
+        padding: 8px 1.5em;
       }
 
       .router-link-active {
         background: #fff;
         color: #409eff;
         text-decoration: underline;
+        font-weight: 600;
       }
     }
   }
