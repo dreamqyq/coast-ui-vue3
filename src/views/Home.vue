@@ -55,9 +55,20 @@ export default {
 $baseColor: #786ff8;
 .topnav-wrapper {
   background: rgb(0, 156, 240);
-  background: linear-gradient(90deg, rgba(0, 156, 240, 1) 0%, rgba(82, 199, 231, 1) 48%, rgba(0, 212, 255, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 156, 240, 1) 0%,
+    rgba(82, 199, 231, 1) 48%,
+    rgba(0, 212, 255, 1) 100%
+  );
   clip-path: ellipse(80% 60% at 50% 40%);
   color: #fff;
+
+  .topnav {
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+  }
 }
 
 .banner {
@@ -113,8 +124,8 @@ $baseColor: #786ff8;
       justify-content: start;
       align-content: space-between;
       grid-template-areas:
-        "icon title"
-        "icon text";
+        'icon title'
+        'icon text';
       grid-template-columns: 80px auto;
       grid-template-rows: 1fr auto;
 

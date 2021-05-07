@@ -1,10 +1,10 @@
 <template>
   <nav class="topnav">
     <svg
-        v-if="toggleAsideBtnVisible"
-        aria-hidden="true"
-        class="icon toggleAsideBtn"
-        @click="toggleAside"
+      v-if="toggleAsideBtnVisible"
+      aria-hidden="true"
+      class="icon toggleAsideBtn"
+      @click="toggleAside"
     >
       <use xlink:href="#icon-menu"></use>
     </svg>
@@ -54,6 +54,9 @@ nav.topnav {
   z-index: 11;
   justify-content: center;
   align-content: center;
+  border-bottom: 1px solid #eaeaea;
+  background: #fff;
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 15px 0px;
 
   > .logo {
     max-width: 6em;
@@ -76,7 +79,7 @@ nav.topnav {
     cursor: pointer;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       border-left: 12px solid;
       border-top: 10px solid;
@@ -86,7 +89,7 @@ nav.topnav {
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       border-left: 12px solid;
       border-top: 10px solid;
