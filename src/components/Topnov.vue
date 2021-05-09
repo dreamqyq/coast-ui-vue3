@@ -1,5 +1,5 @@
 <template>
-  <nav class="topnav">
+  <nav class="topnav" :class="{ shadow: !isTop }">
     <svg
       v-if="toggleAsideBtnVisible"
       aria-hidden="true"
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { inject, Ref } from 'vue';
+import { inject, Ref, onMounted, onBeforeUnmount, ref } from 'vue';
 
 export default {
   name: 'Topnav',
@@ -34,12 +34,28 @@ export default {
       default: false,
     },
   },
-  setup() {
+  setup(props) {
     const asideVisible = inject<Ref<boolean>>('asideVisible');
+    const isTop = ref(true);
+    if (props.toggleAsideBtnVisible) {
+      onMounted(() => {
+        handleScroll();
+        window.addEventListener('scroll', handleScroll);
+      });
+
+      onBeforeUnmount(() => {
+        window.removeEventListener('scroll', handleScroll);
+      });
+
+      const handleScroll = () => {
+        isTop.value = window.scrollY === 0;
+      };
+    }
+
     const toggleAside = () => {
       asideVisible.value = !asideVisible.value;
     };
-    return { toggleAside, asideVisible };
+    return { toggleAside, isTop };
   },
 };
 </script>
@@ -54,9 +70,12 @@ nav.topnav {
   z-index: 11;
   justify-content: center;
   align-content: center;
-  border-bottom: 1px solid #eaeaea;
   background: #fff;
-  box-shadow: rgb(0 0 0 / 10%) 0px 0px 15px 0px;
+
+  &.shadow {
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 15px 0px;
+    border-bottom: 1px solid #eaeaea;
+  }
 
   > .logo {
     max-width: 6em;
