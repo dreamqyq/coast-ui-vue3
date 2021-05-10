@@ -8,7 +8,7 @@ import { demoViewList } from './exampleDocsRouter';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { h } from '@vue/runtime-core';
 
-const mdRender = content => h(Markdown, { content, key: content });
+const mdRender = (content: string) => h(Markdown, { content, key: content });
 
 const history = createWebHashHistory();
 const router = createRouter({

@@ -2,7 +2,7 @@
   <div class="layout">
     <Topnav class="nav" toggleAsideBtnVisible />
     <div class="content">
-      <aside v-if="asideVisible">
+      <aside :class="{ visible: asideVisible }">
         <h2>文档</h2>
         <ol>
           <li>
@@ -86,6 +86,19 @@ aside {
   padding-top: 70px;
   height: 100%;
   z-index: $asideIndex;
+  transition: all 0.25s;
+  opacity: 0;
+  transform: translateX(-100%);
+
+  @media (max-width: 500px) {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  &.visible {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
   @media (max-width: 500px) {
     position: fixed;
     top: 0;

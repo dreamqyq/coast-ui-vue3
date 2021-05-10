@@ -32,3 +32,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.coast-button {
+  margin-top: 14px;
+}
+</style>
