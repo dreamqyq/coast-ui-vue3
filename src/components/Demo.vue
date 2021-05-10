@@ -3,7 +3,7 @@
     <div class="demo-component">
       <component :is="component" />
     </div>
-    <template v-slot:footer>
+    <template #footer>
       <Button @click="toggleCodeVisible">查看代码</Button>
       <div v-show="codeVisible" class="demo-code">
         <pre><code class="hljs" v-html="sourceCode"></code></pre>

@@ -4,11 +4,11 @@
   <div class="wrap">
     <Card title="Card 支持 footer" hoverable shadow>
       card content
-      <template v-slot:footer>card footer</template>
+      <template #footer>card footer</template>
     </Card>
     <Card title="Card 支持 footer" type="dark">
       card content
-      <template v-slot:footer>card footer</template>
+      <template #footer>card footer</template>
     </Card>
   </div>
 </template>
