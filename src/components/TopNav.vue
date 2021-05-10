@@ -1,5 +1,5 @@
 <template>
-  <nav class="topnav" :class="{ shadow: !isTop }">
+  <nav class="topNav" :class="{ shadow: !isTop }">
     <svg
       v-if="toggleAsideBtnVisible"
       aria-hidden="true"
@@ -28,7 +28,7 @@ import { inject, Ref, onMounted, onBeforeUnmount, ref } from 'vue';
 import { throttle } from '../utils';
 
 export default {
-  name: 'Topnav',
+  name: 'TopNav',
   props: {
     toggleAsideBtnVisible: {
       type: Boolean,
@@ -61,7 +61,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-nav.topnav {
+nav.topNav {
   display: flex;
   padding: 16px;
   position: fixed;

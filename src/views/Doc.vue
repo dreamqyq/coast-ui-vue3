@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <Topnav class="nav" toggleAsideBtnVisible />
+    <TopNav class="nav" toggleAsideBtnVisible />
     <div class="content">
       <aside :class="{ visible: asideVisible }">
         <h2>文档</h2>
@@ -31,11 +31,11 @@
 
 <script lang="ts">
 import { inject, Ref } from 'vue';
-import Topnav from '../components/Topnov.vue';
+import TopNav from '../components/TopNav.vue';
 import { demoViewList } from '../router/exampleDocsRouter';
 
 export default {
-  components: { Topnav },
+  components: { TopNav },
   setup() {
     const asideVisible = inject<Ref<boolean>>('asideVisible');
     return { asideVisible, demoViewList };

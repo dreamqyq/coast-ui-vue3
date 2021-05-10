@@ -1,6 +1,6 @@
 <template>
-  <div class="topnav-wrapper">
-    <Topnav />
+  <div class="topNav-wrapper">
+    <TopNav />
     <div class="banner">
       <h1>Coast UI for Vue3</h1>
       <h2>一个基于最新技术的 UI 框架</h2>
@@ -45,15 +45,15 @@
 </template>
 
 <script lang="ts">
-import Topnav from '../components/Topnov.vue';
+import TopNav from '../components/TopNav.vue';
 
 export default {
-  components: { Topnav },
+  components: { TopNav },
 };
 </script>
 <style lang="scss" scoped>
 $baseColor: #786ff8;
-.topnav-wrapper {
+.topNav-wrapper {
   background: rgb(0, 156, 240);
   background: linear-gradient(
     90deg,
@@ -64,7 +64,7 @@ $baseColor: #786ff8;
   clip-path: ellipse(80% 60% at 50% 40%);
   color: #fff;
 
-  .topnav {
+  .topNav {
     background: transparent;
     border-bottom: none;
     box-shadow: none;
