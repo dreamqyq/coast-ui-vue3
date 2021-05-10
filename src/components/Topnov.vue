@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import { inject, Ref, onMounted, onBeforeUnmount, ref } from 'vue';
+import { throttle } from '../utils';
 
 export default {
   name: 'Topnav',
@@ -47,9 +48,9 @@ export default {
         window.removeEventListener('scroll', handleScroll);
       });
 
-      const handleScroll = () => {
+      const handleScroll = throttle(() => {
         isTop.value = window.scrollY === 0;
-      };
+      });
     }
 
     const toggleAside = () => {
@@ -71,10 +72,10 @@ nav.topnav {
   justify-content: center;
   align-content: center;
   background: #fff;
+  transition: all 0.25s;
 
   &.shadow {
     box-shadow: rgb(0 0 0 / 10%) 0px 0px 15px 0px;
-    border-bottom: 1px solid #eaeaea;
   }
 
   > .logo {
