@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-dark.css';
+import 'highlight.js/styles/arduino-light.css';
 import { Button, Card } from '../lib/index';
 import { computed, ref } from 'vue';
 
