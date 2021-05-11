@@ -35,6 +35,7 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ['update:selected'],
   setup(props, context) {
     const selectedItem = ref<HTMLElement>(null);
     const indicator = ref<HTMLElement>(null);

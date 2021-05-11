@@ -14,9 +14,10 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props, context) {
+  emits: ['update:value'],
+  setup(props, { emit }) {
     const toggle = () => {
-      context.emit('update:value', !props.value);
+      emit('update:value', !props.value);
     };
     return { toggle };
   },

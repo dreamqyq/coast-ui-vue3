@@ -56,6 +56,7 @@ export default defineComponent({
       type: Function,
     },
   },
+  emits: ['update:visible'],
   setup(props: DialogProps, { emit }) {
     const onClose = () => {
       emit('update:visible', false);
