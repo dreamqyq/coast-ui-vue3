@@ -1,6 +1,6 @@
 <template>
   <div class="topNav-wrapper">
-    <TopNav />
+    <TopNav isHome />
     <div class="banner">
       <h1>Coast UI for Vue3</h1>
       <h2>一个基于最新技术的 UI 框架</h2>

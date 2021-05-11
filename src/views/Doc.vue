@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <TopNav class="nav" toggleAsideBtnVisible />
+    <TopNav class="nav" />
     <div class="content">
       <AsideNav :visible="asideVisible" />
       <main>

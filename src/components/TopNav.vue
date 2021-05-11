@@ -1,7 +1,7 @@
 <template>
   <nav class="topNav" :class="{ shadow: !isTop }">
     <svg
-      v-if="toggleAsideBtnVisible"
+      v-if="!isHome"
       aria-hidden="true"
       class="icon toggleAsideBtn"
       @click="toggleAside"
@@ -30,7 +30,7 @@ import { throttle } from '../utils';
 export default {
   name: 'TopNav',
   props: {
-    toggleAsideBtnVisible: {
+    isHome: {
       type: Boolean,
       default: false,
     },
@@ -38,7 +38,7 @@ export default {
   setup(props) {
     const asideVisible = inject<Ref<boolean>>('asideVisible');
     const isTop = ref(true);
-    if (props.toggleAsideBtnVisible) {
+    if (!props.isHome) {
       onMounted(() => {
         handleScroll();
         window.addEventListener('scroll', handleScroll);
