@@ -1,5 +1,6 @@
 import { md } from './plugins/md';
 import fs from 'fs';
+import path from 'path';
 import { baseParse, ElementNode } from '@vue/compiler-core';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -28,4 +29,9 @@ export default defineConfig({
   },
   base: './',
   plugins: [md(), vue(), coastDemoParse],
+  resolve: {
+    alias: {
+      'coast-ui-vue3': path.resolve('src/lib/index.ts'),
+    },
+  },
 });

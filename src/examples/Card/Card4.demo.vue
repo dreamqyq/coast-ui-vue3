@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Card } from '../../lib/index';
+import { Card } from 'coast-ui-vue3';
 
 export default {
   components: {

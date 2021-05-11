@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Button, openDialog } from '../../lib/index';
+import { Button, openDialog } from 'coast-ui-vue3';
 
 export default {
   components: {

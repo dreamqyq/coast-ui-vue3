@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { ref } from 'vue';
-import { Switch } from '../../lib/index';
+import { Switch } from 'coast-ui-vue3';
 
 export default {
   components: { Switch },

@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { Button } from '../../lib/index';
+import { Button } from 'coast-ui-vue3';
 
 export default {
   components: {
