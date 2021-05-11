@@ -1,5 +1,5 @@
 <template>
-  <aside :class="{ visible }">
+  <aside :class="{ visible }" @click="clickAsideNav">
     <h2>文档</h2>
     <ol>
       <li>
@@ -32,8 +32,14 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
-    return { demoViewList };
+  emits: ['change'],
+  setup(props, context) {
+    const clickAsideNav = (e: MouseEvent) => {
+      if ((<HTMLElement>e.target).tagName === 'A') {
+        context.emit('change', false);
+      }
+    };
+    return { demoViewList, clickAsideNav };
   },
 });
 </script>
@@ -53,11 +59,12 @@ aside {
   opacity: 0;
   transform: translateX(-100%);
 
-  @media (max-width: 500px) {
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  &.visible {
+    transform: translateX(0);
+    opacity: 1;
   }
 
-  &.visible {
+  @media (min-width: 501px) {
     transform: translateX(0);
     opacity: 1;
   }
@@ -67,6 +74,7 @@ aside {
     top: 0;
     left: 0;
     padding-top: 70px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
   }
 
   > h2 {

@@ -35,6 +35,7 @@ export default {
       default: false,
     },
   },
+  inject: ['asideVisible'],
   setup(props) {
     const asideVisible = inject<Ref<boolean>>('asideVisible');
     const isTop = ref(true);

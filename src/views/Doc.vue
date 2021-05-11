@@ -2,7 +2,7 @@
   <div class="layout">
     <TopNav class="nav" />
     <div class="content">
-      <AsideNav :visible="asideVisible" />
+      <AsideNav :visible="asideVisible" @change="asideVisibleChange" />
       <main>
         <router-view />
       </main>
@@ -17,9 +17,14 @@ import TopNav from '../components/TopNav.vue';
 
 export default {
   components: { AsideNav, TopNav },
+  inject: ['asideVisible'],
   setup() {
     const asideVisible = inject<Ref<boolean>>('asideVisible');
-    return { asideVisible };
+
+    const asideVisibleChange = (visible: boolean) => {
+      asideVisible.value = visible;
+    };
+    return { asideVisible, asideVisibleChange };
   },
 };
 </script>
