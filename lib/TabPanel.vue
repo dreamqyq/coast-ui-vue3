@@ -13,6 +13,7 @@ export default defineComponent({
     },
     disabled: {
       type: Boolean,
+      required: false
     },
   },
 });
