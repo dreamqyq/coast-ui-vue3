@@ -15,7 +15,7 @@
 <script lang="ts">
 import hljs from 'highlight.js';
 import 'highlight.js/styles/arduino-light.css';
-import { Button, Card } from '../lib/index';
+import { Button, Card } from 'coast-ui-vue3';
 import { computed, ref } from 'vue';
 
 export default {

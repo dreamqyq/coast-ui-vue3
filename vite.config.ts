@@ -31,7 +31,7 @@ export default defineConfig({
   plugins: [md(), vue(), coastDemoParse],
   resolve: {
     alias: {
-      'coast-ui-vue3': path.resolve('src/lib/index.ts'),
+      'coast-ui-vue3': path.resolve('lib'),
     },
   },
 });

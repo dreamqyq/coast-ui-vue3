@@ -11,8 +11,7 @@
 </template>
 
 <script lang="ts">
-import Dialog from '../../lib/Dialog.vue';
-import { Button } from 'coast-ui-vue3';
+import { Button, Dialog } from 'coast-ui-vue3';
 import { ref } from 'vue';
 
 export default {
