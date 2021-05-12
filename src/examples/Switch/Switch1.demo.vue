@@ -1,15 +1,15 @@
 <demo>常规用法</demo>
 
 <template>
-  <Switch v-model:value="defaultValue" />
+  <co-switch v-model:value="defaultValue" />
 </template>
 
 <script lang="ts">
 import { ref } from 'vue';
-import { Switch } from 'coast-ui-vue3';
+import { CoSwitch } from 'coast-ui-vue3';
 
 export default {
-  components: { Switch },
+  components: { CoSwitch },
   setup() {
     const defaultValue = ref(false);
     return { defaultValue };

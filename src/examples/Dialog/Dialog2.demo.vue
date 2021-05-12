@@ -2,16 +2,16 @@
 
 <template>
   <div>
-    <Button @click="showDialog">打开对话框</Button>
+    <co-button @click="showDialog">打开对话框</co-button>
   </div>
 </template>
 
 <script lang="ts">
-import { Button, openDialog } from 'coast-ui-vue3';
+import { CoButton, openDialog } from 'coast-ui-vue3';
 
 export default {
   components: {
-    Button,
+    CoButton,
   },
   setup() {
     const showDialog = () => {

@@ -1,15 +1,15 @@
 <demo>支持 disabled</demo>
 
 <template>
-  <Switch v-model:value="defaultValue" disabled />
+  <co-switch v-model:value="defaultValue" disabled />
 </template>
 
 <script lang="ts">
 import { ref } from 'vue';
-import { Switch } from 'coast-ui-vue3';
+import { CoSwitch } from 'coast-ui-vue3';
 
 export default {
-  components: { Switch },
+  components: { CoSwitch },
   setup() {
     const defaultValue = ref(false);
     return { defaultValue };

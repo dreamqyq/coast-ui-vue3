@@ -13,7 +13,10 @@
     "sourceMap": true,
     "lib": ["ESNext", "DOM"],
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "coast-ui-vue3": ["./lib"]
+    }
   },
   "exclude": ["node_modules"]
 }

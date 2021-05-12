@@ -3,19 +3,19 @@
 <template>
   <div>
     <div>
-      <Button disabled>禁用按钮</Button>
-      <Button disabled theme="link">禁用链接按钮</Button>
-      <Button disabled theme="text">禁用文字按钮</Button>
+      <co-button disabled>禁用按钮</co-button>
+      <co-button disabled theme="link">禁用链接按钮</co-button>
+      <co-button disabled theme="text">禁用文字按钮</co-button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Button } from 'coast-ui-vue3';
+import { CoButton } from 'coast-ui-vue3';
 
 export default {
   components: {
-    Button,
+    CoButton,
   },
 };
 </script>

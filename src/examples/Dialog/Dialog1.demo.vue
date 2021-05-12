@@ -2,22 +2,22 @@
 
 <template>
   <div>
-    <Button @click="toggle">打开对话框</Button>
-    <Dialog v-model:visible="visible" :cancel="cancel" :confirm="confirm" :overlayClosable="false">
+    <co-button @click="toggle">打开对话框</co-button>
+    <co-dialog v-model:visible="visible" :cancel="cancel" :confirm="confirm" :overlayClosable="false">
       <strong>文本框第一行</strong>
       <div>文本框第二行</div>
-    </Dialog>
+    </co-dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { Button, Dialog } from 'coast-ui-vue3';
+import { CoButton, CoDialog } from 'coast-ui-vue3';
 import { ref } from 'vue';
 
 export default {
   components: {
-    Dialog,
-    Button,
+    CoDialog,
+    CoButton,
   },
   setup() {
     const visible = ref(false);

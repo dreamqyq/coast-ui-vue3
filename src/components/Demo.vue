@@ -1,21 +1,21 @@
 <template>
-  <Card :title="component.__sourceCodeTitle" class="demo">
+  <co-card :title="component.__sourceCodeTitle" class="demo">
     <div class="demo-component">
       <component :is="component" />
     </div>
     <template #footer>
-      <Button @click="toggleCodeVisible">查看代码</Button>
+      <co-button @click="toggleCodeVisible">查看代码</co-button>
       <div v-show="codeVisible" class="demo-code">
         <pre><code class="hljs" v-html="sourceCode"></code></pre>
       </div>
     </template>
-  </Card>
+  </co-card>
 </template>
 
 <script lang="ts">
 import hljs from 'highlight.js';
 import 'highlight.js/styles/arduino-light.css';
-import { Button, Card } from 'coast-ui-vue3';
+import { CoButton, CoCard } from 'coast-ui-vue3';
 import { computed, ref } from 'vue';
 
 export default {
@@ -26,7 +26,7 @@ export default {
       required: true,
     },
   },
-  components: { Button, Card },
+  components: { CoButton, CoCard },
   setup(props) {
     const codeVisible = ref(false);
     const toggleCodeVisible = () => {

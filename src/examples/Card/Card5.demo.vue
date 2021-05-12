@@ -2,23 +2,23 @@
 
 <template>
   <div class="wrap">
-    <Card title="Card 支持 footer" hoverable shadow>
+    <co-card title="支持 footer" hoverable shadow>
       card content
       <template #footer>card footer</template>
-    </Card>
-    <Card title="Card 支持 footer" type="dark">
+    </co-card>
+    <co-card title="支持 footer" type="dark">
       card content
       <template #footer>card footer</template>
-    </Card>
+    </co-card>
   </div>
 </template>
 
 <script lang="ts">
-import { Card } from 'coast-ui-vue3';
+import { CoCard } from 'coast-ui-vue3';
 
 export default {
   components: {
-    Card,
+    CoCard,
   },
 };
 </script>

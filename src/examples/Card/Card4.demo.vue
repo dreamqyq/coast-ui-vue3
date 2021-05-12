@@ -3,17 +3,17 @@
 <template>
   <div class="wrap">
     <template v-for="type in types" :key="type">
-      <Card :title="type" :type="type">{{ type }} card</Card>
+      <co-card :title="type" :type="type">{{ type }} card</co-card>
     </template>
   </div>
 </template>
 
 <script lang="ts">
-import { Card } from 'coast-ui-vue3';
+import { CoCard } from 'coast-ui-vue3';
 
 export default {
   components: {
-    Card,
+    CoCard,
   },
   setup() {
     const types = [

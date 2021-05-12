@@ -3,18 +3,18 @@
 <template>
   <div>
     <div>
-      <Button loading>加载中</Button>
-      <Button>加载完毕</Button>
+      <co-button loading>加载中</co-button>
+      <co-button>加载完毕</co-button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Button } from 'coast-ui-vue3';
+import { CoButton } from 'coast-ui-vue3';
 
 export default {
   components: {
-    Button,
+    CoButton,
   },
 };
 </script>

@@ -2,16 +2,16 @@
 
 <template>
   <div>
-    <Card title="Card 基本用法">Card 内容</Card>
+    <co-card title="基本用法">co-card 内容</co-card>
   </div>
 </template>
 
 <script lang="ts">
-import { Card } from 'coast-ui-vue3';
+import { CoCard } from 'coast-ui-vue3';
 
 export default {
   components: {
-    Card,
+    CoCard,
   },
 };
 </script>

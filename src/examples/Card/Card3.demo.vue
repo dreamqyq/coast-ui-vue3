@@ -2,16 +2,16 @@
 
 <template>
   <div>
-    <Card title="Card 支持 shadow 效果" hoverable shadow>shadow card</Card>
+    <co-card title="支持 shadow 效果" hoverable shadow>shadow card</co-card>
   </div>
 </template>
 
 <script lang="ts">
-import { Card } from 'coast-ui-vue3';
+import { CoCard } from 'coast-ui-vue3';
 
 export default {
   components: {
-    Card,
+    CoCard,
   },
 };
 </script>
