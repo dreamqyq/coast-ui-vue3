@@ -5,8 +5,22 @@
       <h1>Coast UI for Vue3</h1>
       <h2>一个基于最新技术的 UI 框架</h2>
       <p class="actions">
-        <a href="https://github.com/dreamqyq" target="_blank">Github</a>
-        <router-link to="/doc/introduce">开始</router-link>
+        <a href="https://github.com/dreamqyq" target="_blank">
+          <co-button>
+            Github
+            <svg aria-hidden="true" class="icon">
+              <use xlink:href="#icon-github"></use>
+            </svg>
+          </co-button>
+        </a>
+        <router-link to="/doc/introduce">
+          <co-button>
+            开始
+            <svg aria-hidden="true" class="icon">
+              <use xlink:href="#icon-start"></use>
+            </svg>
+          </co-button>
+        </router-link>
       </p>
     </div>
   </div>
@@ -45,10 +59,11 @@
 </template>
 
 <script lang="ts">
+import { CoButton } from 'coast-ui-vue3';
 import TopNav from '../components/TopNav.vue';
 
 export default {
-  components: { TopNav },
+  components: { TopNav, CoButton },
 };
 </script>
 <style lang="scss" scoped>
@@ -82,14 +97,16 @@ $baseColor: #786ff8;
   > .actions {
     margin-top: 40px;
     padding: 8px 0;
-
+    display: flex;
+    justify-content: center;
     a {
-      margin: 0 8px;
-      background: #aca8b6;
-      color: #fff;
-      display: inline-block;
-      padding: 8px 24px;
-      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      margin-right: 16px;
+    }
+    .icon {
+      font-size: 24px;
+      margin-left: 4px;
     }
   }
 }
