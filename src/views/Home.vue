@@ -3,16 +3,8 @@
     <TopNav isHome />
     <div class="banner">
       <h1>Coast UI for Vue3</h1>
-      <h2>一个基于最新技术的 UI 框架</h2>
+      <h2>一款面向未来的 UI 框架</h2>
       <p class="actions">
-        <a href="https://github.com/dreamqyq" target="_blank">
-          <co-button>
-            Github
-            <svg aria-hidden="true" class="icon">
-              <use xlink:href="#icon-github"></use>
-            </svg>
-          </co-button>
-        </a>
         <router-link to="/doc/introduce">
           <co-button>
             开始
@@ -21,6 +13,14 @@
             </svg>
           </co-button>
         </router-link>
+        <a href="https://github.com/dreamqyq/coast-ui-vue3" target="_blank">
+          <co-button>
+            Github
+            <svg aria-hidden="true" class="icon">
+              <use xlink:href="#icon-github"></use>
+            </svg>
+          </co-button>
+        </a>
       </p>
     </div>
   </div>
@@ -30,29 +30,29 @@
         <svg aria-hidden="true" class="icon">
           <use xlink:href="#icon-vue"></use>
         </svg>
-        <h3>基于 Vue 3</h3>
+        <h3>Vue 3</h3>
         <p>使用了最新的 Vue3 Composition API</p>
       </li>
       <li>
         <svg aria-hidden="true" class="icon">
           <use xlink:href="#icon-ts"></use>
         </svg>
-        <h3>基于 TypeScript</h3>
+        <h3>TypeScript</h3>
         <p>源代码采用了 TypeScript 编写</p>
+      </li>
+      <li>
+        <svg aria-hidden="true" class="icon">
+          <use xlink:href="#icon-lightning"></use>
+        </svg>
+        <h3>Vite</h3>
+        <p>官网基于 Vite2.x 构建</p>
       </li>
       <li>
         <svg aria-hidden="true" class="icon">
           <use xlink:href="#icon-light"></use>
         </svg>
-        <h3>代码易读</h3>
-        <p>每个组件的源代码都极其简洁</p>
-      </li>
-      <li>
-        <svg aria-hidden="true" class="icon">
-          <use xlink:href="#icon-new"></use>
-        </svg>
-        <h3>技术新</h3>
-        <p>使用当前最新的技术栈</p>
+        <h3>文档完整</h3>
+        <p>所有组件拥有完整的使用文档及示例</p>
       </li>
     </ul>
   </div>

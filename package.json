@@ -18,10 +18,12 @@
   "keywords": [
     "vue",
     "vue3",
+    "vite",
     "component",
     "components",
     "ui",
     "frontend",
+    "front-end",
     "typescript"
   ],
   "license": "MIT",
