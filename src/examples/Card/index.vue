@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>co-card 文档</h1>
+    <h1>Card 文档</h1>
     <Demo :component="CardDemo1" />
     <Demo :component="CardDemo2" />
     <Demo :component="CardDemo3" />

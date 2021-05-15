@@ -3,7 +3,7 @@
 <template>
   <div>
     <co-button @click="toggle">打开对话框</co-button>
-    <co-dialog v-model:visible="visible" :cancel="cancel" :confirm="confirm" :overlayClosable="false">
+    <co-dialog v-model:visible="visible" :cancel="cancel" :confirm="confirm">
       <strong>文本框第一行</strong>
       <div>文本框第二行</div>
     </co-dialog>

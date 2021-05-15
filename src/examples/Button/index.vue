@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>co-button 文档</h1>
+    <h1>Button 文档</h1>
     <Demo :component="ButtonDemo1" />
     <Demo :component="ButtonDemo2" />
     <Demo :component="ButtonDemo3" />
