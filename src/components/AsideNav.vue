@@ -1,24 +1,27 @@
 <template>
-  <aside :class="{ visible }" @click="clickAsideNav">
-    <h2>文档</h2>
-    <ol>
-      <li>
-        <router-link to="/doc/introduce">介绍</router-link>
-      </li>
-      <li>
-        <router-link to="/doc/install">安装</router-link>
-      </li>
-      <li>
-        <router-link to="/doc/get-start">开始</router-link>
-      </li>
-    </ol>
-    <h2>组件列表</h2>
-    <ol>
-      <li v-for="nav in demoViewList" :key="nav.title">
-        <router-link :to="`/doc/${nav.path}`">{{ nav.title }} 组件</router-link>
-      </li>
-    </ol>
-  </aside>
+  <Teleport to="body">
+    <div class="aside-overlay" v-show="visible" @click="closeAsideNav"></div>
+    <aside :class="{ visible }" @click="clickAsideNav">
+      <h2>文档</h2>
+      <ol>
+        <li>
+          <router-link to="/doc/introduce">介绍</router-link>
+        </li>
+        <li>
+          <router-link to="/doc/install">安装</router-link>
+        </li>
+        <li>
+          <router-link to="/doc/get-start">开始</router-link>
+        </li>
+      </ol>
+      <h2>组件列表</h2>
+      <ol>
+        <li v-for="nav in demoViewList" :key="nav.title">
+          <router-link :to="`/doc/${nav.path}`">{{ nav.title }} 组件</router-link>
+        </li>
+      </ol>
+    </aside>
+  </Teleport>
 </template>
 
 <script lang="ts">
@@ -34,18 +37,30 @@ export default defineComponent({
   },
   emits: ['change'],
   setup(props, context) {
+    const closeAsideNav = () => {
+      context.emit('change', false);
+    };
+
     const clickAsideNav = (e: MouseEvent) => {
       if ((<HTMLElement>e.target).tagName === 'A') {
-        context.emit('change', false);
+        closeAsideNav();
       }
     };
-    return { demoViewList, clickAsideNav };
+    return { demoViewList, clickAsideNav, closeAsideNav };
   },
 });
 </script>
 
 <style lang="scss" scoped>
 $asideIndex: 10;
+.aside-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $asideIndex;
+}
 aside {
   background: #fff;
   width: 150px;
