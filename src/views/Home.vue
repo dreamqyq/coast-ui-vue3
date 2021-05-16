@@ -69,12 +69,12 @@ export default {
 <style lang="scss" scoped>
 $baseColor: #786ff8;
 .topNav-wrapper {
-  background: rgb(0, 156, 240);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 156, 240, 1) 0%,
-    rgba(82, 199, 231, 1) 48%,
-    rgba(0, 212, 255, 1) 100%
+  background: rgb(0, 0, 0);
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 40%,
+    rgba(255, 250, 250, 1) 60%,
+    rgba(0, 0, 0, 1) 100%
   );
   clip-path: ellipse(80% 60% at 50% 40%);
   color: #fff;
@@ -114,6 +114,14 @@ $baseColor: #786ff8;
 .content {
   margin: 64px auto;
   padding: 0 16px;
+  @media (min-width: 500px) {
+    width: 500px;
+    > ul {
+      > li {
+        width: 100%;
+      }
+    }
+  }
   @media (min-width: 800px) {
     width: 800px;
     > ul {
@@ -126,7 +134,7 @@ $baseColor: #786ff8;
     width: 1200px;
     > ul {
       > li {
-        width: 33.3333%;
+        width: 25%;
       }
     }
   }
