@@ -27,5 +27,3 @@ export default {
 }
 </script>
 ```
-
-下一节：[Button 组件](#/doc/button)

@@ -17,12 +17,37 @@ const router = createRouter({
     { path: '/', component: Home },
     {
       path: '/doc',
+      name: 'doc',
       component: Doc,
       children: [
         { path: '', redirect: '/doc/introduce' },
-        { path: 'introduce', component: mdRender(introduce) },
-        { path: 'install', component: mdRender(install) },
-        { path: 'get-start', component: mdRender(getStart) },
+        {
+          path: 'introduce',
+          name: 'Introduce',
+          component: mdRender(introduce),
+          meta: {
+            prev: '',
+            next: 'Install',
+          },
+        },
+        {
+          path: 'install',
+          name: 'Install',
+          component: mdRender(install),
+          meta: {
+            prev: 'Introduce',
+            next: 'GetStart',
+          },
+        },
+        {
+          path: 'get-start',
+          name: 'GetStart',
+          component: mdRender(getStart),
+          meta: {
+            prev: 'Install',
+            next: demoViewList[0].name,
+          },
+        },
         ...demoViewList,
       ],
     },

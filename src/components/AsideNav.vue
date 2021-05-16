@@ -16,8 +16,8 @@
       </ol>
       <h2>组件列表</h2>
       <ol>
-        <li v-for="nav in demoViewList" :key="nav.title">
-          <router-link :to="`/doc/${nav.path}`">{{ nav.title }} 组件</router-link>
+        <li v-for="nav in demoViewList" :key="nav.name">
+          <router-link :to="`/doc/${nav.path}`">{{ nav.name }} 组件</router-link>
         </li>
       </ol>
     </aside>

@@ -1,12 +1,25 @@
+import { RouteRecordRaw } from 'vue-router';
 const modules = import.meta.glob('../examples/**/index.vue');
 
-const demoViewList = [];
-Object.keys(modules).forEach(key => {
+const demoViewList: Array<RouteRecordRaw> = [];
+Object.keys(modules).forEach((key, index, array) => {
   demoViewList.push({
-    title: key.split('/')[2],
+    name: key.split('/')[2],
     path: key.split('/')[2].toLocaleLowerCase(),
     component: modules[key],
+    meta: {
+      prev: '',
+      next: '',
+    },
   });
+  if (index === 0) {
+    demoViewList[index].meta.prev = 'GetStart';
+  } else {
+    demoViewList[index - 1].meta.next = demoViewList[index].name;
+    demoViewList[index].meta.prev = demoViewList[index - 1].name;
+  }
 });
+
+console.log(demoViewList)
 
 export { demoViewList };

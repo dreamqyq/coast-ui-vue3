@@ -11,5 +11,3 @@ npm install coast-ui-vue3
 ```
 yarn add coast-ui-vue3
 ```
-
-下一节：[开始使用](#/doc/get-start)

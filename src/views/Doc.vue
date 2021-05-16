@@ -5,6 +5,7 @@
       <AsideNav :visible="asideVisible" @change="asideVisibleChange" />
       <main>
         <router-view />
+        <FooterNav />
       </main>
     </div>
   </div>
@@ -14,9 +15,10 @@
 import { inject, Ref } from 'vue';
 import AsideNav from '../components/AsideNav.vue';
 import TopNav from '../components/TopNav.vue';
+import FooterNav from '../components/FooterNav.vue';
 
 export default {
-  components: { AsideNav, TopNav },
+  components: { AsideNav, TopNav, FooterNav },
   inject: ['asideVisible'],
   setup() {
     const asideVisible = inject<Ref<boolean>>('asideVisible');
