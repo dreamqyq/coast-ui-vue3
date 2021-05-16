@@ -20,6 +20,4 @@ Object.keys(modules).forEach((key, index) => {
   }
 });
 
-console.log(demoViewList);
-
 export { demoViewList };

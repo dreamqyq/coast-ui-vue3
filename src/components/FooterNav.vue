@@ -1,12 +1,12 @@
 <template>
   <footer>
-    <div class="prev" @click="toPrevPage">
+    <div class="prev" @click="toAdjacentPage('prev')">
       <template v-if="prevName">
         ←
         <span>{{ prevName }}</span>
       </template>
     </div>
-    <div class="next" @click="toNextPage">
+    <div class="next" @click="toAdjacentPage('next')">
       <template v-if="nextName">
         <span>{{ nextName }}</span>
         →
@@ -29,18 +29,20 @@ export default defineComponent({
       prevName.value = to.meta.prev;
       nextName.value = to.meta.next;
     });
-    const toPrevPage = () => {
-      router.push({ name: prevName.value });
-    };
-    const toNextPage = () => {
-      router.push({ name: nextName.value });
+
+    const toAdjacentPage = type => {
+      const name = type === 'prev' ? prevName.value : nextName.value;
+      router.push({ name });
+      window.scrollTo({
+        top: 0,
+        left: 0,
+      });
     };
 
     return {
       prevName,
       nextName,
-      toPrevPage,
-      toNextPage,
+      toAdjacentPage,
     };
   },
 });
@@ -48,10 +50,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 footer {
-  margin-top: 20px;
+  margin: 20px 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   color: #0366d6;
+  cursor: pointer;
 }
 </style>

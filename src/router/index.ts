@@ -45,7 +45,7 @@ const router = createRouter({
           component: mdRender(getStart),
           meta: {
             prev: '介绍',
-            next: `${demoViewList[0].name as string} 组件`,
+            next: `${demoViewList[0].name as string}`,
           },
         },
         ...demoViewList,
