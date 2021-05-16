@@ -1,11 +1,6 @@
 <template>
-  <nav class="topNav" :class="{ shadow: !isTop }">
-    <svg
-      v-if="!isHome"
-      aria-hidden="true"
-      class="icon toggleAsideBtn"
-      @click="toggleAside"
-    >
+  <nav class="topNav" :class="{ shadow: !isTop, fixed: !isHome }">
+    <svg v-if="!isHome" aria-hidden="true" class="icon toggleAsideBtn" @click="toggleAside">
       <use xlink:href="#icon-menu"></use>
     </svg>
     <div class="logo">
@@ -65,7 +60,7 @@ export default {
 nav.topNav {
   display: flex;
   padding: 16px;
-  position: fixed;
+  position: absolute;
   width: 100%;
   top: 0;
   left: 0;
@@ -74,6 +69,10 @@ nav.topNav {
   align-content: center;
   background: #fff;
   transition: all 0.25s;
+
+  &.fixed {
+    position: fixed;
+  }
 
   &.shadow {
     box-shadow: rgb(0 0 0 / 10%) 0px 0px 15px 0px;
