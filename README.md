@@ -6,6 +6,6 @@
     - `yarn` 安装
     - `yarn dev` 运行
 - 官网自动化部署（gh-pages）
-    - `sh scripts/deploy.sh`
+    - `yarn deploy`
 - 组件打包
-    - `rollup -c`
+    - `yarn build:lib`
