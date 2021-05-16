@@ -23,29 +23,29 @@ const router = createRouter({
         { path: '', redirect: '/doc/introduce' },
         {
           path: 'introduce',
-          name: 'Introduce',
+          name: '介绍',
           component: mdRender(introduce),
           meta: {
             prev: '',
-            next: 'Install',
+            next: '安装',
           },
         },
         {
           path: 'install',
-          name: 'Install',
+          name: '安装',
           component: mdRender(install),
           meta: {
-            prev: 'Introduce',
-            next: 'GetStart',
+            prev: '介绍',
+            next: '开始',
           },
         },
         {
           path: 'get-start',
-          name: 'GetStart',
+          name: '开始',
           component: mdRender(getStart),
           meta: {
-            prev: 'Install',
-            next: demoViewList[0].name,
+            prev: '介绍',
+            next: `${demoViewList[0].name as string} 组件`,
           },
         },
         ...demoViewList,

@@ -2,9 +2,9 @@ import { RouteRecordRaw } from 'vue-router';
 const modules = import.meta.glob('../examples/**/index.vue');
 
 const demoViewList: Array<RouteRecordRaw> = [];
-Object.keys(modules).forEach((key, index, array) => {
+Object.keys(modules).forEach((key, index) => {
   demoViewList.push({
-    name: key.split('/')[2],
+    name: `${key.split('/')[2]} 组件`,
     path: key.split('/')[2].toLocaleLowerCase(),
     component: modules[key],
     meta: {
@@ -13,13 +13,13 @@ Object.keys(modules).forEach((key, index, array) => {
     },
   });
   if (index === 0) {
-    demoViewList[index].meta.prev = 'GetStart';
+    demoViewList[index].meta.prev = '开始';
   } else {
     demoViewList[index - 1].meta.next = demoViewList[index].name;
     demoViewList[index].meta.prev = demoViewList[index - 1].name;
   }
 });
 
-console.log(demoViewList)
+console.log(demoViewList);
 
 export { demoViewList };
