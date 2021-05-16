@@ -8,4 +8,4 @@ Coast UI for Vue3 是一款基于 `Vue3` 和 `TypeScript` 的 UI 组件库，因
 
 官网基于 `vite2.x` 搭建。官方展示使用了 github 的 gh-pages 功能，并实现了自动化部署脚本。
 
-源代码放在了 https://github.com/dreamqyq/coast-ui-vue3 你也可以直接查看每个组件的源代码和示例，运行方法见 README.md。
+源代码放在了 https://github.com/dreamqyq/coast-ui-vue3 你也可以直接查看每个组件的源代码和示例，运行方法见 [README.md](https://github.com/dreamqyq/coast-ui-vue3/blob/master/README.md)。
