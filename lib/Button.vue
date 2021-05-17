@@ -54,12 +54,13 @@ export default defineComponent({
     },
   },
   setup(props: ButtonProps) {
-    const { theme, size, level } = props;
+    const { theme, size, level, loading } = props;
     const classes = computed(() => {
       return {
         [`coast-theme-${theme}`]: theme,
         [`coast-size-${size}`]: size,
         [`coast-level-${level}`]: level,
+        'coast-loading': loading,
       };
     });
     return { classes };
@@ -255,16 +256,54 @@ $orange: #f5a623;
     }
   }
 
-  > .coast-loadingIndicator {
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    margin-right: 4px;
-    border-radius: 8px;
-    border-color: $theme $theme $theme transparent;
-    border-style: solid;
-    border-width: 2px;
-    animation: coast-spin 1s infinite linear;
+  &.coast-loading {
+    cursor: default;
+
+    &:hover,
+    &:focus {
+      color: inherit;
+      border-color: $border-color;
+    }
+
+    > .coast-loadingIndicator {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      margin-right: 4px;
+      border-radius: 8px;
+      border-color: $theme $theme $theme transparent;
+      border-style: solid;
+      border-width: 2px;
+      animation: coast-spin 1s infinite linear;
+    }
+
+    &.coast-level-warning,
+    &.coast-level-danger,
+    &.coast-level-main {
+      &:hover,
+      &:focus {
+        color: white;
+        border-color: $border-color;
+        background-color: $theme;
+      }
+
+      > .coast-loadingIndicator {
+        border-color: white white white transparent;
+      }
+    }
+
+    &.coast-level-warning {
+      &:hover,
+      &:focus {
+        background-color: $orange;
+      }
+    }
+    &.coast-level-danger {
+      &:hover,
+      &:focus {
+        background-color: $red;
+      }
+    }
   }
 }
 
