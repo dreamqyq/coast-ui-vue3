@@ -1,12 +1,13 @@
 <template>
   <button :class="classes" :disabled="disabled" class="coast-button">
-    <span v-if="loading" class="coast-loadingIndicator"></span>
+    <Icon v-if="loading" class="coast-loadingIndicator" name="loading" />
     <slot />
   </button>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue';
+import Icon from './Icon.vue';
 
 type ButtonThemeType = PropType<'button' | 'link' | 'text'>;
 type ButtonSizeType = PropType<'normal' | 'big' | 'small'>;
@@ -22,6 +23,7 @@ interface ButtonProps {
 
 export default defineComponent({
   name: 'CoastButton',
+  components: { Icon },
   props: {
     theme: {
       type: String as ButtonThemeType,
@@ -258,6 +260,22 @@ $orange: #f5a623;
 
   &.coast-loading {
     cursor: default;
+    position: relative;
+
+    &::before{
+      position: absolute;
+      content: '';
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      z-index: 1;
+      border-radius: inherit;
+      background: #fff;
+      opacity: 0.35;
+      transition: opacity .2s;
+      pointer-events: none;
+    }
 
     &:hover,
     &:focus {
@@ -266,14 +284,7 @@ $orange: #f5a623;
     }
 
     > .coast-loadingIndicator {
-      width: 14px;
-      height: 14px;
-      display: inline-block;
       margin-right: 4px;
-      border-radius: 8px;
-      border-color: $theme $theme $theme transparent;
-      border-style: solid;
-      border-width: 2px;
       animation: coast-spin 1s infinite linear;
     }
 
