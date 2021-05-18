@@ -56,13 +56,13 @@ export default defineComponent({
     },
   },
   setup(props: ButtonProps) {
-    const { theme, size, level, loading } = props;
+    const { theme, size, level } = props;
     const classes = computed(() => {
       return {
         [`coast-theme-${theme}`]: theme,
         [`coast-size-${size}`]: size,
         [`coast-level-${level}`]: level,
-        'coast-loading': loading,
+        'coast-loading': props.loading,
       };
     });
     return { classes };
@@ -262,7 +262,7 @@ $orange: #f5a623;
     cursor: default;
     position: relative;
 
-    &::before{
+    &::before {
       position: absolute;
       content: '';
       top: -1px;
@@ -273,7 +273,7 @@ $orange: #f5a623;
       border-radius: inherit;
       background: #fff;
       opacity: 0.35;
-      transition: opacity .2s;
+      transition: opacity 0.2s;
       pointer-events: none;
     }
 
