@@ -7,17 +7,29 @@
       <co-button level="danger" loading>加载中</co-button>
       <co-button level="warning" loading>警告按钮</co-button>
       <co-button loading>加载中</co-button>
-      <co-button>加载完毕</co-button>
+      <co-button :loading="loading" @click="handleClick">{{ msg }}</co-button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { CoButton } from 'coast-ui-vue3';
+import { ref } from 'vue';
 
 export default {
   components: {
     CoButton,
+  },
+  setup() {
+    const msg = ref('点我开始加载');
+    const loading = ref(false);
+
+    const handleClick = () => {
+      loading.value = true;
+      msg.value = '加载中';
+    };
+
+    return { msg, loading, handleClick };
   },
 };
 </script>
