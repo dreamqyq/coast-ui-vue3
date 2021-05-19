@@ -20,17 +20,22 @@ $radius: 4px;
   vertical-align: middle;
 
   .coast-button {
-    margin-left: -1px;
     border-radius: 0;
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
 
     &:first-child {
       border-top-left-radius: $radius;
       border-bottom-left-radius: $radius;
     }
+
     &:last-child {
       border-top-right-radius: $radius;
       border-bottom-right-radius: $radius;
     }
+
     &:hover {
       position: relative;
       z-index: 1;
