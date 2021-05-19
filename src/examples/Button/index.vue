@@ -6,6 +6,7 @@
     <Demo :component="ButtonDemo3" />
     <Demo :component="ButtonDemo4" />
     <Demo :component="ButtonDemo5" />
+    <Demo :component="ButtonDemo6" />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import ButtonDemo2 from './Button2.demo.vue';
 import ButtonDemo3 from './Button3.demo.vue';
 import ButtonDemo4 from './Button4.demo.vue';
 import ButtonDemo5 from './Button5.demo.vue';
+import ButtonDemo6 from './Button6.demo.vue';
 
 export default {
   components: { Demo },
@@ -26,6 +28,7 @@ export default {
       ButtonDemo3,
       ButtonDemo4,
       ButtonDemo5,
+      ButtonDemo6,
     };
   },
 };
