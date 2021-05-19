@@ -60,7 +60,7 @@ export default defineComponent({
     const defaults = context.slots.default();
     defaults.forEach(tag => {
       if (tag.type !== TabPanel) {
-        throw new Error('Tabs 的子标签必须为 TabPanel');
+        throw new Error('CoTabs 的子标签必须为 CoTabPanel');
       }
     });
     const subElements = defaults.map(tag => ({
