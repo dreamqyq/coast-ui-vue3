@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue';
-import Icon from '../Icon.vue';
+import Icon from '../icon/Icon.vue';
 
 type ButtonThemeType = PropType<'button' | 'link' | 'text'>;
 type ButtonSizeType = PropType<'normal' | 'big' | 'small'>;
