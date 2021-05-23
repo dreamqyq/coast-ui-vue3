@@ -1,6 +1,6 @@
 <template>
   <button :class="classes" :disabled="disabled" class="coast-button">
-    <Icon v-if="loading" class="coast-loadingIndicator" name="loading" />
+    <Icon v-if="loading" class="coast-button-loadingIndicator" name="loading" />
     <slot />
   </button>
 </template>
@@ -59,10 +59,10 @@ export default defineComponent({
     const { theme, size, level } = props;
     const classes = computed(() => {
       return {
-        [`coast-theme-${theme}`]: theme,
-        [`coast-size-${size}`]: size,
-        [`coast-level-${level}`]: level,
-        'coast-loading': props.loading,
+        [`coast-button-theme-${theme}`]: theme,
+        [`coast-button-size-${size}`]: size,
+        [`coast-button-level-${level}`]: level,
+        'coast-button-loading': props.loading,
       };
     });
     return { classes };
@@ -113,7 +113,7 @@ $orange: #f5a623;
     border: 0;
   }
 
-  &.coast-theme-link {
+  &.coast-button-theme-link {
     border-color: transparent;
     box-shadow: none;
     color: $theme;
@@ -125,7 +125,7 @@ $orange: #f5a623;
     }
   }
 
-  &.coast-theme-text {
+  &.coast-button-theme-text {
     border-color: transparent;
     box-shadow: none;
     color: inherit;
@@ -136,20 +136,20 @@ $orange: #f5a623;
     }
   }
 
-  &.coast-size-big {
+  &.coast-button-size-big {
     font-size: 24px;
     height: 48px;
     padding: 0 16px;
   }
 
-  &.coast-size-small {
+  &.coast-button-size-small {
     font-size: 12px;
     height: 20px;
     padding: 0 4px;
   }
 
-  &.coast-theme-button {
-    &.coast-level-main {
+  &.coast-button-theme-button {
+    &.coast-button-level-main {
       background: $theme;
       color: white;
       border-color: $theme;
@@ -161,7 +161,7 @@ $orange: #f5a623;
       }
     }
 
-    &.coast-level-danger {
+    &.coast-button-level-danger {
       background: $red;
       border-color: $red;
       color: white;
@@ -173,7 +173,7 @@ $orange: #f5a623;
       }
     }
 
-    &.coast-level-warning {
+    &.coast-button-level-warning {
       background: $orange;
       border-color: $orange;
       color: white;
@@ -186,8 +186,8 @@ $orange: #f5a623;
     }
   }
 
-  &.coast-theme-link {
-    &.coast-level-danger {
+  &.coast-button-theme-link {
+    &.coast-button-level-danger {
       color: $red;
 
       &:hover,
@@ -195,7 +195,7 @@ $orange: #f5a623;
         color: darken($red, 10%);
       }
     }
-    &.coast-level-warning {
+    &.coast-button-level-warning {
       color: $orange;
 
       &:hover,
@@ -205,8 +205,8 @@ $orange: #f5a623;
     }
   }
 
-  &.coast-theme-text {
-    &.coast-level-main {
+  &.coast-button-theme-text {
+    &.coast-button-level-main {
       color: $theme;
 
       &:hover,
@@ -215,7 +215,7 @@ $orange: #f5a623;
       }
     }
 
-    &.coast-level-danger {
+    &.coast-button-level-danger {
       color: $red;
 
       &:hover,
@@ -224,7 +224,7 @@ $orange: #f5a623;
       }
     }
 
-    &.coast-level-warning {
+    &.coast-button-level-warning {
       color: $orange;
 
       &:hover,
@@ -234,7 +234,7 @@ $orange: #f5a623;
     }
   }
 
-  &.coast-theme-button {
+  &.coast-button-theme-button {
     &[disabled] {
       cursor: not-allowed;
       color: $gray;
@@ -246,8 +246,8 @@ $orange: #f5a623;
     }
   }
 
-  &.coast-theme-link,
-  &.coast-theme-text {
+  &.coast-button-theme-link,
+  &.coast-button-theme-text {
     &[disabled] {
       cursor: not-allowed;
       color: $gray;
@@ -258,7 +258,7 @@ $orange: #f5a623;
     }
   }
 
-  &.coast-loading {
+  &.coast-button-loading {
     cursor: default;
     position: relative;
 
@@ -283,14 +283,14 @@ $orange: #f5a623;
       border-color: $border-color;
     }
 
-    > .coast-loadingIndicator {
+    > .coast-button-loadingIndicator {
       margin-right: 4px;
       animation: coast-spin 1s infinite linear;
     }
 
-    &.coast-level-warning,
-    &.coast-level-danger,
-    &.coast-level-main {
+    &.coast-button-level-warning,
+    &.coast-button-level-danger,
+    &.coast-button-level-main {
       &:hover,
       &:focus {
         color: white;
@@ -303,13 +303,13 @@ $orange: #f5a623;
       }
     }
 
-    &.coast-level-warning {
+    &.coast-button-level-warning {
       &:hover,
       &:focus {
         background-color: $orange;
       }
     }
-    &.coast-level-danger {
+    &.coast-button-level-danger {
       &:hover,
       &:focus {
         background-color: $red;
