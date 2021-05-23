@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import './iconfont';
+import './theme-chalk/iconfont';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
