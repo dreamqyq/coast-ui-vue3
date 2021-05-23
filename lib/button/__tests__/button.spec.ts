@@ -1,10 +1,11 @@
 import { mount } from '@vue/test-utils';
 import Button from '../Button.vue';
+import ButtonGroup from '../ButtonGroup.vue'
 jest.mock('../../theme-chalk/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';
 
-describe('Button.vue', () => {
+describe('Button', () => {
   it('create', () => {
     const wrapper = mount(Button);
     const wrapperClasses = expect(wrapper.classes());
@@ -74,3 +75,22 @@ describe('Button.vue', () => {
     expect(wrapper.emitted()).toBeDefined();
   });
 });
+
+describe('Button Group',()=>{
+    const TestComponent = {
+    template: `<co-button-group>
+      <co-button>Prev</co-button>
+      <co-button>Next</co-button>
+    </co-button-group>`,
+    components: {
+      'co-button-group': ButtonGroup,
+      'co-button': Button,
+    },
+  }
+
+  it('create', () => {
+    const wrapper = mount(TestComponent)
+    expect(wrapper.classes()).toContain('coast-button-group')
+    expect(wrapper.findAll('button').length).toBe(2)
+  })
+})
