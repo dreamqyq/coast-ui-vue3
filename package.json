@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "jest",
+    "test:lib": "jest lib",
     "deploy": "sh ./scripts/deploy.sh",
     "build:lib": "rollup -c",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
@@ -46,6 +46,7 @@
     "@types/marked": "^2.0.2",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.7",
+    "@vue/test-utils": "^2.0.0-rc.6",
     "eslint": "^7.24.0",
     "eslint-plugin-vue": "^7.9.0",
     "jest": "^26.6.3",
@@ -55,6 +56,10 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-vue": "6.0.0-beta.10",
     "sass": "^1.27.1",
-    "vite": "^2.2.4"
+    "ts-jest": "^26.5.6",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
+    "vite": "^2.2.4",
+    "vue-jest": "^5.0.0-alpha.9"
   }
 }
