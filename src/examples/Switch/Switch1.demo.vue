@@ -1,7 +1,7 @@
 <demo>常规用法</demo>
 
 <template>
-  <co-switch v-model:value="defaultValue" />
+  <co-switch v-model:value="defaultValue" @update:value="handleChange" />
 </template>
 
 <script lang="ts">
@@ -12,7 +12,10 @@ export default {
   components: { CoSwitch },
   setup() {
     const defaultValue = ref(false);
-    return { defaultValue };
+    const handleChange = (value: boolean) => {
+      console.log('value change', value);
+    };
+    return { defaultValue, handleChange };
   },
 };
 </script>
