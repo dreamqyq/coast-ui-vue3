@@ -1,7 +1,9 @@
 <template>
-  <button :class="classes" :disabled="disabled" class="coast-button">
+  <button :class="classes" :disabled="disabled || loading" class="coast-button">
     <Icon v-if="loading" class="coast-button-loadingIndicator" name="loading" />
-    <slot />
+    <span v-if="$slots.default">
+      <slot />
+    </span>
   </button>
 </template>
 
@@ -262,6 +264,16 @@ $orange: #f5a623;
     cursor: default;
     position: relative;
 
+    &[disabled] {
+      cursor: default;
+      color: $color;
+
+      &:hover {
+        color: $color;
+        border: 1px solid $border-color;
+      }
+    }
+
     &::before {
       position: absolute;
       content: '';
@@ -291,6 +303,9 @@ $orange: #f5a623;
     &.coast-button-level-warning,
     &.coast-button-level-danger,
     &.coast-button-level-main {
+      &[disabled] {
+        color: #fff;
+      }
       &:hover,
       &:focus {
         color: white;
