@@ -1,4 +1,4 @@
-export { default as CoSwitch } from './Switch.vue';
+export { default as CoSwitch } from './switch/Switch.vue';
 export { default as CoButton } from './button/Button.vue';
 export { default as CoButtonGroup } from './button/ButtonGroup.vue';
 export { default as CoTabs } from './Tabs.vue';
