@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import Button from '../Button.vue';
-import ButtonGroup from '../ButtonGroup.vue'
+import ButtonGroup from '../ButtonGroup.vue';
 jest.mock('../../theme-chalk/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';
@@ -37,7 +37,7 @@ describe('Button', () => {
     expect(wrapper.emitted('click')).toBeUndefined();
   });
 
-  test('loading implies disabled', async () => {
+  it('loading implies disabled', async () => {
     const wrapper = mount(Button, {
       slots: {
         default: AXIOM,
@@ -55,7 +55,7 @@ describe('Button', () => {
     expect(wrapper.text()).toEqual(AXIOM);
   });
 
-  test('handle click', async () => {
+  it('handle click', async () => {
     const wrapper = mount(Button, {
       slots: {
         default: AXIOM,
@@ -65,7 +65,7 @@ describe('Button', () => {
     expect(wrapper.emitted()).toBeDefined();
   });
 
-  test('handle click inside', () => {
+  it('handle click inside', () => {
     const wrapper = mount(Button, {
       slots: {
         default: '<span class="inner-slot"></span>',
@@ -76,8 +76,8 @@ describe('Button', () => {
   });
 });
 
-describe('Button Group',()=>{
-    const TestComponent = {
+describe('Button Group', () => {
+  const TestComponent = {
     template: `<co-button-group>
       <co-button>Prev</co-button>
       <co-button>Next</co-button>
@@ -86,11 +86,11 @@ describe('Button Group',()=>{
       'co-button-group': ButtonGroup,
       'co-button': Button,
     },
-  }
+  };
 
   it('create', () => {
-    const wrapper = mount(TestComponent)
-    expect(wrapper.classes()).toContain('coast-button-group')
-    expect(wrapper.findAll('button').length).toBe(2)
-  })
-})
+    const wrapper = mount(TestComponent);
+    expect(wrapper.classes()).toContain('coast-button-group');
+    expect(wrapper.findAll('button').length).toBe(2);
+  });
+});
