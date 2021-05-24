@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils';
+import { ref } from 'vue';
 import Button from '../Button.vue';
 import ButtonGroup from '../ButtonGroup.vue';
 jest.mock('../../theme-chalk/iconfont/index.js');
@@ -65,13 +66,25 @@ describe('Button', () => {
     expect(wrapper.emitted()).toBeDefined();
   });
 
-  it('handle click inside', () => {
-    const wrapper = mount(Button, {
-      slots: {
-        default: '<span class="inner-slot"></span>',
+  it('handle click inside', async () => {
+    const wrapper = mount({
+      template: `<co-button @click="c">
+        <span class="inner-slot" @click="c"></span>
+      </co-button>`,
+      components: {
+        'co-button': Button,
+      },
+      setup() {
+        const v = ref(1);
+        const c = () => {
+          v.value++;
+        };
+        return { c, v };
       },
     });
+    const vm = wrapper.vm;
     (<HTMLElement>wrapper.element.querySelector('.inner-slot')).click();
+    expect(vm.v).toEqual(3);
     expect(wrapper.emitted()).toBeDefined();
   });
 });
