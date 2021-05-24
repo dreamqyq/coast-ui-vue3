@@ -8,8 +8,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue';
+import { computed, defineComponent } from 'vue';
 import Icon from '../icon/Icon.vue';
+
+import type { PropType } from 'vue';
 
 type ButtonThemeType = PropType<'button' | 'link' | 'text'>;
 type ButtonSizeType = PropType<'normal' | 'big' | 'small'>;

@@ -11,7 +11,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue';
+import { computed, defineComponent } from 'vue';
+import type { PropType } from 'vue';
 
 type CardTypeType = PropType<
   | 'secondary'
