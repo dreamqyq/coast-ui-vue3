@@ -1,13 +1,15 @@
 <template>
   <nav class="topNav" :class="{ shadow: !isTop, fixed: !isHome }">
-    <svg v-if="!isHome" aria-hidden="true" class="icon toggleAsideBtn" @click="toggleAside">
-      <use xlink:href="#icon-menu"></use>
-    </svg>
+    <co-icon
+      v-if="!isHome"
+      name="menu"
+      prefix="icon-"
+      class="icon toggleAsideBtn"
+      @click="toggleAside"
+    />
     <div class="logo">
       <router-link to="/">
-        <svg aria-hidden="true" class="icon">
-          <use xlink:href="#icon-wheel"></use>
-        </svg>
+        <co-icon name="wheel" prefix="icon-" class="icon" />
       </router-link>
     </div>
     <ul class="menu">
@@ -21,6 +23,7 @@
 <script lang="ts">
 import { inject, Ref, onMounted, onBeforeUnmount, ref } from 'vue';
 import { throttle } from '../utils';
+import { CoIcon } from 'coast-ui-vue3';
 
 export default {
   name: 'TopNav',
@@ -30,6 +33,7 @@ export default {
       default: false,
     },
   },
+  components: { CoIcon },
   inject: ['asideVisible'],
   setup(props) {
     const asideVisible = inject<Ref<boolean>>('asideVisible');
@@ -69,6 +73,10 @@ nav.topNav {
   align-content: center;
   background: #fff;
   transition: all 0.25s;
+
+  .icon{
+    font-size: 36px;
+  }
 
   &.fixed {
     position: fixed;
