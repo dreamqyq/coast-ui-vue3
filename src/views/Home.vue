@@ -105,7 +105,7 @@ $baseColor: #786ff8;
       margin-right: 16px;
     }
     .icon {
-      font-size: 24px;
+      font-size: inherit;
       margin-left: 4px;
     }
   }
