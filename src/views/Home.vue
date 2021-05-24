@@ -8,17 +8,13 @@
         <router-link to="/doc/introduce">
           <co-button>
             开始
-            <svg aria-hidden="true" class="icon">
-              <use xlink:href="#icon-start"></use>
-            </svg>
+            <co-icon name="start" prefix="icon-" class="icon" />
           </co-button>
         </router-link>
         <a href="https://github.com/dreamqyq/coast-ui-vue3" target="_blank">
           <co-button>
             Github
-            <svg aria-hidden="true" class="icon">
-              <use xlink:href="#icon-github"></use>
-            </svg>
+            <co-icon name="github" prefix="icon-" class="icon" />
           </co-button>
         </a>
       </p>
@@ -27,30 +23,22 @@
   <div class="content">
     <ul>
       <li>
-        <svg aria-hidden="true" class="icon">
-          <use xlink:href="#icon-vue"></use>
-        </svg>
+        <co-icon name="vue" prefix="icon-" class="icon" />
         <h3>Vue 3</h3>
         <p>使用了最新的 Vue3 Composition API</p>
       </li>
       <li>
-        <svg aria-hidden="true" class="icon">
-          <use xlink:href="#icon-ts"></use>
-        </svg>
+        <co-icon name="ts" prefix="icon-" class="icon" />
         <h3>TypeScript</h3>
         <p>源代码采用了 TypeScript 编写</p>
       </li>
       <li>
-        <svg aria-hidden="true" class="icon">
-          <use xlink:href="#icon-lightning"></use>
-        </svg>
+        <co-icon name="lightning" prefix="icon-" class="icon" />
         <h3>Vite</h3>
         <p>官网基于 Vite2.x 构建</p>
       </li>
       <li>
-        <svg aria-hidden="true" class="icon">
-          <use xlink:href="#icon-light"></use>
-        </svg>
+        <co-icon name="light" prefix="icon-" class="icon" />
         <h3>文档完整</h3>
         <p>所有组件拥有完整的使用文档及示例</p>
       </li>
@@ -59,11 +47,11 @@
 </template>
 
 <script lang="ts">
-import { CoButton } from 'coast-ui-vue3';
+import { CoButton, CoIcon } from 'coast-ui-vue3';
 import TopNav from '../components/TopNav.vue';
 
 export default {
-  components: { TopNav, CoButton },
+  components: { TopNav, CoButton, CoIcon },
 };
 </script>
 <style lang="scss" scoped>
@@ -105,7 +93,6 @@ $baseColor: #786ff8;
       margin-right: 16px;
     }
     .icon {
-      font-size: inherit;
       margin-left: 4px;
     }
   }
