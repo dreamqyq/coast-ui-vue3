@@ -10,4 +10,12 @@ describe('Icon', () => {
     expect(wrapper.classes()).toContain('coast-icon');
     expect(wrapper.find('use').attributes('href')).toEqual('#coast-icon-loading');
   });
+
+  it('prefix', () => {
+    const wrapper = mount(Icon, {
+      props: { name: 'Loading', prefix: 'iconfont' },
+    });
+    expect(wrapper.classes()).toContain('coast-icon');
+    expect(wrapper.find('use').attributes('href')).toEqual('#iconfontLoading');
+  });
 });

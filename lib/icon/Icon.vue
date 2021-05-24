@@ -1,6 +1,6 @@
 <template>
   <svg class="coast-icon" aria-hidden="true">
-    <use :xlink:href="`#coast-icon-${name}`"></use>
+    <use :xlink:href="`#${prefix}${name}`"></use>
   </svg>
 </template>
 
@@ -14,6 +14,11 @@ export default defineComponent({
     name: {
       type: String,
       required: true,
+    },
+    prefix: {
+      type: String,
+      required: false,
+      default: 'coast-icon-',
     },
   },
   setup() {},
