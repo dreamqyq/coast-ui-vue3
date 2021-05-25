@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Button from './button/Button.vue';
+import Button from '../button/Button.vue';
 
 interface DialogProps {
   title?: string;
