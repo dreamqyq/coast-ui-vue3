@@ -15,7 +15,8 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "paths": {
-      "coast-ui-vue3": ["./lib"]
+      "coast-ui-vue3": ["./lib/index.ts"],
+      "@coast/*": ["./lib/*"]
     }
   },
   "exclude": ["node_modules"]
