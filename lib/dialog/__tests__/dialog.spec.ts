@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { nextTick, ref } from 'vue';
+import { getDialogElement } from '@coast/__tests__/utils';
 import Dialog from '../Dialog.vue';
 
 jest.mock('../../theme-chalk/iconfont/index.js');
@@ -15,14 +16,12 @@ describe('Dialog', () => {
         default: AXIOM,
       },
     });
-    const bodyChildren = document.body.children;
-    const dialogOverlay = bodyChildren[bodyChildren.length - 2];
-    const dialogWrapper = bodyChildren[bodyChildren.length - 1];
-    expect(dialogOverlay.className).toContain('coast-dialog-overlay');
-    expect(dialogWrapper.className).toContain('coast-dialog-wrapper');
-    expect(dialogWrapper.firstElementChild.className).toContain('coast-dialog');
-    expect(dialogWrapper.querySelector('header').textContent.trim()).toBe('提示');
-    expect(dialogWrapper.querySelector('main').textContent).toBe(AXIOM);
+    const { lastButOneElementChild, lastElementChild } = getDialogElement();
+    expect(lastButOneElementChild.className).toContain('coast-dialog-overlay');
+    expect(lastElementChild.className).toContain('coast-dialog-wrapper');
+    expect(lastElementChild.firstElementChild.className).toContain('coast-dialog');
+    expect(lastElementChild.querySelector('header').textContent.trim()).toBe('提示');
+    expect(lastElementChild.querySelector('main').textContent).toBe(AXIOM);
     wrapper.unmount();
   });
 
@@ -37,9 +36,8 @@ describe('Dialog', () => {
         default: AXIOM,
       },
     });
-    const bodyChildren = document.body.children;
-    const dialogWrapper = bodyChildren[bodyChildren.length - 1];
-    expect(dialogWrapper.querySelector('header').textContent.trim()).toBe(title);
+    const { lastElementChild } = getDialogElement();
+    expect(lastElementChild.querySelector('header').textContent.trim()).toBe(title);
     wrapper.unmount();
   });
 
@@ -52,9 +50,8 @@ describe('Dialog', () => {
         return { visible };
       },
     });
-    const bodyChildren = document.body.children;
-    const dialogOverlay = bodyChildren[bodyChildren.length - 2];
-    (<HTMLElement>dialogOverlay).click();
+    const { lastButOneElementChild } = getDialogElement();
+    (<HTMLElement>lastButOneElementChild).click();
     await nextTick();
     expect(document.body.children.length).toEqual(0);
   });
@@ -71,12 +68,12 @@ describe('Dialog', () => {
         return { visible };
       },
     });
-    const bodyChildren = document.body.children;
-    const dialogOverlay = bodyChildren[bodyChildren.length - 2];
-    (<HTMLElement>dialogOverlay).click();
+    const { lastButOneElementChild } = getDialogElement();
+    (<HTMLElement>lastButOneElementChild).click();
     await nextTick();
-    expect(document.body.children.length).toEqual(2);
-    expect(document.body.lastElementChild.className).toContain('coast-dialog-wrapper');
+    const { bodyChildren, lastElementChild } = getDialogElement();
+    expect(bodyChildren.length).toEqual(2);
+    expect(lastElementChild.className).toContain('coast-dialog-wrapper');
     wrapper.unmount();
   });
 
@@ -99,9 +96,8 @@ describe('Dialog', () => {
       },
     });
     const vm = wrapper.vm;
-    const bodyChildren = document.body.children;
-    const dialogOverlay = bodyChildren[bodyChildren.length - 2];
-    (<HTMLElement>dialogOverlay).click();
+    const { lastButOneElementChild } = getDialogElement();
+    (<HTMLElement>lastButOneElementChild).click();
     await nextTick();
     expect(vm.flag).toEqual(true);
   });
