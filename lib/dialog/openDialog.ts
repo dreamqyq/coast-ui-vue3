@@ -1,4 +1,4 @@
-import { createApp, h } from 'vue';
+import { render, createVNode } from 'vue';
 import Dialog from './Dialog.vue';
 
 interface Options {
@@ -14,28 +14,26 @@ export const openDialog = (options: Options) => {
   const div = document.createElement('div');
   document.body.appendChild(div);
   const closeHandle = () => {
-    app.unmount(div);
+    render(null, div);
     div.remove();
   };
-  const app = createApp({
-    render() {
-      return h(
-        Dialog,
-        {
-          visible: true,
-          title,
-          overlayClosable,
-          confirm,
-          cancel,
-          'onUpdate:visible': newVisibel => {
-            if (newVisibel === false) {
-              closeHandle();
-            }
-          },
-        },
-        content,
-      );
+  const app = createVNode(
+    Dialog,
+    {
+      visible: true,
+      title,
+      overlayClosable,
+      confirm,
+      cancel,
+      'onUpdate:visible': (newVisible: boolean) => {
+        if (newVisible === false) {
+          closeHandle();
+        }
+      },
     },
-  });
-  app.mount(div);
+    {
+      default: content,
+    },
+  );
+  render(app, div);
 };
