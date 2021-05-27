@@ -17,7 +17,7 @@ export const openDialog = (options: Options) => {
     render(null, div);
     div.remove();
   };
-  const app = createVNode(
+  const vm = createVNode(
     Dialog,
     {
       visible: true,
@@ -32,8 +32,9 @@ export const openDialog = (options: Options) => {
       },
     },
     {
-      default: content,
+      default: () => content,
     },
   );
-  render(app, div);
+  render(vm, div);
+  return { close: closeHandle };
 };
