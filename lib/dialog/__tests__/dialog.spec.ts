@@ -6,22 +6,41 @@ import { openDialog } from './../openDialog';
 jest.mock('../../theme-chalk/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';
+const DEFAULT_TITLE = '提示';
 const TITLE = 'I am title';
 type DialogEventNameType = 'cancel' | 'confirm';
 
-const _mount = (fnName: DialogEventNameType, handleReturn?: boolean) => {
+const _mount = (
+  props: {
+    fnName?: DialogEventNameType;
+    fn?: () => unknown;
+    title?: string;
+    overlayClosable?: boolean;
+    onChange?: boolean;
+  } = {},
+) => {
+  const { fnName, fn, title, overlayClosable, onChange } = props;
+  const bindEvent = fnName ? `:${fnName}="handle"` : '';
+  const bindTitle = title ? `title="${title}"` : '';
+  const bindOnChange = onChange !== undefined ? `@update:visible="handleChange"` : '';
+  const bindOverlayClosable =
+    overlayClosable !== undefined ? `:overlayClosable="${overlayClosable}"` : '';
   return mount({
     components: { 'co-dialog': Dialog },
     template: `
         <co-dialog 
           v-model:visible="visible"
-          :${fnName}="handle"
-        ></co-dialog>
+          ${bindTitle}
+          ${bindEvent}
+          ${bindOnChange}
+          ${bindOverlayClosable}
+        >${AXIOM}</co-dialog>
       `,
     setup() {
       const visible = ref(true);
-      const handle = jest.fn(() => handleReturn);
-      return { visible, handle };
+      const handle = fn;
+      const handleChange = jest.fn();
+      return { visible, handle, handleChange };
     },
   });
 };
@@ -41,19 +60,30 @@ const handleClickOverlay = async () => {
   await handleClickElementAndWait(lastButOneElementChild as HTMLElement);
 };
 
-const handleClickCloseButton = async () => {
-  const { lastElementChild } = getBodyElement();
-  const closeButton = lastElementChild.querySelector('.coast-dialog-close') as HTMLElement;
-  await handleClickElementAndWait(closeButton);
+const handleTriggerEventAndExpect = async (
+  fnName: DialogEventNameType,
+  fn: () => unknown = jest.fn(),
+) => {
+  const wrapper = _mount({ fnName, fn });
+  const vm = wrapper.vm;
+  await expectEventTriggerCorrectly({
+    fn,
+    fnName,
+    wrapper,
+    expectFn: () => {
+      expect(vm.handle).toHaveBeenCalled();
+    },
+  });
 };
 
-const expectDialogExist = () => {
+const expectDialogExist = (title = DEFAULT_TITLE, bodyChildrenLength = 2) => {
   const { bodyChildren, lastButOneElementChild, lastElementChild } = getBodyElement();
-  expect(bodyChildren.length).toBe(2);
+  expect(bodyChildren.length).toBe(bodyChildrenLength);
   expect(lastButOneElementChild.className).toContain('coast-dialog-overlay');
   expect(lastElementChild.className).toContain('coast-dialog-wrapper');
   expect(lastElementChild.firstElementChild.className).toContain('coast-dialog');
-  expect(lastElementChild.querySelector('header').textContent.trim()).toBe('提示');
+  expect(lastElementChild.querySelector('header').textContent.trim()).toBe(title);
+  expect(lastElementChild.querySelector('main').textContent).toBe(AXIOM);
 };
 
 const expectDialogExistThenUnmount = (wrapper: VueWrapper<ComponentPublicInstance>) => {
@@ -66,155 +96,134 @@ const expectDialogHasRemoved = () => {
   expect(bodyChildren.length).toEqual(0);
 };
 
-const expectConfirmOrCancelCorrectly = async (
-  fnName: DialogEventNameType,
-  handleReturn?: boolean,
-) => {
-  const wrapper = _mount(fnName, handleReturn);
-  const vm = wrapper.vm;
+const expectEventTriggerCorrectly = async ({
+  fn,
+  fnName,
+  wrapper,
+  expectFn,
+}: {
+  fnName: DialogEventNameType;
+  fn: () => unknown;
+  wrapper?: VueWrapper<ComponentPublicInstance>;
+  expectFn?: () => void;
+}) => {
   const buttonIndex = fnName === 'confirm' ? 0 : 1;
   await handleClickElementAndWait(handleGetDialogButtonByIndex(buttonIndex));
-  expect(vm.handle).toHaveBeenCalled();
-  // return undefined or return true, close dialog
-  handleReturn === false ? expectDialogExistThenUnmount(wrapper) : expectDialogHasRemoved();
-};
-
-const expectContentEqualAXIOM = () => {
-  const { lastElementChild } = getBodyElement();
-  expect(lastElementChild.querySelector('main').textContent).toBe(AXIOM);
-};
-
-const expectTitleEqualTITLE = () => {
-  const { lastElementChild } = getBodyElement();
-  expect(lastElementChild.querySelector('header').textContent.trim()).toBe(TITLE);
+  expect(fn).toHaveBeenCalled();
+  expectFn?.();
+  fn() === false ? wrapper && expectDialogExistThenUnmount(wrapper) : expectDialogHasRemoved();
 };
 
 describe('Dialog', () => {
   it('create', () => {
-    const wrapper = mount(Dialog, {
-      props: {
-        visible: true,
-      },
-      slots: {
-        default: AXIOM,
-      },
-    });
-    expectContentEqualAXIOM();
+    const wrapper = _mount();
     expectDialogExistThenUnmount(wrapper);
   });
 
   it('render title', () => {
-    const wrapper = mount(Dialog, {
-      props: {
-        visible: true,
-        title: TITLE,
-      },
-      slots: {
-        default: AXIOM,
-      },
-    });
-    expectTitleEqualTITLE();
+    const wrapper = _mount({ title: TITLE });
+    expectDialogExist(TITLE);
     wrapper.unmount();
   });
 
   it('click header close button can close dialog', async () => {
-    mount({
-      components: { 'co-dialog': Dialog },
-      template: `<co-dialog v-model:visible="visible"></co-dialog>`,
-      setup() {
-        const visible = ref(true);
-        return { visible };
-      },
-    });
-    await handleClickCloseButton();
+    _mount();
+    const { lastElementChild } = getBodyElement();
+    const closeButton = lastElementChild.querySelector('.coast-dialog-close') as HTMLElement;
+    await handleClickElementAndWait(closeButton);
     expectDialogHasRemoved();
   });
 
   it('click overlay can close dialog', async () => {
-    mount({
-      components: { 'co-dialog': Dialog },
-      template: `<co-dialog v-model:visible="visible"></co-dialog>`,
-      setup() {
-        const visible = ref(true);
-        return { visible };
-      },
-    });
+    _mount();
     await handleClickOverlay();
     expectDialogHasRemoved();
   });
 
   it('overlayClosable is false, click overlay cannot close dialog', async () => {
-    const wrapper = mount({
-      components: { 'co-dialog': Dialog },
-      template: `<co-dialog 
-        v-model:visible="visible"
-        :overlayClosable="false"
-      ></co-dialog>`,
-      setup() {
-        const visible = ref(true);
-        return { visible };
-      },
-    });
+    const wrapper = _mount({ overlayClosable: false });
     await handleClickOverlay();
     expectDialogExistThenUnmount(wrapper);
   });
 
   it('watch dialog visible change', async () => {
-    const wrapper = mount({
-      components: { 'co-dialog': Dialog },
-      template: `
-        <co-dialog 
-          v-model:visible="visible"
-          @update:visible="handleChange"
-        ></co-dialog>
-      `,
-      setup() {
-        const visible = ref(true);
-        const handleChange = jest.fn();
-        return { visible, handleChange };
-      },
-    });
+    const wrapper = _mount({ onChange: true });
     const vm = wrapper.vm;
     await handleClickOverlay();
     expect(vm.handleChange).toHaveBeenCalled();
   });
 
   it('confirm event, not return, close dialog', async () => {
-    await expectConfirmOrCancelCorrectly('confirm');
+    await handleTriggerEventAndExpect('confirm');
   });
 
   it('confirm event, return true, close dialog', async () => {
-    await expectConfirmOrCancelCorrectly('confirm', true);
+    await handleTriggerEventAndExpect(
+      'confirm',
+      jest.fn(() => true),
+    );
   });
 
   it('confirm event, return false, cannot close dialog', async () => {
-    await expectConfirmOrCancelCorrectly('confirm', false);
+    await handleTriggerEventAndExpect(
+      'confirm',
+      jest.fn(() => false),
+    );
   });
 
   it('cancel event, not return, close dialog', async () => {
-    await expectConfirmOrCancelCorrectly('cancel');
+    await handleTriggerEventAndExpect('cancel');
   });
 
   it('cancel event, return true, close dialog', async () => {
-    await expectConfirmOrCancelCorrectly('cancel', true);
+    await handleTriggerEventAndExpect(
+      'cancel',
+      jest.fn(() => true),
+    );
   });
 
   it('cancel event, return false, cannot close dialog', async () => {
-    await expectConfirmOrCancelCorrectly('cancel', false);
+    await handleTriggerEventAndExpect(
+      'cancel',
+      jest.fn(() => false),
+    );
   });
 });
 
 describe('openDialog', () => {
   it('create dialog', () => {
     const wrapper = openDialog({ content: AXIOM, title: TITLE });
-    expectContentEqualAXIOM();
-    expectTitleEqualTITLE();
-    const { bodyChildren, lastButOneElementChild, lastElementChild } = getBodyElement();
-    expect(bodyChildren.length).toBe(3);
-    expect(lastButOneElementChild.className).toContain('coast-dialog-overlay');
-    expect(lastElementChild.className).toContain('coast-dialog-wrapper');
-    expect(lastElementChild.firstElementChild.className).toContain('coast-dialog');
+    expectDialogExist(TITLE, 3);
     wrapper.close();
     expectDialogHasRemoved();
+  });
+
+  it('click overlay can close dialog', async () => {
+    openDialog({ content: AXIOM });
+    await handleClickOverlay();
+    expectDialogHasRemoved();
+  });
+  it('overlayClosable is false, click overlay cannot close dialog', async () => {
+    const wrapper = openDialog({ content: AXIOM, overlayClosable: false });
+    await handleClickOverlay();
+    expectDialogExist(DEFAULT_TITLE, 3);
+    wrapper.close();
+  });
+
+  it('confirm event', async () => {
+    const confirm = jest.fn();
+    openDialog({ content: AXIOM, confirm });
+    await expectEventTriggerCorrectly({
+      fn: confirm,
+      fnName: 'confirm',
+    });
+  });
+  it('cancel event', async () => {
+    const cancel = jest.fn();
+    openDialog({ content: AXIOM, cancel });
+    await expectEventTriggerCorrectly({
+      fn: cancel,
+      fnName: 'cancel',
+    });
   });
 });
