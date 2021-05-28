@@ -13,7 +13,7 @@ export const openDialog = (options: Options) => {
   const { title, content, overlayClosable, confirm, cancel } = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
-  const closeHandle = () => {
+  const close = () => {
     render(null, div);
     div.remove();
   };
@@ -27,7 +27,7 @@ export const openDialog = (options: Options) => {
       cancel,
       'onUpdate:visible': (newVisible: boolean) => {
         if (newVisible === false) {
-          closeHandle();
+          close();
         }
       },
     },
@@ -36,5 +36,5 @@ export const openDialog = (options: Options) => {
     },
   );
   render(vm, div);
-  return { close: closeHandle };
+  return { close };
 };
