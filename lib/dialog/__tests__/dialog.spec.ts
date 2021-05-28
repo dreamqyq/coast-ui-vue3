@@ -1,6 +1,6 @@
 import { mount, VueWrapper } from '@vue/test-utils';
 import { ComponentPublicInstance, nextTick, ref } from 'vue';
-import { getBodyElement } from '@coast/__tests__/utils';
+import { getBodyElement } from '@coast/__tests__/utils/utils';
 import Dialog from '../Dialog.vue';
 import { openDialog } from './../openDialog';
 jest.mock('../../theme-chalk/iconfont/index.js');
