@@ -29,8 +29,8 @@ interface DialogProps {
   title?: string;
   visible: boolean;
   overlayClosable?: boolean;
-  confirm?: () => boolean;
-  cancel?: () => boolean;
+  confirm?: () => unknown;
+  cancel?: () => unknown;
 }
 
 export default defineComponent({
@@ -48,12 +48,15 @@ export default defineComponent({
     overlayClosable: {
       type: Boolean,
       default: true,
+      required: false,
     },
     confirm: {
       type: Function,
+      required: false,
     },
     cancel: {
       type: Function,
+      required: false,
     },
   },
   emits: ['update:visible'],
