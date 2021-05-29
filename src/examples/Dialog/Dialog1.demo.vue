@@ -3,7 +3,7 @@
 <template>
   <div>
     <co-button @click="toggle">打开对话框</co-button>
-    <co-dialog v-model:visible="visible" :cancel="cancel" :confirm="confirm">
+    <co-dialog v-model:visible="visible" @update:visible="handleChange">
       <strong>文本框第一行</strong>
       <div>文本框第二行</div>
     </co-dialog>
@@ -24,18 +24,13 @@ export default {
     const toggle = () => {
       visible.value = !visible.value;
     };
-    const confirm = () => {
-      console.log('confirm click');
-      return true;
-    };
-    const cancel = () => {
-      console.log('cancel click');
+    const handleChange = (visible: boolean) => {
+      console.log('dialog visible change', visible);
     };
     return {
       toggle,
       visible,
-      confirm,
-      cancel,
+      handleChange,
     };
   },
 };
