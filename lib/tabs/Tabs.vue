@@ -65,16 +65,16 @@ export default defineComponent({
     });
     const subElements = defaults.map(tag => ({
       title: tag.props.title,
-      disabled: tag.props.disabled,
+      disabled: tag.props.disabled === true || tag.props.disabled === '',
     }));
 
     const current = computed(() => {
       return defaults.filter(tag => tag.props.title === props.selected)[0];
     });
 
-    const selectHandle = tag => {
-      if (tag.disabled) return;
-      context.emit('update:selected', tag.title);
+    const selectHandle = ({ title, disabled }: { title: string; disabled: boolean }) => {
+      if (disabled === undefined || disabled === true || title === props.selected) return;
+      context.emit('update:selected', title);
     };
     return {
       defaults,
