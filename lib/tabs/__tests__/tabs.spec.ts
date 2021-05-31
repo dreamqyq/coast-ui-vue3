@@ -10,11 +10,11 @@ const _mount = () => {
       'co-tab-panel': TabPanel,
     },
     template: `
-        <co-tabs v-model:selected="selected">
-          <co-tab-panel title="tab1">内容1</co-tab-panel>
-          <co-tab-panel title="tab2">内容2</co-tab-panel>
-        </co-tabs>
-      `,
+      <co-tabs v-model:selected="selected">
+        <co-tab-panel title="tab1">内容1</co-tab-panel>
+        <co-tab-panel title="tab2">内容2</co-tab-panel>
+      </co-tabs>
+    `,
     setup() {
       const selected = ref('tab1');
       return { selected };
@@ -66,11 +66,11 @@ it('watch selected tabPanel change', async () => {
       'co-tab-panel': TabPanel,
     },
     template: `
-          <co-tabs v-model:selected="selected" @update:selected="onChange">
-            <co-tab-panel title="tab1">内容1</co-tab-panel>
-            <co-tab-panel title="tab2">内容2</co-tab-panel>
-          </co-tabs>
-        `,
+      <co-tabs v-model:selected="selected" @update:selected="onChange">
+        <co-tab-panel title="tab1">内容1</co-tab-panel>
+        <co-tab-panel title="tab2">内容2</co-tab-panel>
+      </co-tabs>
+    `,
     setup() {
       const selected = ref('tab1');
       const onChange = jest.fn();
@@ -85,7 +85,33 @@ it('watch selected tabPanel change', async () => {
   expect(vm.onChange).toHaveBeenCalled();
 });
 
-it('TabPanel disabled', () => {});
+it('TabPanel disabled', () => {
+  const wrapper = mount({
+    components: {
+      'co-tabs': Tabs,
+      'co-tab-panel': TabPanel,
+    },
+    template: `
+      <co-tabs v-model:selected="selected" @update:selected="onChange">
+        <co-tab-panel title="tab1">内容1</co-tab-panel>
+        <co-tab-panel title="tab2" :disabled="true">内容2</co-tab-panel>
+      </co-tabs>
+    `,
+    setup() {
+      const selected = ref('tab1');
+      const onChange = jest.fn();
+      return { selected, onChange };
+    },
+  });
+
+  const vm = wrapper.vm;
+  const tabsWrapper = wrapper.findComponent(Tabs);
+  const tabsNavItemList = tabsWrapper.findAll('.coast-tabs-nav-item');
+  tabsNavItemList[1].trigger('click');
+  expect(tabsNavItemList[1].classes()).toContain('disabled');
+  expect(vm.onChange).not.toHaveBeenCalled();
+  expectActiveTabCorrectly(wrapper, 0);
+});
 
 it('Tabs children must be TabPanel', () => {
   expect(() => {
