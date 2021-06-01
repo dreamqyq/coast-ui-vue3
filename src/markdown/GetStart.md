@@ -6,6 +6,7 @@
 
 ```
 import { CoButton, CoTabs, CoSwitch, CoDialog, openDialog } from "coast-ui-vue3"
+import "coast-ui-vue3/dist/lib/coast-ui.css"
 ```
 
 就可以使用我提供的组件了。
