@@ -115,21 +115,13 @@ it('TabPanel disabled', () => {
 
 it('Tabs children must be TabPanel', () => {
   expect(() => {
-    const wrapper = mount({
-      components: {
-        'co-tabs': Tabs,
-      },
-      template: `
-        <co-tabs v-model:selected="selected">
+    mount(Tabs, {
+      slots: {
+        default: () => `
           <div title="tab1">内容1</div>
           <div title="tab2">内容2</div>
-        </co-tabs>
-      `,
-      setup() {
-        const selected = ref('tab1');
-        return { selected };
+        `,
       },
     });
-    wrapper.unmount();
   }).toThrowError('CoTabs 的子标签必须为 CoTabPanel');
 });
