@@ -8,22 +8,22 @@ export default {
   input: 'lib/index.ts',
   output: {
     globals: {
-      vue: 'Vue'
+      vue: 'Vue',
     },
     name: 'Coast',
-    file: 'dist/lib/coast-ui.js',
+    file: 'package/coast-ui.js',
     format: 'umd',
-    plugins: [terser()]
+    plugins: [terser()],
   },
   plugins: [
     scss({ include: /\.scss$/, sass: dartSass }),
     esbuild({
       include: /\.[jt]s$/,
       minify: process.env.NODE_ENV === 'production',
-      target: 'es2015'
+      target: 'es2015',
     }),
     vue({
-      include: /\.vue$/
-    })
-  ]
+      include: /\.vue$/,
+    }),
+  ],
 };

@@ -3,9 +3,10 @@
   "version": "0.2.0",
   "description": "Coast UI for Vue3",
   "files": [
-    "dist/lib/*"
+    "package",
+    "lib"
   ],
-  "main": "dist/lib/coast-ui.js",
+  "main": "package/coast-ui.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
