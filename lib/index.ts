@@ -7,4 +7,5 @@ export { default as CoTabPanel } from './tabs/TabPanel.vue';
 export { default as CoDialog } from './dialog/Dialog.vue';
 export { default as CoCard } from './card/Card.vue';
 export { default as CoIcon } from './icon/Icon.vue';
+export { default as CoInput } from './input/Input.vue';
 export { openDialog as openDialog } from './dialog/openDialog';
