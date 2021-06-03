@@ -4,7 +4,7 @@
     <input
       type="text"
       class="coast-input"
-      :class="{ 'coast-input-label-left': label, 'coast-input-label-right': labelRight }"
+      :class="classes"
       :value="value"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -15,7 +15,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+import type { PropType } from 'vue';
+
+type InputStatusType = PropType<'normal' | 'secondary' | 'error' | 'warning' | 'success'>;
 
 export default defineComponent({
   name: 'CoastInput',
@@ -48,8 +51,20 @@ export default defineComponent({
       type: String,
       required: false,
     },
+    status: {
+      type: String as InputStatusType,
+      required: false,
+      default: 'normal',
+    },
   },
-  setup() {},
+  setup(props) {
+    const classes = computed(() => ({
+      'coast-input-label-left': props.label,
+      'coast-input-label-right': props.labelRight,
+      [`coast-input-status-${props.status}`]: props.status,
+    }));
+    return { classes };
+  },
 });
 </script>
 
@@ -101,15 +116,30 @@ $disabledColor: #eaeaea;
     height: $height;
     font-weight: 400;
     border-radius: 5px;
-    border: 1px solid $borderColor;
+    border: 1px solid;
     transition: border 0.2s ease 0s, color 0.2s ease 0s;
     font-size: inherit;
     padding: 4px 10px;
     background-color: transparent;
-    color: $color;
     outline: none;
     width: 100%;
     min-width: 0;
+    color: $color;
+    border-color: $borderColor;
+
+    &.coast-input-status-secondary {
+      border-color: #000;
+    }
+    &.coast-input-status-warning {
+      border-color: #f7b955;
+    }
+    &.coast-input-status-error {
+      color: #e00;
+      border-color: #e00;
+    }
+    &.coast-input-status-success {
+      border-color: #3291ff;
+    }
 
     &.coast-input-label-left {
       border-top-left-radius: 0;
