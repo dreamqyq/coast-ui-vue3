@@ -1,5 +1,9 @@
 <template>
-  <div class="coast-input-wrapper" :style="`width:${width}`">
+  <div
+    class="coast-input-wrapper"
+    :class="{ [`coast-input-wrapper-size-${size}`]: size }"
+    :style="`width:${width}`"
+  >
     <span class="coast-label left" v-if="label">{{ label }}</span>
     <input
       type="text"
@@ -19,6 +23,7 @@ import { computed, defineComponent } from 'vue';
 import type { PropType } from 'vue';
 
 type InputStatusType = PropType<'normal' | 'secondary' | 'error' | 'warning' | 'success'>;
+type InputSizeType = PropType<'mini' | 'small' | 'medium' | 'large'>;
 
 export default defineComponent({
   name: 'CoastInput',
@@ -56,6 +61,11 @@ export default defineComponent({
       required: false,
       default: 'normal',
     },
+    size: {
+      type: String as InputSizeType,
+      required: false,
+      default: 'medium',
+    },
   },
   setup(props) {
     const classes = computed(() => ({
@@ -86,6 +96,7 @@ $disabledColor: #eaeaea;
   flex: 1 1 0%;
   user-select: none;
   margin: 4px;
+  height: $height;
 
   .coast-label {
     height: $height;
@@ -111,9 +122,21 @@ $disabledColor: #eaeaea;
     }
   }
 
+  &.coast-input-wrapper-size-mini {
+    font-size: 12px;
+    height: 28px;
+  }
+  &.coast-input-wrapper-size-small {
+    font-size: 12px;
+    height: 32px;
+  }
+  &.coast-input-wrapper-size-large {
+    font-size: 16px;
+    height: 40px;
+  }
+
   .coast-input {
     font-family: inherit;
-    height: $height;
     font-weight: 400;
     border-radius: 5px;
     border: 1px solid;
@@ -122,6 +145,7 @@ $disabledColor: #eaeaea;
     padding: 4px 10px;
     background-color: transparent;
     outline: none;
+    height: inherit;
     width: 100%;
     min-width: 0;
     color: $color;
