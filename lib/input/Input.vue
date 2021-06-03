@@ -13,6 +13,11 @@
       :placeholder="placeholder"
       :disabled="disabled"
       :readonly="readonly"
+      @input="onInput"
+      @focus="onFocus"
+      @blur="onBlur"
+      @change="onChange"
+      @keydown="onKeydown"
     />
     <span class="coast-label right" v-if="labelRight">{{ labelRight }}</span>
   </div>
@@ -24,6 +29,7 @@ import type { PropType } from 'vue';
 
 type InputStatusType = PropType<'normal' | 'secondary' | 'error' | 'warning' | 'success'>;
 type InputSizeType = PropType<'mini' | 'small' | 'medium' | 'large'>;
+type InputElementEvent = Event & { target: HTMLInputElement };
 
 export default defineComponent({
   name: 'CoastInput',
@@ -67,13 +73,32 @@ export default defineComponent({
       default: 'medium',
     },
   },
-  setup(props) {
+  emits: ['update:value', 'input', 'change', 'blur', 'focus', 'keydown'],
+  setup(props, { emit }) {
     const classes = computed(() => ({
       'coast-input-label-left': props.label,
       'coast-input-label-right': props.labelRight,
       [`coast-input-status-${props.status}`]: props.status,
     }));
-    return { classes };
+
+    const onInput = (event: InputElementEvent) => {
+      emit('update:value', event.target.value);
+      emit('input', event.target.value);
+    };
+    const onChange = (event: InputElementEvent) => {
+      emit('update:value', event.target.value);
+      emit('change', event.target.value);
+    };
+    const onBlur = (event: InputElementEvent) => {
+      emit('blur', event);
+    };
+    const onFocus = (event: InputElementEvent) => {
+      emit('focus', event);
+    };
+    const onKeydown = (event: InputElementEvent) => {
+      emit('keydown', event);
+    };
+    return { classes, onInput, onChange, onBlur, onFocus, onKeydown };
   },
 });
 </script>
