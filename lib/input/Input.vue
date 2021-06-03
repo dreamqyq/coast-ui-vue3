@@ -153,16 +153,28 @@ $disabledColor: #eaeaea;
 
     &.coast-input-status-secondary {
       border-color: #000;
+      &:focus {
+        border-color: #666;
+      }
     }
     &.coast-input-status-warning {
       border-color: #f7b955;
+      &:focus {
+        border-color: #f5a623;
+      }
     }
     &.coast-input-status-error {
       color: #e00;
       border-color: #e00;
+      &:focus {
+        border-color: #c50000;
+      }
     }
     &.coast-input-status-success {
       border-color: #3291ff;
+      &:focus {
+        border-color: #0070f3;
+      }
     }
 
     &.coast-input-label-left {
