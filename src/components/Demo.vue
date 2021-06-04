@@ -1,15 +1,21 @@
 <template>
-  <co-card :title="component.__sourceCodeTitle" class="demo">
-    <div class="demo-component">
-      <component :is="component" />
-    </div>
-    <template #footer>
-      <co-button @click="toggleCodeVisible">查看代码</co-button>
-      <div v-show="codeVisible" class="demo-code">
-        <pre><code class="hljs" v-html="sourceCode"></code></pre>
+  <div class="wrapper">
+    <h2>{{ component.__sourceCodeTitle }}</h2>
+    <p v-if="component.__sourceDescription" class="description">
+      {{ component.__sourceDescription }}
+    </p>
+    <co-card class="demo">
+      <div class="demo-component">
+        <component :is="component" />
       </div>
-    </template>
-  </co-card>
+      <template #footer>
+        <co-button @click="toggleCodeVisible">查看代码</co-button>
+        <div v-show="codeVisible" class="demo-code">
+          <pre><code class="hljs" v-html="sourceCode"></code></pre>
+        </div>
+      </template>
+    </co-card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -47,18 +53,30 @@ export default {
 
 <style lang="scss" scoped>
 $border-color: #d9d9d9;
-.demo {
-  margin: 16px 0 32px;
+.wrapper {
+  h2 {
+    margin-top: 50px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .description {
+    margin: 16px 0;
+    font-size: 16px;
+  }
+  .demo {
+    margin: 16px 0 32px;
 
-  &-code {
-    margin-top: 16px;
-    padding: 8px 0;
-    border-top: 1px dashed $border-color;
+    &-code {
+      margin-top: 16px;
+      padding: 8px 0;
+      border-top: 1px dashed $border-color;
 
-    > pre {
-      line-height: 1.1;
-      font-family: Consolas, 'Courier New', Courier, monospace;
-      margin: 0;
+      > pre {
+        line-height: 1.1;
+        font-family: Consolas, 'Courier New', Courier, monospace;
+        margin: 0;
+      }
     }
   }
 }
