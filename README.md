@@ -1,6 +1,6 @@
 # Coast UI for Vue3
 
-![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/dreamqyq/coast-ui-vue3/vue) [![https://www.npmjs.com/package/coast-ui-vue3](https://img.shields.io/npm/l/coast-ui-vue3)](https://www.npmjs.org/package/coast-ui-vue3) [![NPM Version](http://img.shields.io/npm/v/coast-ui-vue3.svg?style=flat)](https://www.npmjs.org/package/coast-ui-vue3) [![NPM Downloads](https://img.shields.io/npm/dm/coast-ui-vue3.svg?style=flat)](https://npmcharts.com/compare/coast-ui-vue3?minimal=true)
+[![https://www.npmjs.com/package/coast-ui-vue3](https://img.shields.io/npm/l/coast-ui-vue3)](https://www.npmjs.org/package/coast-ui-vue3) [![NPM Version](http://img.shields.io/npm/v/coast-ui-vue3.svg?style=flat)](https://www.npmjs.org/package/coast-ui-vue3) [![NPM Downloads](https://img.shields.io/npm/dm/coast-ui-vue3.svg?style=flat)](https://npmcharts.com/compare/coast-ui-vue3?minimal=true) ![vue version](https://img.shields.io/github/package-json/dependency-version/dreamqyq/coast-ui-vue3/vue) ![vite version](https://img.shields.io/github/package-json/dependency-version/dreamqyq/coast-ui-vue3/dev/vite)
 
 ## 介绍
 
@@ -34,8 +34,12 @@ import "coast-ui-vue3/package/coast-ui.css";
   - `yarn dev` 运行
 - 官网自动化部署（gh-pages）
   - `yarn deploy`
-- 组件打包
+- 组件打包，基于 rollup
   - `yarn build:lib`
+- 组件单元测试，基于 jest
+  - `yarn test:lib`
+- 自动生成 changelog，基于 conventional-changelog
+  - `yarn changelog`
 
 ## 文档
 
