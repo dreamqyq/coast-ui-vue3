@@ -6,8 +6,9 @@
   >
     <span class="coast-label left" v-if="label">{{ label }}</span>
     <input
-      type="text"
       class="coast-input"
+      :type="type"
+      :maxlength="maxlength"
       :class="classes"
       :value="value"
       :placeholder="placeholder"
@@ -37,6 +38,14 @@ export default defineComponent({
     value: {
       type: [String, Number],
       required: true,
+    },
+    type: {
+      type: String,
+      default: 'text',
+    },
+    maxlength: {
+      type: Number,
+      required: false,
     },
     placeholder: {
       type: String,
