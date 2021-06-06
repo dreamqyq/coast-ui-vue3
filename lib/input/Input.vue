@@ -26,6 +26,7 @@
       name="clear"
       class="coast-input-action"
       :style="`transform: translateX(${suffixTransform}px)`"
+      @click="onClear"
     />
     <span ref="labelRightRef" class="coast-label right" v-if="labelRight">{{ labelRight }}</span>
   </div>
@@ -96,7 +97,7 @@ export default defineComponent({
       default: 'medium',
     },
   },
-  emits: ['update:value', 'input', 'change', 'blur', 'focus', 'keydown'],
+  emits: ['update:value', 'input', 'change', 'blur', 'focus', 'keydown', 'clear'],
   setup(props, { emit }) {
     const labelRightRef = ref<HTMLElement>(null);
     const classes = computed(() => ({
@@ -109,6 +110,12 @@ export default defineComponent({
     const suffixTransform = computed(() =>
       labelRightRef.value ? -labelRightRef.value.offsetWidth : 0,
     );
+
+    const onClear = () => {
+      emit('update:value', '');
+      emit('change', '');
+      emit('clear');
+    };
 
     const onInput = (event: InputElementEvent) => {
       emit('update:value', event.target.value);
@@ -129,6 +136,7 @@ export default defineComponent({
 
     return {
       classes,
+      onClear,
       onInput,
       onChange,
       onBlur,
