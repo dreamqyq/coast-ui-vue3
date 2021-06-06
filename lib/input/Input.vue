@@ -21,12 +21,19 @@
       @change="onChange"
       @keydown="onKeydown"
     />
-    <span class="coast-label right" v-if="labelRight">{{ labelRight }}</span>
+    <Icon
+      v-if="clearable"
+      name="clear"
+      class="coast-input-action"
+      :style="`transform: translateX(${suffixTransform}px)`"
+    />
+    <span ref="labelRightRef" class="coast-label right" v-if="labelRight">{{ labelRight }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
+import Icon from '../icon/Icon.vue';
 import type { PropType } from 'vue';
 
 type InputStatusType = PropType<'normal' | 'secondary' | 'error' | 'warning' | 'success'>;
@@ -35,6 +42,7 @@ type InputElementEvent = Event & { target: HTMLInputElement };
 
 export default defineComponent({
   name: 'CoastInput',
+  components: { Icon },
   props: {
     value: {
       type: [String, Number],
@@ -43,6 +51,11 @@ export default defineComponent({
     type: {
       type: String,
       default: 'text',
+    },
+    clearable: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     maxlength: {
       type: Number,
@@ -85,11 +98,17 @@ export default defineComponent({
   },
   emits: ['update:value', 'input', 'change', 'blur', 'focus', 'keydown'],
   setup(props, { emit }) {
+    const labelRightRef = ref<HTMLElement>(null);
     const classes = computed(() => ({
       'coast-input-label-left': props.label,
       'coast-input-label-right': props.labelRight,
+      'coast-input-suffix': props.clearable,
       [`coast-input-status-${props.status}`]: props.status,
     }));
+
+    const suffixTransform = computed(() =>
+      labelRightRef.value ? -labelRightRef.value.offsetWidth : 0,
+    );
 
     const onInput = (event: InputElementEvent) => {
       emit('update:value', event.target.value);
@@ -107,7 +126,17 @@ export default defineComponent({
     const onKeydown = (event: InputElementEvent) => {
       emit('keydown', event);
     };
-    return { classes, onInput, onChange, onBlur, onFocus, onKeydown };
+
+    return {
+      classes,
+      onInput,
+      onChange,
+      onBlur,
+      onFocus,
+      onKeydown,
+      labelRightRef,
+      suffixTransform,
+    };
   },
 });
 </script>
@@ -131,8 +160,23 @@ $disabledColor: #eaeaea;
   user-select: none;
   margin: 4px;
   height: $height;
+  position: relative;
+
+  .coast-input-action {
+    position: absolute;
+    right: 10px;
+    color: #999;
+    font-size: 20px;
+    cursor: pointer;
+    height: 100%;
+
+    &:hover {
+      color: $color;
+    }
+  }
 
   .coast-label {
+    width: auto;
     height: $height;
     display: inline-flex;
     vertical-align: middle;
@@ -141,16 +185,16 @@ $disabledColor: #eaeaea;
     font-size: inherit;
     background-color: #fafafa;
     color: #888;
-    border-top: 1px solid #eaeaea;
-    border-bottom: 1px solid #eaeaea;
+    border-top: 1px solid $borderColor;
+    border-bottom: 1px solid $borderColor;
 
     &.left {
-      border-left: 1px solid #eaeaea;
+      border-left: 1px solid $borderColor;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
     &.right {
-      border-right: 1px solid #eaeaea;
+      border-right: 1px solid $borderColor;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }
@@ -173,8 +217,6 @@ $disabledColor: #eaeaea;
     font-family: inherit;
     font-weight: 400;
     border-radius: 5px;
-    border: 1px solid;
-    transition: border 0.2s ease 0s, color 0.2s ease 0s;
     font-size: inherit;
     padding: 4px 10px;
     background-color: transparent;
@@ -183,7 +225,12 @@ $disabledColor: #eaeaea;
     width: 100%;
     min-width: 0;
     color: $color;
-    border-color: $borderColor;
+    border: 1px solid $borderColor;
+    transition: border 0.2s ease 0s, color 0.2s ease 0s;
+
+    &.coast-input-suffix {
+      padding-right: 35px;
+    }
 
     &.coast-input-status-secondary {
       border-color: #000;
