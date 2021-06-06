@@ -7,6 +7,7 @@
     <span class="coast-label left" v-if="label">{{ label }}</span>
     <input
       class="coast-input"
+      v-bind="$attrs"
       :type="type"
       :maxlength="maxlength"
       :class="classes"
@@ -95,7 +96,6 @@ export default defineComponent({
       emit('input', event.target.value);
     };
     const onChange = (event: InputElementEvent) => {
-      emit('update:value', event.target.value);
       emit('change', event.target.value);
     };
     const onBlur = (event: InputElementEvent) => {
