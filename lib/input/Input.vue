@@ -6,9 +6,10 @@
   >
     <span class="coast-label left" v-if="label">{{ label }}</span>
     <input
+      ref="inputRef"
       class="coast-input"
       v-bind="$attrs"
-      :type="type"
+      :type="type === 'password' ? (passwordVisible ? 'text' : 'password') : type"
       :maxlength="maxlength"
       :class="classes"
       :value="value"
@@ -25,15 +26,22 @@
       v-if="clearable"
       name="clear"
       class="coast-input-action"
-      :style="`transform: translateX(${suffixTransform}px)`"
+      :style="`transform: translateX(${actionIconTransform}px)`"
       @click="onClear"
+    />
+    <Icon
+      v-if="type === 'password'"
+      class="coast-input-action"
+      :name="passwordVisible ? 'hide' : 'show'"
+      :style="`transform: translateX(${actionIconTransform + 24}px)`"
+      @click="onTogglePasswordVisible"
     />
     <span ref="labelRightRef" class="coast-label right" v-if="labelRight">{{ labelRight }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent, nextTick, ref } from 'vue';
 import Icon from '../icon/Icon.vue';
 import type { PropType } from 'vue';
 
@@ -99,22 +107,40 @@ export default defineComponent({
   },
   emits: ['update:value', 'input', 'change', 'blur', 'focus', 'keydown', 'clear'],
   setup(props, { emit }) {
-    const labelRightRef = ref<HTMLElement>(null);
+    const labelRightRef = ref<HTMLSpanElement>(null);
+    const inputRef = ref<HTMLInputElement>(null);
+    const passwordVisible = ref(false);
+
     const classes = computed(() => ({
       'coast-input-label-left': props.label,
       'coast-input-label-right': props.labelRight,
-      'coast-input-suffix': props.clearable,
+      'coast-input-suffix-clear': props.clearable,
+      'coast-input-suffix-password': props.type === 'password',
       [`coast-input-status-${props.status}`]: props.status,
     }));
 
-    const suffixTransform = computed(() =>
-      labelRightRef.value ? -labelRightRef.value.offsetWidth : 0,
-    );
+    const actionIconTransform = computed(() => {
+      const labelRightOffsetWidth = labelRightRef.value ? labelRightRef.value.offsetWidth : 0;
+      const passwordIconOffsetWidth = props.type === 'password' ? 24 : 0;
+      return -labelRightOffsetWidth - passwordIconOffsetWidth;
+    });
+
+    const focus = () => {
+      nextTick(() => {
+        inputRef.value.focus();
+      });
+    };
 
     const onClear = () => {
       emit('update:value', '');
       emit('change', '');
       emit('clear');
+      focus();
+    };
+
+    const onTogglePasswordVisible = () => {
+      passwordVisible.value = !passwordVisible.value;
+      focus();
     };
 
     const onInput = (event: InputElementEvent) => {
@@ -142,8 +168,11 @@ export default defineComponent({
       onBlur,
       onFocus,
       onKeydown,
+      onTogglePasswordVisible,
+      inputRef,
       labelRightRef,
-      suffixTransform,
+      actionIconTransform,
+      passwordVisible,
     };
   },
 });
@@ -236,8 +265,12 @@ $disabledColor: #eaeaea;
     border: 1px solid $borderColor;
     transition: border 0.2s ease 0s, color 0.2s ease 0s;
 
-    &.coast-input-suffix {
+    &.coast-input-suffix-clear,
+    &.coast-input-suffix-password {
       padding-right: 35px;
+    }
+    &.coast-input-suffix-clear.coast-input-suffix-password {
+      padding-right: 55px;
     }
 
     &.coast-input-status-secondary {
