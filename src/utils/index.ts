@@ -16,3 +16,13 @@ export const throttle = (fn: () => void, delay?: number) => {
     }
   };
 };
+
+export const searchTagContent = (code: string, tag: string) => {
+  const matchTagAndContentReg = new RegExp(`<${tag}>(.*?)<\/${tag}>`, 'g');
+  const tagString = code.match(matchTagAndContentReg);
+  if (!tagString) return '';
+  const matchTagReg = new RegExp(`<\/?${tag}>`, 'g');
+  return tagString.map(function (val) {
+    return val.replace(matchTagReg, '');
+  })[0];
+};
