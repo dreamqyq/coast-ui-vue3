@@ -1,7 +1,9 @@
-<demo>常规用法</demo>
+<demo>
+  <title>支持 maxlength</title>
+</demo>
 
 <template>
-  <co-input v-model:value="value" placeholder="please input username" />
+  <co-input v-model:value="value" :maxlength="5" placeholder="limit 5 characters" />
 </template>
 
 <script lang="ts">

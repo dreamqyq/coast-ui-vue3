@@ -1,7 +1,7 @@
-<demo>常规用法</demo>
+<demo>password 密码框</demo>
 
 <template>
-  <co-input v-model:value="value" placeholder="please input username" />
+  <co-input v-model:value="value" placeholder="please input password" type="password" />
 </template>
 
 <script lang="ts">
