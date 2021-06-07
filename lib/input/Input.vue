@@ -98,11 +98,17 @@ export default defineComponent({
       type: String as InputStatusType,
       required: false,
       default: 'normal',
+      validator: (val: string) => {
+        return ['normal', 'secondary', 'success', 'warning', 'error'].includes(val);
+      },
     },
     size: {
       type: String as InputSizeType,
       required: false,
       default: 'medium',
+      validator: (val: string) => {
+        return ['mini', 'small', 'medium', 'large'].includes(val);
+      },
     },
   },
   emits: ['update:value', 'input', 'change', 'blur', 'focus', 'keydown', 'clear'],
