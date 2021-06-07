@@ -192,7 +192,7 @@ $borderFocusColor: #666667;
 $selectionBGColor: #6affe0;
 $fontSize: 14px;
 $disabledBGColor: #fafafa;
-$disabledColor: #eaeaea;
+$disabledColor: #757575;
 
 .coast-input-wrapper {
   font-size: $fontSize;
