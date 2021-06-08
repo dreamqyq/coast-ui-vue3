@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import { mount } from '@vue/test-utils';
 import Input from '../Input.vue';
 import Icon from '../../icon/Icon.vue';
@@ -93,5 +94,61 @@ describe('Input', () => {
     });
     const input = wrapper.find('input');
     expect(input.attributes('maxlength')).toBe('5');
+  });
+
+  it('label', () => {
+    const label = 'https://';
+    const labelRight = '.com';
+    const wrapper = mount(Input, {
+      props: {
+        value: AXIOM,
+        label,
+        labelRight,
+      },
+    });
+    const labelElementList = wrapper.findAll('span.coast-label');
+    expect(labelElementList.length).toBe(2);
+    const labelLeftElement = labelElementList[0];
+    const labelRightElement = labelElementList[1];
+    expect(labelLeftElement.classes()).toContain('left');
+    expect(labelRightElement.classes()).toContain('right');
+    expect(labelLeftElement.element.textContent).toBe(label);
+    expect(labelRightElement.element.textContent).toBe(labelRight);
+  });
+
+  it('status', () => {
+    const wrapper = mount(Input, {
+      props: {
+        value: AXIOM,
+        status: 'secondary',
+      },
+    });
+    const input = wrapper.find('input');
+    expect(input.classes()).toContain('coast-input-status-secondary');
+  });
+
+  it('clearable', async () => {
+    const wrapper = mount({
+      components: { 'co-input': Input },
+      template: `
+        <co-input 
+          v-model:value="value"
+          clearable
+          @clear="handleClear" />
+      `,
+      setup() {
+        const value = ref('initial value');
+        const handleClear = jest.fn();
+        return { value, handleClear };
+      },
+    });
+    const input = wrapper.find('input');
+    const vm = wrapper.vm;
+    const clearIcon = wrapper.findComponent(Icon);
+    expect(clearIcon.vm.name).toBe('clear');
+    await clearIcon.trigger('click');
+    expect(vm.value).toBe('');
+    expect(input.element.value).toBe('');
+    expect(vm.handleClear).toHaveBeenCalled();
   });
 });
