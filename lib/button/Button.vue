@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes" :disabled="disabled || loading" class="coast-button3">
+  <button :class="classes" :disabled="disabled || loading" class="coast-button">
     <Icon v-if="loading" class="coast-button-loadingIndicator" name="loading" />
     <span v-if="$slots.default">
       <slot />

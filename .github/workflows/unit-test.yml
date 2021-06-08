@@ -3,7 +3,7 @@ name: Unit Test
 on:
   push:
     branches:
-      - feature/github-actions
+      - master
     paths:
       - 'lib/**'
 
