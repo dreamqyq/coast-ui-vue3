@@ -5,7 +5,7 @@ on:
     branches:
       - feature/github-actions
     paths:
-      - 'lib'
+      - 'lib/**'
 
 jobs:
   build:
@@ -21,4 +21,3 @@ jobs:
         run: yarn install
       - name: Test lib
         run: yarn test:lib
-
