@@ -10,6 +10,8 @@
     <Demo :component="InputDemo7" />
     <Demo :component="InputDemo8" />
     <Demo :component="InputDemo9" />
+    <Demo :component="InputDemo10" />
+    <Demo :component="InputDemo11" />
   </div>
 </template>
 
@@ -23,6 +25,8 @@ import InputDemo6 from './Input6.demo.vue';
 import InputDemo7 from './Input7.demo.vue';
 import InputDemo8 from './Input8.demo.vue';
 import InputDemo9 from './Input9.demo.vue';
+import InputDemo10 from './Input10.demo.vue';
+import InputDemo11 from './Input11.demo.vue';
 import Demo from '../../components/Demo.vue';
 
 export default {
@@ -38,6 +42,8 @@ export default {
       InputDemo7,
       InputDemo8,
       InputDemo9,
+      InputDemo10,
+      InputDemo11,
     };
   },
 };
