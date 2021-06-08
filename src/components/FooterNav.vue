@@ -1,12 +1,22 @@
 <template>
   <footer>
-    <div class="prev" @click="toAdjacentPage('prev')">
+    <div
+      class="prev"
+      tabindex="0"
+      @click="toAdjacentPage('prev')"
+      @keypress="onKeypress($event, 'prev')"
+    >
       <template v-if="prevName">
         ←
         <span>{{ prevName }}</span>
       </template>
     </div>
-    <div class="next" @click="toAdjacentPage('next')">
+    <div
+      class="next"
+      tabindex="0"
+      @click="toAdjacentPage('next')"
+      @keypress="onKeypress($event, 'next')"
+    >
       <template v-if="nextName">
         <span>{{ nextName }}</span>
         →
@@ -15,9 +25,11 @@
   </footer>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { useRouter, onBeforeRouteUpdate } from 'vue-router';
+import { onBeforeRouteUpdate, useRouter } from 'vue-router';
+
+type ActionType = 'prev' | 'next';
 
 export default defineComponent({
   setup() {
@@ -30,7 +42,13 @@ export default defineComponent({
       nextName.value = to.meta.next;
     });
 
-    const toAdjacentPage = type => {
+    const onKeypress = (event: KeyboardEvent, type: ActionType) => {
+      if (event.key === 'Enter') {
+        toAdjacentPage(type);
+      }
+    };
+
+    const toAdjacentPage = (type: ActionType) => {
       const name = type === 'prev' ? prevName.value : nextName.value;
       router.push({ name });
       window.scrollTo({
@@ -43,6 +61,7 @@ export default defineComponent({
       prevName,
       nextName,
       toAdjacentPage,
+      onKeypress,
     };
   },
 });
