@@ -1,6 +1,6 @@
 # Coast UI for Vue3
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dreamqyq/coast-ui-vue3/unit-test) [![https://www.npmjs.com/package/coast-ui-vue3](https://img.shields.io/npm/l/coast-ui-vue3)](https://www.npmjs.org/package/coast-ui-vue3) [![NPM Version](http://img.shields.io/npm/v/coast-ui-vue3.svg?style=flat)](https://www.npmjs.org/package/coast-ui-vue3) [![NPM Downloads](https://img.shields.io/npm/dm/coast-ui-vue3.svg?style=flat)](https://npmcharts.com/compare/coast-ui-vue3?minimal=true) ![vue version](https://img.shields.io/github/package-json/dependency-version/dreamqyq/coast-ui-vue3/vue) ![vite version](https://img.shields.io/github/package-json/dependency-version/dreamqyq/coast-ui-vue3/dev/vite)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dreamqyq/coast-ui-vue3/Unit%20Test) [![https://www.npmjs.com/package/coast-ui-vue3](https://img.shields.io/npm/l/coast-ui-vue3)](https://www.npmjs.org/package/coast-ui-vue3) [![NPM Version](http://img.shields.io/npm/v/coast-ui-vue3.svg?style=flat)](https://www.npmjs.org/package/coast-ui-vue3) [![NPM Downloads](https://img.shields.io/npm/dm/coast-ui-vue3.svg?style=flat)](https://npmcharts.com/compare/coast-ui-vue3?minimal=true) ![vue version](https://img.shields.io/github/package-json/dependency-version/dreamqyq/coast-ui-vue3/vue) ![vite version](https://img.shields.io/github/package-json/dependency-version/dreamqyq/coast-ui-vue3/dev/vite)
 ## 介绍
 
 基于 `Vue3` 及 `TypeScript` 的组件库，代码易读，每个组件的源代码都极其简洁。本项目基于 `Vite2.x` 构建。
