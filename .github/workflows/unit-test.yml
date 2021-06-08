@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - feature/github-actions
+    paths:
+      - 'lib/*'
 
 jobs:
   build:
