@@ -7,6 +7,9 @@
     <Demo :component="InputDemo4" />
     <Demo :component="InputDemo5" />
     <Demo :component="InputDemo6" />
+    <Demo :component="InputDemo7" />
+    <Demo :component="InputDemo8" />
+    <Demo :component="InputDemo9" />
   </div>
 </template>
 
@@ -17,6 +20,9 @@ import InputDemo3 from './Input3.demo.vue';
 import InputDemo4 from './Input4.demo.vue';
 import InputDemo5 from './Input5.demo.vue';
 import InputDemo6 from './Input6.demo.vue';
+import InputDemo7 from './Input7.demo.vue';
+import InputDemo8 from './Input8.demo.vue';
+import InputDemo9 from './Input9.demo.vue';
 import Demo from '../../components/Demo.vue';
 
 export default {
@@ -29,6 +35,9 @@ export default {
       InputDemo4,
       InputDemo5,
       InputDemo6,
+      InputDemo7,
+      InputDemo8,
+      InputDemo9,
     };
   },
 };
