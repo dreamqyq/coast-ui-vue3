@@ -162,7 +162,7 @@ export default defineComponent({
     const onFocus = (event: InputElementEvent) => {
       emit('focus', event);
     };
-    const onKeydown = (event: InputElementEvent) => {
+    const onKeydown = (event: KeyboardEvent) => {
       emit('keydown', event);
     };
 
