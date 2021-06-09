@@ -6,14 +6,42 @@ jest.mock('../../theme-chalk/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';
 
+const _mount = (props: object) =>
+  mount(Input, {
+    props: {
+      value: AXIOM,
+      ...props,
+    },
+  });
+
+type EventNameType = 'clear' | 'change' | 'keydown' | 'updateAndInput' | 'focusAndBlur';
+const _mountEvent = (bindEventName: EventNameType, initialValue = '') => {
+  const BindEventMap = {
+    clear: `clearable @clear="handle1"`,
+    change: `@change="handle1"`,
+    keydown: `@keydown="handle1"`,
+    updateAndInput: `@update:value="handle1" @input="handle2"`,
+    focusAndBlur: `@focus="handle1" @blur="handle2"`,
+  };
+  return mount({
+    components: { 'co-input': Input },
+    template: `<co-input 
+        v-model:value="value"
+        ${BindEventMap[bindEventName]}
+      />
+    `,
+    setup() {
+      const value = ref(initialValue);
+      const handle1 = jest.fn();
+      const handle2 = jest.fn();
+      return { value, handle1, handle2 };
+    },
+  });
+};
+
 describe('Input', () => {
   it('create', () => {
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        placeholder: AXIOM,
-      },
-    });
+    const wrapper = _mount({ placeholder: AXIOM });
     expect(wrapper.classes()).toContain('coast-input-wrapper');
     expect(wrapper.classes()).toContain('coast-input-wrapper-size-medium');
     const input = wrapper.find('input');
@@ -25,12 +53,7 @@ describe('Input', () => {
   });
 
   it('password input', async () => {
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        type: 'password',
-      },
-    });
+    const wrapper = _mount({ type: 'password' });
     const input = wrapper.find('input');
     const showPasswordIcon = wrapper.findComponent(Icon);
     expect(input.attributes('type')).toBe('password');
@@ -43,55 +66,30 @@ describe('Input', () => {
   });
 
   it('size', () => {
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        size: 'mini',
-      },
-    });
+    const wrapper = _mount({ size: 'mini' });
     expect(wrapper.classes()).toContain('coast-input-wrapper-size-mini');
   });
 
   it('set width', () => {
     const width = '100%';
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        width,
-      },
-    });
+    const wrapper = _mount({ width });
     expect(wrapper.attributes('style')).toBe(`width: ${width};`);
   });
 
   it('disabled', () => {
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        disabled: true,
-      },
-    });
+    const wrapper = _mount({ disabled: true });
     const input = wrapper.find('input');
     expect(input.attributes()).toHaveProperty('disabled');
   });
 
   it('readonly', () => {
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        readonly: true,
-      },
-    });
+    const wrapper = _mount({ readonly: true });
     const input = wrapper.find('input');
     expect(input.attributes()).toHaveProperty('readonly');
   });
 
   it('maxlength', () => {
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        maxlength: 5,
-      },
-    });
+    const wrapper = _mount({ maxlength: 5 });
     const input = wrapper.find('input');
     expect(input.attributes('maxlength')).toBe('5');
   });
@@ -99,12 +97,9 @@ describe('Input', () => {
   it('label', () => {
     const label = 'https://';
     const labelRight = '.com';
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        label,
-        labelRight,
-      },
+    const wrapper = _mount({
+      label,
+      labelRight,
     });
     const labelElementList = wrapper.findAll('span.coast-label');
     expect(labelElementList.length).toBe(2);
@@ -117,32 +112,14 @@ describe('Input', () => {
   });
 
   it('status', () => {
-    const wrapper = mount(Input, {
-      props: {
-        value: AXIOM,
-        status: 'secondary',
-      },
-    });
+    const wrapper = _mount({ status: 'secondary' });
     const input = wrapper.find('input');
     expect(input.classes()).toContain('coast-input-status-secondary');
   });
 
   describe('Input Events', () => {
     it('event:clear', async () => {
-      const wrapper = mount({
-        components: { 'co-input': Input },
-        template: `<co-input 
-          v-model:value="value"
-          clearable
-          @clear="handleClear"
-        />
-      `,
-        setup() {
-          const value = ref('initial value');
-          const handleClear = jest.fn();
-          return { value, handleClear };
-        },
-      });
+      const wrapper = _mountEvent('clear', 'initial value');
       const input = wrapper.find('input');
       const vm = wrapper.vm;
       const clearIcon = wrapper.findComponent(Icon);
@@ -150,25 +127,11 @@ describe('Input', () => {
       await clearIcon.trigger('click');
       expect(vm.value).toBe('');
       expect(input.element.value).toBe('');
-      expect(vm.handleClear).toHaveBeenCalled();
+      expect(vm.handle1).toHaveBeenCalled();
     });
 
     it('event:update & input', async () => {
-      const wrapper = mount({
-        components: { 'co-input': Input },
-        template: `<co-input 
-          v-model:value="value"
-          @update:value="handleUpdate"
-          @input="handleInput"
-        />
-      `,
-        setup() {
-          const value = ref('');
-          const handleUpdate = jest.fn();
-          const handleInput = jest.fn();
-          return { value, handleUpdate, handleInput };
-        },
-      });
+      const wrapper = _mountEvent('updateAndInput');
       const input = wrapper.find('input');
       const vm = wrapper.vm;
       const nativeInput = input.element;
@@ -176,26 +139,14 @@ describe('Input', () => {
       await input.trigger('input');
       expect(vm.value).toBe(AXIOM);
       expect(nativeInput.value).toBe(AXIOM);
-      expect(vm.handleUpdate).toHaveBeenCalled();
-      expect(vm.handleUpdate.mock.calls[0][0]).toBe(AXIOM);
-      expect(vm.handleInput).toHaveBeenCalled();
-      expect(vm.handleInput.mock.calls[0][0]).toBe(AXIOM);
+      expect(vm.handle1).toHaveBeenCalled();
+      expect(vm.handle1.mock.calls[0][0]).toBe(AXIOM);
+      expect(vm.handle2).toHaveBeenCalled();
+      expect(vm.handle2.mock.calls[0][0]).toBe(AXIOM);
     });
 
     it('event:change', async () => {
-      const wrapper = mount({
-        components: { 'co-input': Input },
-        template: `<co-input 
-          v-model:value="value"
-          @change="handleChange"
-        />
-      `,
-        setup() {
-          const value = ref('');
-          const handleChange = jest.fn();
-          return { value, handleChange };
-        },
-      });
+      const wrapper = _mountEvent('change');
       const input = wrapper.find('input').element;
       const vm = wrapper.vm;
       const simulateEvent = (value: string, eventName: string) => {
@@ -207,59 +158,33 @@ describe('Input', () => {
         input.dispatchEvent(event);
       };
       simulateEvent('2', 'change');
-      expect(vm.handleChange).toHaveBeenCalled();
-      expect(vm.handleChange.mock.calls[0][0]).toBe('2');
+      expect(vm.handle1).toHaveBeenCalled();
+      expect(vm.handle1.mock.calls[0][0]).toBe('2');
 
       simulateEvent('1', 'input');
-      expect(vm.handleChange.mock.instances.length).toBe(1);
+      expect(vm.handle1.mock.instances.length).toBe(1);
     });
 
     it('event:focus & blur', async () => {
-      const wrapper = mount({
-        components: { 'co-input': Input },
-        template: `<co-input 
-          v-model:value="value"
-          @focus="handleFocus"
-          @blur="handleBlur"
-        />
-      `,
-        setup() {
-          const value = ref('');
-          const handleBlur = jest.fn();
-          const handleFocus = jest.fn();
-          return { value, handleBlur, handleFocus };
-        },
-      });
+      const wrapper = _mountEvent('focusAndBlur');
       const input = wrapper.find('input');
       const vm = wrapper.vm;
       await input.trigger('focus');
-      expect(vm.handleFocus).toHaveBeenCalled();
-      expect(vm.handleFocus.mock.calls[0][0].type).toBe('focus');
+      expect(vm.handle1).toHaveBeenCalled();
+      expect(vm.handle1.mock.calls[0][0].type).toBe('focus');
 
       await input.trigger('blur');
-      expect(vm.handleBlur).toHaveBeenCalled();
-      expect(vm.handleBlur.mock.calls[0][0].type).toBe('blur');
+      expect(vm.handle2).toHaveBeenCalled();
+      expect(vm.handle2.mock.calls[0][0].type).toBe('blur');
     });
 
     it('event:keydown', async () => {
-      const wrapper = mount({
-        components: { 'co-input': Input },
-        template: `<co-input 
-          v-model:value="value"
-          @keydown="handleKeydown"
-        />
-      `,
-        setup() {
-          const value = ref('');
-          const handleKeydown = jest.fn();
-          return { value, handleKeydown };
-        },
-      });
+      const wrapper = _mountEvent('keydown');
       const input = wrapper.find('input');
       const vm = wrapper.vm;
       await input.trigger('keydown');
-      expect(vm.handleKeydown).toHaveBeenCalled();
-      expect(vm.handleKeydown.mock.calls[0][0].type).toBe('keydown');
+      expect(vm.handle1).toHaveBeenCalled();
+      expect(vm.handle1.mock.calls[0][0].type).toBe('keydown');
     });
   });
 });
