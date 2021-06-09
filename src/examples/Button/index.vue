@@ -1,34 +1,34 @@
 <template>
   <div>
     <h1>Button 文档</h1>
-    <Demo :component="ButtonDemo1" />
-    <Demo :component="ButtonDemo2" />
-    <Demo :component="ButtonDemo3" />
-    <Demo :component="ButtonDemo4" />
-    <Demo :component="ButtonDemo5" />
-    <Demo :component="ButtonDemo6" />
+    <Demo :component="ButtonDefaultDemo" />
+    <Demo :component="ButtonSizeDemo" />
+    <Demo :component="ButtonLevelDemo" />
+    <Demo :component="ButtonDisabledDemo" />
+    <Demo :component="ButtonLoadingDemo" />
+    <Demo :component="ButtonGroupDemo" />
   </div>
 </template>
 
 <script lang="ts">
 import Demo from '../../components/Demo.vue';
-import ButtonDemo1 from './Button1.demo.vue';
-import ButtonDemo2 from './Button2.demo.vue';
-import ButtonDemo3 from './Button3.demo.vue';
-import ButtonDemo4 from './Button4.demo.vue';
-import ButtonDemo5 from './Button5.demo.vue';
-import ButtonDemo6 from './Button6.demo.vue';
+import ButtonDefaultDemo from './Button.default.demo.vue';
+import ButtonSizeDemo from './Button.size.demo.vue';
+import ButtonLevelDemo from './Button.level.demo.vue';
+import ButtonDisabledDemo from './Button.disabled.demo.vue';
+import ButtonLoadingDemo from './Button.loading.demo.vue';
+import ButtonGroupDemo from './ButtonGroup.demo.vue';
 
 export default {
   components: { Demo },
   setup() {
     return {
-      ButtonDemo1,
-      ButtonDemo2,
-      ButtonDemo3,
-      ButtonDemo4,
-      ButtonDemo5,
-      ButtonDemo6,
+      ButtonDefaultDemo,
+      ButtonSizeDemo,
+      ButtonLevelDemo,
+      ButtonDisabledDemo,
+      ButtonLoadingDemo,
+      ButtonGroupDemo,
     };
   },
 };
