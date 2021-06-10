@@ -1,0 +1,17 @@
+.coast-col {
+  width: 50%;
+
+  $class-prefix: coast-col-span-;
+  @for $n from 1 through 24 {
+    &.#{$class-prefix}#{$n} {
+      width: ($n/24) * 100%;
+    }
+  }
+
+  $class-prefix: coast-col-offset-;
+  @for $n from 1 through 24 {
+    &.#{$class-prefix}#{$n} {
+      margin-left: ($n/24) * 100%;
+    }
+  }
+}
