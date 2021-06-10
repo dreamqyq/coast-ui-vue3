@@ -1,0 +1,34 @@
+name: Deploy Doc Website
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  master-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "12"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build Website
+        run: yarn build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
+          GIT_CONFIG_NAME: EnochQin
+          GIT_CONFIG_EMAIL: qyqdream@gmail.com
+          COMMIT_MESSAGE: website deploy
