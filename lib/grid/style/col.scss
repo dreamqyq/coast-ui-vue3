@@ -1,10 +1,9 @@
 .coast-col {
-  width: 50%;
-
   $class-prefix: coast-col-span-;
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
-      width: ($n/24) * 100%;
+      max-width: ($n/24) * 100%;
+      flex: 0 0 ($n/24) * 100%;
     }
   }
 

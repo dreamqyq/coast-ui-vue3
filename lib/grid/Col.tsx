@@ -6,6 +6,7 @@ const CoastCol = defineComponent({
     span: {
       type: [Number, String],
       required: false,
+      default: 24,
     },
     offset: {
       type: [Number, String],

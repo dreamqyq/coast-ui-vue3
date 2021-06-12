@@ -1,5 +1,9 @@
 import { computed, defineComponent, provide } from 'vue';
 
+import type { PropType } from 'vue';
+
+type RowAlignType = PropType<'end' | 'start' | 'center' | 'space-around' | 'space-between'>;
+
 const CoastRow = defineComponent({
   name: 'CoastRow',
   props: {
@@ -7,6 +11,13 @@ const CoastRow = defineComponent({
       type: [Number, String],
       required: false,
       default: 0,
+    },
+    align: {
+      type: String as RowAlignType,
+      required: false,
+      validator: (val: string) => {
+        return ['end', 'start', 'center', 'space-between', 'space-around'].includes(val);
+      },
     },
   },
   setup(props, { slots }) {
@@ -20,8 +31,11 @@ const CoastRow = defineComponent({
         marginRight: marginValue,
       };
     });
+
+    const classes = computed(() => ['coast-row', { [`coast-align-${props.align}`]: props.align }]);
+
     return () => (
-      <div class="coast-row" style={style.value}>
+      <div class={classes.value} style={style.value}>
         {slots.default?.()}
       </div>
     );
