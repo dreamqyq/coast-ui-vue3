@@ -13,4 +13,99 @@
       margin-left: ($n/24) * 100%;
     }
   }
+
+  @media (max-width: 576px) {
+    $class-prefix: coast-col-xs-span-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        max-width: ($n/24) * 100%;
+        flex: 0 0 ($n/24) * 100%;
+      }
+    }
+    $class-prefix: coast-col-xs-offset-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 576px) {
+    $class-prefix: coast-col-sm-span-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        max-width: ($n/24) * 100%;
+        flex: 0 0 ($n/24) * 100%;
+      }
+    }
+    $class-prefix: coast-col-sm-offset-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    $class-prefix: coast-col-md-span-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        max-width: ($n/24) * 100%;
+        flex: 0 0 ($n/24) * 100%;
+      }
+    }
+    $class-prefix: coast-col-md-offset-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    $class-prefix: coast-col-lg-span-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        max-width: ($n/24) * 100%;
+        flex: 0 0 ($n/24) * 100%;
+      }
+    }
+    $class-prefix: coast-col-lg-offset-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    $class-prefix: coast-col-xl-span-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        max-width: ($n/24) * 100%;
+        flex: 0 0 ($n/24) * 100%;
+      }
+    }
+    $class-prefix: coast-col-xl-offset-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
+  @media (min-width: 1600px) {
+    $class-prefix: coast-col-xxl-span-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        max-width: ($n/24) * 100%;
+        flex: 0 0 ($n/24) * 100%;
+      }
+    }
+    $class-prefix: coast-col-xxl-offset-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
 }
