@@ -1,0 +1,38 @@
+@mixin grid-size($class-prefix) {
+  @for $n from 0 through 24 {
+    &.#{$class-prefix}-span-#{$n} {
+      max-width: ($n/24) * 100%;
+      flex: 0 0 ($n/24) * 100%;
+    }
+    &.#{$class-prefix}-offset-#{$n} {
+      margin-left: ($n/24) * 100%;
+    }
+  }
+}
+
+.coast-col {
+  @include grid-size(coast-col);
+
+  @media (max-width: 576px) {
+    @include grid-size(coast-col-xs);
+  }
+
+  @media (min-width: 576px) {
+    @include grid-size(coast-col-sm);
+  }
+
+  @media (min-width: 768px) {
+    @include grid-size(coast-col-md);
+  }
+
+  @media (min-width: 992px) {
+    @include grid-size(coast-col-lg);
+  }
+
+  @media (min-width: 1200px) {
+    @include grid-size(coast-col-xl);
+  }
+  @media (min-width: 1600px) {
+    @include grid-size(coast-col-xxl);
+  }
+}
