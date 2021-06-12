@@ -1,19 +1,19 @@
 .coast-row {
   display: flex;
   flex-wrap: wrap;
-  &.coast-align-center {
+  &.coast-justify-center {
     justify-content: center;
   }
-  &.coast-align-start {
+  &.coast-justify-start {
     justify-content: flex-start;
   }
-  &.coast-align-end {
+  &.coast-justify-end {
     justify-content: flex-end;
   }
-  &.coast-align-space-around {
+  &.coast-justify-space-around {
     justify-content: space-around;
   }
-  &.coast-align-space-between {
+  &.coast-justify-space-between {
     justify-content: space-between;
   }
 }
