@@ -23,6 +23,9 @@ export default {
 <style lang="scss" scoped>
 .coast-row {
   margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .card {
