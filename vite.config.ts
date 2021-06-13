@@ -5,7 +5,6 @@ import { baseParse, ElementNode } from '@vue/compiler-core';
 import { defineConfig } from 'vite';
 import { searchTagContent } from './src/utils';
 import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
 
 type FindElementType = {
   tag: string;
@@ -33,7 +32,7 @@ export default defineConfig({
     assetsDir: 'assets',
   },
   base: './',
-  plugins: [md(), vue(), vueJsx(), coastDemoParse],
+  plugins: [md(), vue(), coastDemoParse],
   resolve: {
     alias: {
       'coast-ui-vue3': path.resolve('lib'),
