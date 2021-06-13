@@ -10,38 +10,22 @@ describe('Col', () => {
   });
 
   it('span number', () => {
-    const wrapper = mount(Col, {
-      props: {
-        span: 12,
-      },
-    });
+    const wrapper = mount(Col, { props: { span: 12 } });
     expect(wrapper.classes()).toContain('coast-col-span-12');
   });
 
   it('span string', () => {
-    const wrapper = mount(Col, {
-      props: {
-        span: '8',
-      },
-    });
+    const wrapper = mount(Col, { props: { span: '8' } });
     expect(wrapper.classes()).toContain('coast-col-span-8');
   });
 
   it('offset number', () => {
-    const wrapper = mount(Col, {
-      props: {
-        offset: 2,
-      },
-    });
+    const wrapper = mount(Col, { props: { offset: 2 } });
     expect(wrapper.classes()).toContain('coast-col-offset-2');
   });
 
   it('offset string', () => {
-    const wrapper = mount(Col, {
-      props: {
-        span: '4',
-      },
-    });
+    const wrapper = mount(Col, { props: { span: '4' } });
     expect(wrapper.classes()).toContain('coast-col-span-4');
   });
 
@@ -116,18 +100,14 @@ describe('Row', () => {
   });
 
   it('gutter', () => {
-    const wrapper = mount(Row, {
-      props: { gutter: 20 },
-    });
+    const wrapper = mount(Row, { props: { gutter: 20 } });
     const rowElm = wrapper.element as HTMLElement;
     expect(rowElm.style.marginLeft).toEqual('-10px');
     expect(rowElm.style.marginRight).toEqual('-10px');
   });
 
   it('justify', () => {
-    const wrapper = mount(Row, {
-      props: { justify: 'end' },
-    });
+    const wrapper = mount(Row, { props: { justify: 'end' } });
     expect(wrapper.classes()).toContain('coast-justify-end');
   });
 });
