@@ -1,4 +1,4 @@
-import { computed, defineComponent, inject } from 'vue';
+import { computed, defineComponent, h, inject } from 'vue';
 import type { PropType } from 'vue';
 
 type SizeObjectType = {
@@ -49,7 +49,6 @@ const CoastCol = defineComponent({
       default: () => ({} as SizeObjectType),
     },
   },
-  inject: ['CoRow'],
   setup(props, { slots }) {
     const { gutter } = inject('CoRow', { gutter: { value: 0 } });
 
@@ -85,11 +84,15 @@ const CoastCol = defineComponent({
         paddingRight: paddingValue,
       };
     });
-    return () => (
-      <div class={classes.value} style={style.value}>
-        {slots.default?.()}
-      </div>
-    );
+    return () =>
+      h(
+        'div',
+        {
+          class: classes.value,
+          style: style.value,
+        },
+        slots.default?.(),
+      );
   },
 });
 

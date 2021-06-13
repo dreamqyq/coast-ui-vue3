@@ -1,4 +1,4 @@
-import { computed, defineComponent, provide } from 'vue';
+import { computed, defineComponent, h, provide } from 'vue';
 
 import type { PropType } from 'vue';
 
@@ -37,11 +37,15 @@ const CoastRow = defineComponent({
       { [`coast-justify-${props.justify}`]: props.justify },
     ]);
 
-    return () => (
-      <div class={classes.value} style={style.value}>
-        {slots.default?.()}
-      </div>
-    );
+    return () =>
+      h(
+        'div',
+        {
+          class: classes.value,
+          style: style.value,
+        },
+        slots.default?.(),
+      );
   },
 });
 
