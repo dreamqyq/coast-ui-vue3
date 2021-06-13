@@ -68,15 +68,13 @@ export default defineComponent({
       },
     },
   },
-  setup(props: CardProps) {
+  setup(props) {
     const { hoverable, shadow, type } = props;
-    const classes = computed(() => {
-      return {
-        'coast-card-hoverable': hoverable,
-        'coast-card-shadow': shadow,
-        [`coast-card-${type}`]: type,
-      };
-    });
+    const classes = computed(() => ({
+      'coast-card-hoverable': hoverable,
+      'coast-card-shadow': shadow,
+      [`coast-card-${type}`]: type,
+    }));
     return { classes };
   },
 });
