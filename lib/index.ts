@@ -10,3 +10,10 @@ export { default as CoIcon } from './icon/Icon.vue';
 export { openDialog as openDialog } from './dialog/openDialog';
 export { default as CoInput } from './input/Input.vue';
 export { Col as CoCol, Row as CoRow } from './grid';
+export {
+  Aside as CoAside,
+  Content as CoContent,
+  Footer as CoFooter,
+  Header as CoHeader,
+  Layout as CoLayout,
+} from './layout';

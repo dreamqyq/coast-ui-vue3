@@ -1,0 +1,13 @@
+.coast-layout {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+
+  &.coast-layout-has-aside {
+    flex-direction: row;
+  }
+}
+
+.coast-content {
+  flex-grow: 1;
+}
