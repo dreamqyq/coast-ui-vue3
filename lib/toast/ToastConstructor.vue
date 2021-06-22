@@ -37,8 +37,8 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: ['close'],
-  setup(props, context) {
+  emits: ['destroy'],
+  setup(props, { emit }) {
     const visible = ref(false);
 
     const classes = computed(() => ['coast-toast', { 'coast-toast-center': props.center }]);
@@ -50,6 +50,7 @@ export default defineComponent({
 
     const handleClose = () => {
       visible.value = false;
+      emit('destroy');
     };
     const startTimer = () => {
       setTimeout(() => {
