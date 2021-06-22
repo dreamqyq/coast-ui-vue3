@@ -1,9 +1,9 @@
 <template>
-  <div v-show="visible" class="coast-toast">{{ text }}</div>
+  <div v-show="visible" :class="classes">{{ text }}</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import type { ToastType } from './toast.d';
 
 export default defineComponent({
@@ -41,6 +41,8 @@ export default defineComponent({
   setup(props, context) {
     const visible = ref(false);
 
+    const classes = computed(() => ['coast-toast', { 'coast-toast-center': props.center }]);
+
     onMounted(() => {
       visible.value = true;
       startTimer();
@@ -55,7 +57,7 @@ export default defineComponent({
       }, props.delay * 1000);
     };
 
-    return { visible };
+    return { visible, classes };
   },
 });
 </script>
@@ -67,11 +69,16 @@ $toast-index: 100;
   top: 10px;
   left: 50%;
   transform: translate(-50%);
+  min-width: 380px;
 
   background: #fff;
   color: #000;
   z-index: $toast-index;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
   padding: 10px;
+
+  &-center {
+    text-align: center;
+  }
 }
 </style>
