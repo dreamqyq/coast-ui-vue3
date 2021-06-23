@@ -1,14 +1,19 @@
 <template>
-  <div v-show="visible" :class="classes">{{ text }}</div>
+  <div v-show="visible" :class="classes" @mouseenter="clearTimer" @mouseleave="startTimer">
+    <span>{{ text }}</span>
+    <Icon name="clear" v-if="showClose" class="coast-toast-close" @click="handleClose" />
+  </div>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref } from 'vue';
 import type { ToastType } from './toast.d';
 import type { PropType } from 'vue';
+import Icon from '../icon/Icon.vue';
 
 export default defineComponent({
   name: 'CoastToast',
+  components: { Icon },
   props: {
     text: {
       type: String,
@@ -41,6 +46,7 @@ export default defineComponent({
   emits: ['destroy'],
   setup(props, { emit }) {
     const visible = ref(false);
+    const timer = ref(null);
 
     const classes = computed(() => [
       'coast-toast',
@@ -60,12 +66,19 @@ export default defineComponent({
       emit('destroy');
     };
     const startTimer = () => {
-      setTimeout(() => {
-        handleClose();
-      }, props.delay * 1000);
+      if (props.delay > 0) {
+        timer.value = setTimeout(() => {
+          handleClose();
+        }, props.delay * 1000);
+      }
     };
 
-    return { visible, classes };
+    const clearTimer = () => {
+      clearTimeout(timer.value);
+      timer.value = null;
+    };
+
+    return { visible, classes, handleClose, startTimer, clearTimer };
   },
 });
 </script>
@@ -88,7 +101,20 @@ $secondary: #5b5b5b;
   color: #000;
   z-index: $toast-index;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
-  padding: 10px;
+  padding: 15px;
+
+  > .coast-toast-close {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    cursor: pointer;
+    color: #c0c4cc;
+    font-size: 20px;
+    &:hover {
+      color: #909399;
+    }
+  }
 
   &-center {
     text-align: center;
