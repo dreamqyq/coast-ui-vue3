@@ -4,6 +4,7 @@
     <Demo :component="ToastDefaultDemo" />
     <Demo :component="ToastTypeDemo" />
     <Demo :component="ToastCenterDemo" />
+    <Demo :component="ToastCloseDemo" />
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import ToastDefaultDemo from './Toast.default.demo.vue';
 import ToastTypeDemo from './Toast.type.demo.vue';
 import ToastCenterDemo from './Toast.center.demo.vue';
+import ToastCloseDemo from './Toast.close.demo.vue';
 import Demo from '../../components/Demo.vue';
 
 export default {
@@ -19,7 +21,8 @@ export default {
     return {
       ToastDefaultDemo,
       ToastTypeDemo,
-      ToastCenterDemo
+      ToastCenterDemo,
+      ToastCloseDemo,
     };
   },
 };

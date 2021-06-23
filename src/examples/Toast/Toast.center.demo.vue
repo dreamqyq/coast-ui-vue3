@@ -11,7 +11,7 @@
 import { CoToast, CoButton } from 'coast-ui-vue3';
 
 export default {
-  components: { CoToast, CoButton },
+  components: { CoButton },
   setup() {
     const onClick = () => {
       CoToast({
