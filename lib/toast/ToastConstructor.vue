@@ -1,5 +1,11 @@
 <template>
-  <div v-show="visible" :class="classes" @mouseenter="clearTimer" @mouseleave="startTimer">
+  <div
+    v-show="visible"
+    :class="classes"
+    :style="{ top: `${top}px` }"
+    @mouseenter="clearTimer"
+    @mouseleave="startTimer"
+  >
     <span>{{ text }}</span>
     <Icon name="clear" v-if="showClose" class="coast-toast-close" @click="handleClose" />
   </div>
@@ -41,6 +47,16 @@ export default defineComponent({
       type: Boolean,
       required: false,
       default: false,
+    },
+    id: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    top: {
+      type: Number,
+      default: 10,
+      required: false,
     },
   },
   emits: ['destroy'],
