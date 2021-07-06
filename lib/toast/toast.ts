@@ -16,30 +16,32 @@ const Toast = (options: ToastProps) => {
 const createToast = (options: ToastProps) => {
   const div = document.createElement('div');
   document.body.appendChild(div);
-  const onDestroy = () => {
-    render(null, div);
-    div.remove();
-    const i = toastQueue.findIndex(item => {
-      const _id = item.component.props.id;
-      return _id === options.id;
-    });
-    if (i === -1) return;
-    const h = toastQueue[i].el.offsetHeight;
-    console.log(toastQueue[i]);
-    toastQueue.splice(i, 1);
-    if (toastQueue.length < 1) return;
-    for (let j = i; i < toastQueue.length; j++) {
-      const pos = parseInt(toastQueue[j].el.style.top) - h - 16;
-      toastQueue[j].component.props.top = pos;
-    }
-  };
   const vm = createVNode(ToastConstructor, {
     ...options,
     top: toastQueue.length * 60,
-    onDestroy,
+    onDestroy: () => {
+      onDestroy(options.id, div);
+    },
   });
   toastQueue.push(vm);
   render(vm, div);
+};
+
+const onDestroy = (id: string, wrapper: HTMLDivElement) => {
+  render(null, wrapper);
+  wrapper.remove();
+  const currentIndex = toastQueue.findIndex(item => {
+    const _id = item.component.props.id;
+    return _id === id;
+  });
+  if (currentIndex === -1) return;
+  const h = toastQueue[currentIndex].el.offsetHeight;
+  toastQueue.splice(currentIndex, 1);
+  if (toastQueue.length < 1) return;
+  for (let i = currentIndex; i < toastQueue.length; i++) {
+    const pos = parseInt(toastQueue[i].el.style.top) - h - 60;
+    toastQueue[i].component.props.top = pos;
+  }
 };
 
 export { Toast };
