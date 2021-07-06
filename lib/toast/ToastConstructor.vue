@@ -118,6 +118,7 @@ $secondary: #5b5b5b;
   z-index: $toast-index;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
   padding: 15px;
+  transition: top 0.3s;
 
   > .coast-toast-close {
     position: absolute;
