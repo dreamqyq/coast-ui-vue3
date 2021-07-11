@@ -13,8 +13,9 @@ import { CoToast, CoButton } from 'coast-ui-vue3';
 export default {
   components: { CoButton },
   setup() {
+    let index = 1;
     const onClick = () => {
-      CoToast({ text: '这是一条消息提示~' });
+      CoToast({ text: `这是第 ${index++} 条消息提示~` });
     };
 
     return { onClick };

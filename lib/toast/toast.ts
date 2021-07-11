@@ -18,7 +18,7 @@ const createToast = (options: ToastProps) => {
   document.body.appendChild(div);
   const vm = createVNode(ToastConstructor, {
     ...options,
-    top: toastQueue.length * 60,
+    top: 10 + toastQueue.length * 60,
     onDestroy: () => {
       onDestroy(options.id, div);
     },
