@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import ToastConstructor from '../ToastConstructor.vue';
 jest.mock('../../theme-chalk/iconfont/index.js');
-
+jest.useFakeTimers();
 const AXIOM = 'Tomorrow will be even better';
 
 describe('Toast', () => {
@@ -53,5 +53,50 @@ describe('Toast', () => {
     expect(vm.id).toBe(id);
   });
 
-  // TODO delay, showClose
+  it('delay', async () => {
+    const wrapper = mount(ToastConstructor, {
+      props: { delay: 1 },
+    });
+    const { vm } = wrapper;
+    expect(vm.visible).toBe(true);
+    jest.runAllTimers();
+    expect(vm.visible).toBe(false);
+  });
+
+  it('prevent close when hovered', async () => {
+    const wrapper = mount(ToastConstructor, {
+      props: { delay: 1 },
+    });
+    const { vm } = wrapper;
+    expect(vm.visible).toBe(true);
+    await wrapper.find('.coast-toast').trigger('mouseenter');
+    jest.runAllTimers();
+    expect(vm.visible).toBe(true);
+    await wrapper.find('.coast-toast').trigger('mouseleave');
+    expect(vm.visible).toBe(true);
+    jest.runAllTimers();
+    expect(vm.visible).toBe(false);
+  });
+
+  it('cannot auto close when delay is 0', async () => {
+    const wrapper = mount(ToastConstructor, {
+      props: { delay: 0 },
+    });
+    const { vm } = wrapper;
+    expect(vm.visible).toBe(true);
+    jest.runAllTimers();
+    expect(vm.visible).toBe(true);
+  });
+
+  it('showClose', async () => {
+    const onDestroy = jest.fn();
+    const wrapper = mount(ToastConstructor, {
+      props: { onDestroy, showClose: true },
+    });
+    const closeButton = wrapper.find('.coast-toast-close');
+    expect(closeButton.exists()).toBe(true);
+    await closeButton.trigger('click');
+    expect(wrapper.vm.visible).toBe(false);
+    expect(onDestroy).toHaveBeenCalled();
+  });
 });
