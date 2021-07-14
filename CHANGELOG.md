@@ -1,3 +1,16 @@
+# [0.4.0](https://github.com/dreamqyq/coast-ui-vue3/compare/v0.3.0...v0.4.0) (2021-07-14)
+
+
+### Features
+
+* add Grid component ([#4](https://github.com/dreamqyq/coast-ui-vue3/issues/4)) ([e4f8892](https://github.com/dreamqyq/coast-ui-vue3/commit/e4f88929ba6dd6d694b87cb7e7bdc334e014b224))
+* add Icon: clear, show,  hide ([1deb36c](https://github.com/dreamqyq/coast-ui-vue3/commit/1deb36ccce4d2710600708ce0cbbb68d5211fa5b))
+* add Input component ([7829893](https://github.com/dreamqyq/coast-ui-vue3/commit/7829893f2505f0c9fa94d2c2d76819c3910b1a0d))
+* add Layout component ([9b59cc6](https://github.com/dreamqyq/coast-ui-vue3/commit/9b59cc696335650c5096fc6ad0f249e70986acc3))
+* add Toast component ([f6dc9e1](https://github.com/dreamqyq/coast-ui-vue3/commit/f6dc9e11f6cf09c9e0cec5a75b410bd8cc750eca))
+
+
+
 # [0.3.0](https://github.com/dreamqyq/coast-ui-vue3/compare/v0.2.0...v0.3.0) (2021-06-01)
 
 ### Bug Fixes

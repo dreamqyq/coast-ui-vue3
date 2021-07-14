@@ -31,14 +31,25 @@ import "coast-ui-vue3/package/coast-ui.css";
 - 官网本地运行
   - `yarn` 安装依赖
   - `yarn dev` 运行
-- 官网自动化部署（gh-pages）
-  - `yarn deploy`
 - 组件打包，基于 rollup
   - `yarn build:lib`
 - 组件单元测试，基于 jest
   - `yarn test:lib`
 - 自动生成 changelog，基于 conventional-changelog
   - `yarn changelog`
+
+### 自动化
+
+本项目基于 Github Actions，实现了一系列自动化脚本：
+- 自动化测试
+  - `unit-test`
+  - 改动了 lib 目录下的文件 或者 package.json ，并 push 到 dev 分支上，自动执行组件库的单元测试。
+- 自动化构建官网（依赖 gh-pages）
+  - `master-deploy`
+  - 新代码 push 到 master 分支上，自动构建官网并发布到 gh-pages。
+- 自动化发布 npm 包
+  - `publish-npm`
+  - 创建新的 release，自动测试并把最新的包发布到 npm。
 
 ## 文档
 
