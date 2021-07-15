@@ -1,17 +1,9 @@
 <template>
-  <div>
-    <h1>Button 文档</h1>
-    <Demo :component="ButtonDefaultDemo" />
-    <Demo :component="ButtonSizeDemo" />
-    <Demo :component="ButtonLevelDemo" />
-    <Demo :component="ButtonDisabledDemo" />
-    <Demo :component="ButtonLoadingDemo" />
-    <Demo :component="ButtonGroupDemo" />
-  </div>
+  <DemoList :components="components" title="Button 文档" />
 </template>
 
 <script lang="ts">
-import Demo from '../../components/Demo.vue';
+import DemoList from '../../components/Demo/DemoList.vue';
 import ButtonDefaultDemo from './Button.default.demo.vue';
 import ButtonSizeDemo from './Button.size.demo.vue';
 import ButtonLevelDemo from './Button.level.demo.vue';
@@ -20,15 +12,17 @@ import ButtonLoadingDemo from './Button.loading.demo.vue';
 import ButtonGroupDemo from './ButtonGroup.demo.vue';
 
 export default {
-  components: { Demo },
+  components: { DemoList },
   setup() {
     return {
-      ButtonDefaultDemo,
-      ButtonSizeDemo,
-      ButtonLevelDemo,
-      ButtonDisabledDemo,
-      ButtonLoadingDemo,
-      ButtonGroupDemo,
+      components: [
+        ButtonDefaultDemo,
+        ButtonSizeDemo,
+        ButtonLevelDemo,
+        ButtonDisabledDemo,
+        ButtonLoadingDemo,
+        ButtonGroupDemo,
+      ],
     };
   },
 };

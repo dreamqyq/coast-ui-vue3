@@ -1,28 +1,24 @@
 <template>
-  <div>
-    <h1>Toast 文档</h1>
-    <Demo :component="ToastDefaultDemo" />
-    <Demo :component="ToastTypeDemo" />
-    <Demo :component="ToastCenterDemo" />
-    <Demo :component="ToastCloseDemo" />
-  </div>
+  <DemoList :components="components" title="Toast 文档" />
 </template>
 
 <script lang="ts">
+import DemoList from '../../components/Demo/DemoList.vue';
 import ToastDefaultDemo from './Toast.default.demo.vue';
 import ToastTypeDemo from './Toast.type.demo.vue';
 import ToastCenterDemo from './Toast.center.demo.vue';
 import ToastCloseDemo from './Toast.close.demo.vue';
-import Demo from '../../components/Demo.vue';
 
 export default {
-  components: { Demo },
+  components: { DemoList },
   setup() {
     return {
-      ToastDefaultDemo,
-      ToastTypeDemo,
-      ToastCenterDemo,
-      ToastCloseDemo,
+      components: [
+        ToastDefaultDemo,
+        ToastTypeDemo,
+        ToastCenterDemo,
+        ToastCloseDemo,
+      ],
     };
   },
 };

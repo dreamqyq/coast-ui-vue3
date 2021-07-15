@@ -1,22 +1,21 @@
 <template>
-  <div>
-    <h1>Tabs 文档</h1>
-    <Demo :component="TabsDefaultDemo" />
-    <Demo :component="TabsDisabledDemo" />
-  </div>
+  <DemoList :components="components" title="Tabs 文档" />
 </template>
 
 <script lang="ts">
-import Demo from '../../components/Demo.vue';
+import DemoList from '../../components/Demo/DemoList.vue';
 import TabsDefaultDemo from './Tabs.default.demo.vue';
 import TabsDisabledDemo from './Tabs.disabled.demo.vue';
 
 export default {
-  components: {
-    Demo,
-  },
+  components: { DemoList },
   setup() {
-    return { TabsDefaultDemo, TabsDisabledDemo };
+    return {
+      components: [
+        TabsDefaultDemo,
+        TabsDisabledDemo,
+      ],
+    };
   },
 };
 </script>
