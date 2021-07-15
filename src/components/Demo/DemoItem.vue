@@ -25,7 +25,7 @@ import { CoButton, CoCard } from 'coast-ui-vue3';
 import { computed, ref } from 'vue';
 
 export default {
-  name: 'Demo',
+  name: 'DemoItem',
   props: {
     component: {
       type: Object,
