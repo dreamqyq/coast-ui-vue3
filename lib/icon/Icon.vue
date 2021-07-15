@@ -1,5 +1,5 @@
 <template>
-  <svg class="coast-icon" aria-hidden="true">
+  <svg aria-hidden="true" class="coast-icon">
     <use :xlink:href="`#${prefix}${name}`"></use>
   </svg>
 </template>

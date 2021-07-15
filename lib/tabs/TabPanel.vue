@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 export default defineComponent({
   name: 'CoastTabPanel',
   props: {
@@ -13,7 +14,7 @@ export default defineComponent({
     },
     disabled: {
       type: Boolean,
-      required: false
+      required: false,
     },
   },
 });

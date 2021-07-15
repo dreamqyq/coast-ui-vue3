@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { ref, h, nextTick } from 'vue';
+import { h, nextTick, ref } from 'vue';
 import Col from '../Col';
 import Row from '../Row';
 

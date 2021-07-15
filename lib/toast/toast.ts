@@ -39,8 +39,7 @@ const onDestroy = (id: string, wrapper: HTMLDivElement) => {
   toastQueue.splice(currentIndex, 1);
   if (toastQueue.length < 1) return;
   for (let i = currentIndex; i < toastQueue.length; i++) {
-    const pos = parseInt(toastQueue[i].el.style.top) - h - 60;
-    toastQueue[i].component.props.top = pos;
+    toastQueue[i].component.props.top = parseInt(toastQueue[i].el.style.top) - h - 60;
   }
 };
 

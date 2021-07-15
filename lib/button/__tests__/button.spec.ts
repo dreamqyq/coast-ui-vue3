@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils';
 import { ref } from 'vue';
 import Button from '../Button.vue';
 import ButtonGroup from '../ButtonGroup.vue';
+
 jest.mock('../../theme-chalk/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';

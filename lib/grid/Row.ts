@@ -1,6 +1,5 @@
-import { computed, defineComponent, h, provide } from 'vue';
-
 import type { PropType } from 'vue';
+import { computed, defineComponent, h, provide } from 'vue';
 
 type RowJustifyType = PropType<'end' | 'start' | 'center' | 'space-around' | 'space-between'>;
 

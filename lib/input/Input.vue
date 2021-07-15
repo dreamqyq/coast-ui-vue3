@@ -1,49 +1,49 @@
 <template>
   <div
-    class="coast-input-wrapper"
     :class="{ [`coast-input-wrapper-size-${size}`]: size }"
     :style="`width:${width}`"
+    class="coast-input-wrapper"
   >
-    <span class="coast-label left" v-if="label">{{ label }}</span>
+    <span v-if="label" class="coast-label left">{{ label }}</span>
     <input
       ref="inputRef"
-      class="coast-input"
       v-bind="$attrs"
-      :type="type === 'password' ? (passwordVisible ? 'text' : 'password') : type"
-      :maxlength="maxlength"
       :class="classes"
-      :value="value"
-      :placeholder="placeholder"
       :disabled="disabled"
+      :maxlength="maxlength"
+      :placeholder="placeholder"
       :readonly="readonly"
-      @input="onInput"
-      @focus="onFocus"
+      :type="type === 'password' ? (passwordVisible ? 'text' : 'password') : type"
+      :value="value"
+      class="coast-input"
       @blur="onBlur"
       @change="onChange"
+      @focus="onFocus"
+      @input="onInput"
       @keydown="onKeydown"
     />
     <Icon
       v-if="clearable"
-      name="clear"
-      class="coast-input-action"
       :style="`transform: translateX(${actionIconTransform}px)`"
+      class="coast-input-action"
+      name="clear"
       @click="onClear"
     />
     <Icon
       v-if="type === 'password'"
-      class="coast-input-action"
       :name="passwordVisible ? 'hide' : 'show'"
       :style="`transform: translateX(${actionIconTransform + 24}px)`"
+      class="coast-input-action"
       @click="onTogglePasswordVisible"
     />
-    <span ref="labelRightRef" class="coast-label right" v-if="labelRight">{{ labelRight }}</span>
+    <span v-if="labelRight" ref="labelRightRef" class="coast-label right">{{ labelRight }}</span>
   </div>
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
 import { computed, defineComponent, nextTick, ref } from 'vue';
 import Icon from '../icon/Icon.vue';
-import type { PropType } from 'vue';
 
 type InputStatusType = PropType<'normal' | 'secondary' | 'error' | 'warning' | 'success'>;
 type InputSizeType = PropType<'mini' | 'small' | 'medium' | 'large'>;
@@ -236,6 +236,7 @@ $disabledColor: #757575;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
+
     &.right {
       border-right: 1px solid $borderColor;
       border-top-right-radius: 5px;
@@ -247,10 +248,12 @@ $disabledColor: #757575;
     font-size: 12px;
     height: 28px;
   }
+
   &.coast-input-wrapper-size-small {
     font-size: 12px;
     height: 32px;
   }
+
   &.coast-input-wrapper-size-large {
     font-size: 16px;
     height: 40px;
@@ -275,31 +278,39 @@ $disabledColor: #757575;
     &.coast-input-suffix-password {
       padding-right: 35px;
     }
+
     &.coast-input-suffix-clear.coast-input-suffix-password {
       padding-right: 55px;
     }
 
     &.coast-input-status-secondary {
       border-color: #000;
+
       &:focus {
         border-color: #666;
       }
     }
+
     &.coast-input-status-warning {
       border-color: #f7b955;
+
       &:focus {
         border-color: #f5a623;
       }
     }
+
     &.coast-input-status-error {
       color: #e00;
       border-color: #e00;
+
       &:focus {
         border-color: #c50000;
       }
     }
+
     &.coast-input-status-success {
       border-color: #3291ff;
+
       &:focus {
         border-color: #0070f3;
       }

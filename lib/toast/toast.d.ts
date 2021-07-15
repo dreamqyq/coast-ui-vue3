@@ -1,4 +1,5 @@
 import type { VNode } from 'vue';
+
 export type ToastType = 'normal' | 'secondary' | 'success' | 'warning' | 'error';
 
 export interface ToastProps {

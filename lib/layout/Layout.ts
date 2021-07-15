@@ -1,4 +1,4 @@
-import { defineComponent, h, computed, VNode, Component } from 'vue';
+import { Component, computed, defineComponent, h, VNode } from 'vue';
 
 const CoastLayout = defineComponent({
   name: 'CoastLayout',

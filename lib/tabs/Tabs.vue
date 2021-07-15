@@ -115,6 +115,7 @@ $border-color: #d9d9d9;
         color: $theme;
         font-weight: 500;
       }
+
       &.disabled {
         color: #999;
         cursor: not-allowed;

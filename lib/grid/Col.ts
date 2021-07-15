@@ -1,5 +1,5 @@
-import { computed, defineComponent, h, inject } from 'vue';
 import type { PropType } from 'vue';
+import { computed, defineComponent, h, inject } from 'vue';
 
 type SizeObjectType = {
   span: number | string;

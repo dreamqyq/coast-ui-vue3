@@ -1,6 +1,6 @@
 <template>
-  <div class="coast-card" :class="classes">
-    <h2 class="coast-card-title" v-if="title">{{ title }}</h2>
+  <div :class="classes" class="coast-card">
+    <h2 v-if="title" class="coast-card-title">{{ title }}</h2>
     <main class="coast-card-content">
       <slot />
     </main>
@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue';
 import type { PropType } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 type CardTypeType = PropType<
   | 'secondary'
@@ -149,6 +149,7 @@ $border-color: #eaeaea;
     background: #fff;
     color: #000;
     border-color: #fff;
+
     .coast-card-title {
       border-bottom: none;
     }

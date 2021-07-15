@@ -26,6 +26,7 @@ $secondary: #5b5b5b;
     cursor: pointer;
     color: #c0c4cc;
     font-size: 20px;
+
     &:hover {
       color: #909399;
     }
@@ -39,14 +40,17 @@ $secondary: #5b5b5b;
     background-color: $secondary;
     color: #fff;
   }
+
   &-success {
     background-color: $success;
     color: #fff;
   }
+
   &-warning {
     background-color: $warning;
     color: #fff;
   }
+
   &-error {
     background-color: $error;
     color: #fff;

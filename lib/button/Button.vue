@@ -8,10 +8,9 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
 import { computed, defineComponent } from 'vue';
 import Icon from '../icon/Icon.vue';
-
-import type { PropType } from 'vue';
 
 type ButtonThemeType = PropType<'button' | 'link' | 'text'>;
 type ButtonSizeType = PropType<'normal' | 'big' | 'small'>;
@@ -59,7 +58,7 @@ export default defineComponent({
       default: false,
     },
   },
-  setup(props: ButtonProps) {
+  setup(props) {
     const { theme, size, level } = props;
     const classes = computed(() => {
       return {
@@ -199,6 +198,7 @@ $orange: #f5a623;
         color: darken($red, 10%);
       }
     }
+
     &.coast-button-level-warning {
       color: $orange;
 
@@ -308,6 +308,7 @@ $orange: #f5a623;
       &[disabled] {
         color: #fff;
       }
+
       &:hover,
       &:focus {
         color: white;
@@ -326,6 +327,7 @@ $orange: #f5a623;
         background-color: $orange;
       }
     }
+
     &.coast-button-level-danger {
       &:hover,
       &:focus {

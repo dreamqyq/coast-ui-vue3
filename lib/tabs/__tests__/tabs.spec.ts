@@ -1,4 +1,4 @@
-import { ref, nextTick, ComponentPublicInstance } from 'vue';
+import { ComponentPublicInstance, nextTick, ref } from 'vue';
 import { mount, VueWrapper } from '@vue/test-utils';
 import Tabs from '../Tabs.vue';
 import TabPanel from '../TabPanel.vue';

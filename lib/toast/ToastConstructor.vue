@@ -7,14 +7,14 @@
     @mouseleave="startTimer"
   >
     <span>{{ text }}</span>
-    <Icon name="clear" v-if="showClose" class="coast-toast-close" @click="handleClose" />
+    <Icon v-if="showClose" class="coast-toast-close" name="clear" @click="handleClose" />
   </div>
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
 import { computed, defineComponent, onMounted, ref } from 'vue';
 import type { ToastType } from './toast.d';
-import type { PropType } from 'vue';
 import Icon from '../icon/Icon.vue';
 
 export default defineComponent({
