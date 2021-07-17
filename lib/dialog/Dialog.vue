@@ -60,7 +60,7 @@ export default defineComponent({
     },
   },
   emits: ['update:visible'],
-  setup(props: DialogProps, { emit }) {
+  setup(props, { emit }) {
     const onClose = () => {
       emit('update:visible', false);
     };
@@ -90,9 +90,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$radius: 4px;
-$border-color: #d9d9d9;
-$dialogIndex: 100;
+@import '../theme-chalk/common.scss';
+
 .coast-dialog {
   background: white;
   border-radius: $radius;
@@ -107,7 +106,7 @@ $dialogIndex: 100;
     width: 100%;
     height: 100%;
     background: fade_out(black, 0.5);
-    z-index: $dialogIndex;
+    z-index: $popoverIndex;
   }
 
   &-wrapper {
@@ -115,12 +114,12 @@ $dialogIndex: 100;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: $dialogIndex;
+    z-index: $popoverIndex;
   }
 
   > header {
     padding: 12px 16px;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $borderColorGray;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -132,7 +131,7 @@ $dialogIndex: 100;
   }
 
   > footer {
-    border-top: 1px solid $border-color;
+    border-top: 1px solid $borderColorGray;
     padding: 12px 16px;
     text-align: right;
   }
