@@ -22,7 +22,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$radius: 4px;
+@import '../theme-chalk/common.scss';
+
 .coast-button-group {
   display: inline-flex;
   vertical-align: middle;

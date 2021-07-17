@@ -74,14 +74,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import '../theme-chalk/common.scss';
+
 $h: 32px;
-$border-color: #d9d9d9;
-$color: #666;
-$theme: #000;
-$radius: 4px;
-$red: red;
-$gray: gray;
-$orange: #f5a623;
 .coast-button {
   box-sizing: border-box;
   height: $h;
@@ -92,8 +87,8 @@ $orange: #f5a623;
   align-items: center;
   white-space: nowrap;
   background: white;
-  color: $color;
-  border: 1px solid $border-color;
+  color: $colorGray;
+  border: 1px solid $borderColorGray;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
   transition: all 0.25s;
@@ -165,46 +160,46 @@ $orange: #f5a623;
     }
 
     &.coast-button-level-danger {
-      background: $red;
-      border-color: $red;
+      background: $error;
+      border-color: $error;
       color: white;
 
       &:hover,
       &:focus {
-        background: darken($red, 10%);
-        border-color: darken($red, 10%);
+        background: darken($error, 10%);
+        border-color: darken($error, 10%);
       }
     }
 
     &.coast-button-level-warning {
-      background: $orange;
-      border-color: $orange;
+      background: $warning;
+      border-color: $warning;
       color: white;
 
       &:hover,
       &:focus {
-        background: darken($orange, 10%);
-        border-color: darken($orange, 10%);
+        background: darken($warning, 10%);
+        border-color: darken($warning, 10%);
       }
     }
   }
 
   &.coast-button-theme-link {
     &.coast-button-level-danger {
-      color: $red;
+      color: $error;
 
       &:hover,
       &:focus {
-        color: darken($red, 10%);
+        color: darken($error, 10%);
       }
     }
 
     &.coast-button-level-warning {
-      color: $orange;
+      color: $warning;
 
       &:hover,
       &:focus {
-        color: darken($orange, 10%);
+        color: darken($warning, 10%);
       }
     }
   }
@@ -220,20 +215,20 @@ $orange: #f5a623;
     }
 
     &.coast-button-level-danger {
-      color: $red;
+      color: $error;
 
       &:hover,
       &:focus {
-        color: darken($red, 10%);
+        color: darken($error, 10%);
       }
     }
 
     &.coast-button-level-warning {
-      color: $orange;
+      color: $warning;
 
       &:hover,
       &:focus {
-        color: darken($orange, 10%);
+        color: darken($warning, 10%);
       }
     }
   }
@@ -241,11 +236,11 @@ $orange: #f5a623;
   &.coast-button-theme-button {
     &[disabled] {
       cursor: not-allowed;
-      color: $gray;
+      color: $disabledColor;
 
       &:hover {
-        color: $color;
-        border: 1px solid $border-color;
+        color: $colorGray;
+        border: 1px solid $borderColorGray;
       }
     }
   }
@@ -254,7 +249,7 @@ $orange: #f5a623;
   &.coast-button-theme-text {
     &[disabled] {
       cursor: not-allowed;
-      color: $gray;
+      color: $disabledColor;
 
       &:hover {
         background: transparent;
@@ -268,11 +263,11 @@ $orange: #f5a623;
 
     &[disabled] {
       cursor: default;
-      color: $color;
+      color: $colorGray;
 
       &:hover {
-        color: $color;
-        border: 1px solid $border-color;
+        color: $colorGray;
+        border: 1px solid $borderColorGray;
       }
     }
 
@@ -294,7 +289,7 @@ $orange: #f5a623;
     &:hover,
     &:focus {
       color: inherit;
-      border-color: $border-color;
+      border-color: $borderColorGray;
     }
 
     > .coast-button-loadingIndicator {
@@ -312,7 +307,7 @@ $orange: #f5a623;
       &:hover,
       &:focus {
         color: white;
-        border-color: $border-color;
+        border-color: $borderColorGray;
         background-color: $theme;
       }
 
@@ -324,14 +319,14 @@ $orange: #f5a623;
     &.coast-button-level-warning {
       &:hover,
       &:focus {
-        background-color: $orange;
+        background-color: $warning;
       }
     }
 
     &.coast-button-level-danger {
       &:hover,
       &:focus {
-        background-color: $red;
+        background-color: $error;
       }
     }
   }
