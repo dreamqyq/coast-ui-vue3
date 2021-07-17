@@ -81,12 +81,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import '../theme-chalk/common.scss';
+
 $border-color: #eaeaea;
 .coast-card {
   border: 1px solid $border-color;
   width: 100%;
   transition: all 0.25s;
-  border-radius: 5px;
+  border-radius: $radius;
 
   &-hoverable:hover {
     box-shadow: rgba(0, 0, 0, 0.12) 0 5px 10px;
@@ -101,53 +103,53 @@ $border-color: #eaeaea;
   }
 
   &-secondary {
-    background: #5b5b5b;
+    background: $secondary;
     color: #fff;
   }
 
   &-alert {
-    background: #ff0f74;
+    background: $alert;
     color: #fff;
   }
 
   &-success {
-    background: #0062ec;
+    background: $success;
     color: #fff;
   }
 
   &-purple {
-    background: #fc18dc;
+    background: $purple;
     color: #fff;
   }
 
   &-warning {
-    background: #f69d32;
+    background: $warning;
     color: #fff;
   }
 
   &-violet {
-    background: #701fbe;
+    background: $violet;
     color: #fff;
   }
 
   &-error {
-    background: #f01217;
+    background: $error;
     color: #fff;
   }
 
   &-cyan {
-    background: #39dfbb;
+    background: $cyan;
     color: #fff;
   }
 
   &-dark {
-    background: #000000;
+    background: $theme;
     color: #fff;
   }
 
   &-lite {
     background: #fff;
-    color: #000;
+    color: $colorBlack;
     border-color: #fff;
 
     .coast-card-title {
