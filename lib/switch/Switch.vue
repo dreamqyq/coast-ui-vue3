@@ -26,6 +26,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import '../theme-chalk/common.scss';
+
 $h: 22px;
 $h2: $h - 4px;
 .coast-switch {
@@ -48,7 +50,7 @@ $h2: $h - 4px;
   }
 
   &.coast-checked {
-    background: #409eff;
+    background: $checkedBGColor;
   }
 
   &.coast-checked > span {

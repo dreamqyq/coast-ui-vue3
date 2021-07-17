@@ -185,14 +185,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$height: 36px;
-$color: #000;
-$borderColor: #eaeaea;
-$borderFocusColor: #666667;
-$selectionBGColor: #6affe0;
+@import '../theme-chalk/common.scss';
+
 $fontSize: 14px;
-$disabledBGColor: #fafafa;
-$disabledColor: #757575;
+$height: 36px;
 
 .coast-input-wrapper {
   font-size: $fontSize;
@@ -214,7 +210,7 @@ $disabledColor: #757575;
     height: 100%;
 
     &:hover {
-      color: $color;
+      color: $colorBlack;
     }
   }
 
@@ -228,17 +224,17 @@ $disabledColor: #757575;
     font-size: inherit;
     background-color: #fafafa;
     color: #888;
-    border-top: 1px solid $borderColor;
-    border-bottom: 1px solid $borderColor;
+    border-top: 1px solid $borderColorGray;
+    border-bottom: 1px solid $borderColorGray;
 
     &.left {
-      border-left: 1px solid $borderColor;
+      border-left: 1px solid $borderColorGray;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
 
     &.right {
-      border-right: 1px solid $borderColor;
+      border-right: 1px solid $borderColorGray;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }
@@ -270,8 +266,8 @@ $disabledColor: #757575;
     height: inherit;
     width: 100%;
     min-width: 0;
-    color: $color;
-    border: 1px solid $borderColor;
+    color: $colorBlack;
+    border: 1px solid $borderColorGray;
     transition: border 0.2s ease 0s, color 0.2s ease 0s;
 
     &.coast-input-suffix-clear,
@@ -284,35 +280,35 @@ $disabledColor: #757575;
     }
 
     &.coast-input-status-secondary {
-      border-color: #000;
+      border-color: $theme;
 
       &:focus {
-        border-color: #666;
+        border-color: $colorGray;
       }
     }
 
     &.coast-input-status-warning {
-      border-color: #f7b955;
+      border-color: $warning;
 
       &:focus {
-        border-color: #f5a623;
+        border-color: darken($warning, 15%);
       }
     }
 
     &.coast-input-status-error {
-      color: #e00;
-      border-color: #e00;
+      color: $error;
+      border-color: $error;
 
       &:focus {
-        border-color: #c50000;
+        border-color: darken($error, 15%);
       }
     }
 
     &.coast-input-status-success {
-      border-color: #3291ff;
+      border-color: $success;
 
       &:focus {
-        border-color: #0070f3;
+        border-color: darken($success, 15%);
       }
     }
 
@@ -328,20 +324,20 @@ $disabledColor: #757575;
 
     &::selection {
       background-color: $selectionBGColor;
-      color: $color;
+      color: $colorBlack;
     }
 
     &::-moz-selection {
       background: $selectionBGColor;
-      color: $color;
+      color: $colorBlack;
     }
 
     &::placeholder {
-      color: #757575;
+      color: $placeholderColor;
     }
 
     &:focus {
-      border-color: $borderFocusColor;
+      border-color: $borderColorFocus;
     }
 
     &:disabled {

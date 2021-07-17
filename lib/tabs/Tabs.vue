@@ -90,21 +90,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$theme: #000;
-$color: #333;
-$border-color: #d9d9d9;
+@import '../theme-chalk/common.scss';
+
 .coast-tabs {
   &-nav {
     display: flex;
-    color: $color;
-    border-bottom: 1px solid $border-color;
+    color: $colorDark;
+    border-bottom: 1px solid $borderColorGray;
     position: relative;
 
     &-item {
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
-      color: #666;
+      color: $colorGray;
       transition: all 0.25s;
 
       &:first-child {
@@ -117,7 +116,7 @@ $border-color: #d9d9d9;
       }
 
       &.disabled {
-        color: #999;
+        color: $disabledColor;
         cursor: not-allowed;
         user-select: none;
       }

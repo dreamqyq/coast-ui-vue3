@@ -1,8 +1,4 @@
-$toast-index: 100;
-$success: #0070f3;
-$error: #f01217;
-$warning: #f5a623;
-$secondary: #5b5b5b;
+@import '../../theme-chalk/common.scss';
 
 .coast-toast {
   position: fixed;
@@ -12,8 +8,8 @@ $secondary: #5b5b5b;
   min-width: 380px;
   border-radius: 5px;
   background: #fff;
-  color: #000;
-  z-index: $toast-index;
+  color: $colorBlack;
+  z-index: $popoverIndex;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
   padding: 15px;
   transition: top 0.3s;
