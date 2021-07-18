@@ -8,7 +8,7 @@ export { Dialog as CoDialog, openDialog } from './dialog';
 export { Card as CoCard } from './card';
 export { default as CoIcon } from './icon/Icon.vue';
 export { Toast as CoToast } from './toast';
-export { default as CoInput } from './input/Input.vue';
+export { Input as CoInput } from './input';
 export { Col as CoCol, Row as CoRow } from './grid';
 export {
   Aside as CoAside,
