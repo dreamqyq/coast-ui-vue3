@@ -1,3 +1,17 @@
+## [0.4.1](https://github.com/dreamqyq/coast-ui-vue3/compare/v0.4.0...v0.4.1) (2021-07-18)
+
+
+### Bug Fixes
+
+* **docs:** import style from  "coast-ui-vue3/package/coast-ui.css" ([9c7b85c](https://github.com/dreamqyq/coast-ui-vue3/commit/9c7b85cb812d14a3f78d1969fa7acf24200eeec7))
+
+
+### Features
+
+* coast components text-aligh default be left ([c68d4f6](https://github.com/dreamqyq/coast-ui-vue3/commit/c68d4f61d1e3c94b2f634725373554934ba81497))
+
+
+
 # [0.4.0](https://github.com/dreamqyq/coast-ui-vue3/compare/v0.3.0...v0.4.0) (2021-07-14)
 
 ### Features
