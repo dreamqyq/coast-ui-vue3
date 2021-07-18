@@ -69,7 +69,10 @@ export default {
 .demo-component > .coast-layout {
   margin-bottom: 40px;
   color: #fff;
-  text-align: center;
+
+  * {
+    text-align: center;
+  }
 
   &:last-child {
     margin-bottom: 0;
