@@ -1,8 +1,7 @@
 import './style/coast.scss';
 
 export { default as CoSwitch } from './switch/Switch.vue';
-export { default as CoButton } from './button/Button.vue';
-export { default as CoButtonGroup } from './button/ButtonGroup.vue';
+export { Button as CoButton, ButtonGroup as CoButtonGroup } from './button';
 export { default as CoTabs } from './tabs/Tabs.vue';
 export { default as CoTabPanel } from './tabs/TabPanel.vue';
 export { default as CoDialog } from './dialog/Dialog.vue';
