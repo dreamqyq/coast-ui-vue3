@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import Icon from '../Icon.vue';
 
-jest.mock('../../theme-chalk/iconfont/index.js');
+jest.mock('../../style/iconfont/index.js');
 
 describe('Icon', () => {
   it('create', () => {

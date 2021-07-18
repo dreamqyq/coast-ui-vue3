@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import ToastConstructor from '../ToastConstructor.vue';
 import { Toast as CoToast } from '../toast';
 
-jest.mock('../../theme-chalk/iconfont/index.js');
+jest.mock('../../style/iconfont/index.js');
 jest.useFakeTimers();
 const AXIOM = 'Tomorrow will be even better';
 const selector = '.coast-toast';

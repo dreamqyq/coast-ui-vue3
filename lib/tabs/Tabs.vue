@@ -90,7 +90,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../theme-chalk/common.scss';
+@import '../style/common.scss';
 
 .coast-tabs {
   &-nav {

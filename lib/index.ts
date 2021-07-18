@@ -1,4 +1,4 @@
-import './theme-chalk/coast.scss';
+import './style/coast.scss';
 
 export { default as CoSwitch } from './switch/Switch.vue';
 export { default as CoButton } from './button/Button.vue';

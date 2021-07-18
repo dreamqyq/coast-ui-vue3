@@ -4,7 +4,7 @@ import { getBodyElement } from '@coast/__tests__/utils/utils';
 import Dialog from '../Dialog.vue';
 import { openDialog } from './../openDialog';
 
-jest.mock('../../theme-chalk/iconfont/index.js');
+jest.mock('../../style/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';
 const DEFAULT_TITLE = '提示';

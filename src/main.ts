@@ -1,4 +1,4 @@
-import 'coast-ui-vue3/theme-chalk/coast.scss';
+import 'coast-ui-vue3/style/coast.scss';
 import './index.scss';
 import { createApp } from 'vue';
 import App from './App.vue';
