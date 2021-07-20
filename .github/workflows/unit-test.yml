@@ -3,7 +3,7 @@ name: Unit Test
 on:
   push:
     branches:
-      - 'feature/test-coverage-action'
+      - 'dev'
     paths:
       - 'lib/**'
       - 'package.json'
@@ -27,8 +27,7 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
-          directory: ./coverage/
-          files: ./clover.xml
+          files: ./coverage/clover.xml
           flags: unit-tests
           name: coast-ui-vue3
           fail_ci_if_error: true
