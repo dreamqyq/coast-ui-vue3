@@ -7,6 +7,7 @@
   </button>
 </template>
 
+
 <script lang="ts">
 import type { PropType } from 'vue';
 import { computed, defineComponent } from 'vue';
