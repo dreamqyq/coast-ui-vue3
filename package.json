@@ -12,7 +12,8 @@
     "build": "vite build",
     "test:lib": "jest lib",
     "build:lib": "rollup -c",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "coverage:lib": "jest lib --coverage"
   },
   "repository": {
     "type": "git",

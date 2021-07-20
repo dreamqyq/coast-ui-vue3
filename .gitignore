@@ -5,3 +5,4 @@ node_modules
 dist
 *.local
 package
+coverage/
