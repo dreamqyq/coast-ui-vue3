@@ -22,3 +22,12 @@ jobs:
         run: yarn install
       - name: Test lib
         run: yarn test:lib
+      - name: Generate coverage report
+        run: yarn coverage:lib
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: ./coverage/clover.xml
+          flags: unit-tests
+          name: coast-ui-vue3
+          fail_ci_if_error: true
