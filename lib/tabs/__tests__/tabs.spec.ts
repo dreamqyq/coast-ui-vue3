@@ -57,71 +57,71 @@ describe('Tabs', () => {
     await nextTick();
     expectActiveTabCorrectly(wrapper, 1);
   });
-});
 
-it('watch selected tabPanel change', async () => {
-  const wrapper = mount({
-    components: {
-      'co-tabs': Tabs,
-      'co-tab-panel': TabPanel,
-    },
-    template: `
+  it('watch selected tabPanel change', async () => {
+    const wrapper = mount({
+      components: {
+        'co-tabs': Tabs,
+        'co-tab-panel': TabPanel,
+      },
+      template: `
       <co-tabs v-model:selected="selected" @update:selected="onChange">
         <co-tab-panel title="tab1">内容1</co-tab-panel>
         <co-tab-panel title="tab2">内容2</co-tab-panel>
       </co-tabs>
     `,
-    setup() {
-      const selected = ref('tab1');
-      const onChange = jest.fn();
-      return { selected, onChange };
-    },
+      setup() {
+        const selected = ref('tab1');
+        const onChange = jest.fn();
+        return { selected, onChange };
+      },
+    });
+    const vm = wrapper.vm;
+    const tabsWrapper = wrapper.findComponent(Tabs);
+    const tabsNavItemList = tabsWrapper.findAll('.coast-tabs-nav-item');
+    tabsNavItemList[1].trigger('click');
+    await nextTick();
+    expect(vm.onChange).toHaveBeenCalled();
   });
-  const vm = wrapper.vm;
-  const tabsWrapper = wrapper.findComponent(Tabs);
-  const tabsNavItemList = tabsWrapper.findAll('.coast-tabs-nav-item');
-  tabsNavItemList[1].trigger('click');
-  await nextTick();
-  expect(vm.onChange).toHaveBeenCalled();
-});
 
-it('TabPanel disabled', () => {
-  const wrapper = mount({
-    components: {
-      'co-tabs': Tabs,
-      'co-tab-panel': TabPanel,
-    },
-    template: `
+  it('TabPanel disabled', () => {
+    const wrapper = mount({
+      components: {
+        'co-tabs': Tabs,
+        'co-tab-panel': TabPanel,
+      },
+      template: `
       <co-tabs v-model:selected="selected" @update:selected="onChange">
         <co-tab-panel title="tab1">内容1</co-tab-panel>
         <co-tab-panel title="tab2" :disabled="true">内容2</co-tab-panel>
       </co-tabs>
     `,
-    setup() {
-      const selected = ref('tab1');
-      const onChange = jest.fn();
-      return { selected, onChange };
-    },
+      setup() {
+        const selected = ref('tab1');
+        const onChange = jest.fn();
+        return { selected, onChange };
+      },
+    });
+
+    const vm = wrapper.vm;
+    const tabsWrapper = wrapper.findComponent(Tabs);
+    const tabsNavItemList = tabsWrapper.findAll('.coast-tabs-nav-item');
+    tabsNavItemList[1].trigger('click');
+    expect(tabsNavItemList[1].classes()).toContain('disabled');
+    expect(vm.onChange).not.toHaveBeenCalled();
+    expectActiveTabCorrectly(wrapper, 0);
   });
 
-  const vm = wrapper.vm;
-  const tabsWrapper = wrapper.findComponent(Tabs);
-  const tabsNavItemList = tabsWrapper.findAll('.coast-tabs-nav-item');
-  tabsNavItemList[1].trigger('click');
-  expect(tabsNavItemList[1].classes()).toContain('disabled');
-  expect(vm.onChange).not.toHaveBeenCalled();
-  expectActiveTabCorrectly(wrapper, 0);
-});
-
-it('Tabs children must be TabPanel', () => {
-  expect(() => {
-    mount(Tabs, {
-      slots: {
-        default: () => `
+  it('Tabs children must be TabPanel', () => {
+    expect(() => {
+      mount(Tabs, {
+        slots: {
+          default: () => `
           <div title="tab1">内容1</div>
           <div title="tab2">内容2</div>
         `,
-      },
-    });
-  }).toThrowError('CoTabs 的子标签必须为 CoTabPanel');
+        },
+      });
+    }).toThrowError('CoTabs 的子标签必须为 CoTabPanel');
+  });
 });
