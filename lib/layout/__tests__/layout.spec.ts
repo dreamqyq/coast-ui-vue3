@@ -18,24 +18,44 @@ describe('Layout.vue', () => {
     expect(wrapper.text()).toEqual(AXIOM);
   });
 
-  test('has aside', () => {
-    const TestComponent = {
+  test('Layout check for any aside', () => {
+    const childHasAside = `
+      <co-header></co-header>
+      <co-aside></co-aside>
+      <co-content></co-content>
+    `;
+    const childNotAside = `
+      <co-header></co-header>
+      <co-content></co-content>
+    `;
+    const childEmpty = '';
+
+    const TestComponent = (templateChild: string) => ({
       template: `
         <co-layout>
-          <co-header></co-header>
-					<co-aside></co-aside>
-          <co-content></co-content>
-        </co-layout>`,
+        ${templateChild}
+        </co-layout>
+      `,
       components: {
         'co-layout': Layout,
         'co-header': Header,
         'co-aside': Aside,
         'co-content': Content,
       },
-    };
+    });
 
-    const wrapper = mount(TestComponent);
-    expect(wrapper.classes()).toContain('coast-layout-has-aside');
+    const hasAsideClassName = 'coast-layout-has-aside';
+
+    const wrapper1 = mount(TestComponent(childHasAside));
+    expect(wrapper1.classes()).toContain(hasAsideClassName);
+
+    const wrapper2 = mount(TestComponent(childNotAside));
+    expect(wrapper2.classes()).not.toContain(hasAsideClassName);
+
+    const wrapper3 = mount(TestComponent(childEmpty));
+    expect(wrapper3.vm.$slots).toMatchObject({});
+    expect(wrapper3.vm.$slots.default).toBeFalsy();
+    expect(wrapper3.classes()).not.toContain(hasAsideClassName);
   });
 });
 
