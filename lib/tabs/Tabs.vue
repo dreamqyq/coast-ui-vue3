@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, watchEffect } from 'vue';
+import { computed, defineComponent } from 'vue';
 import TabNav from './TabNav.vue';
 import TabPanel from './TabPanel.vue';
 

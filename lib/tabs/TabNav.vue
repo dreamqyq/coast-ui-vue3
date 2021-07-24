@@ -1,5 +1,5 @@
 <template>
-  <div ref="container" class="coast-tab-nav">
+  <div ref="container" class="coast-tabs-nav">
     <div
       v-for="(t, index) in subElements"
       :key="index"
@@ -9,12 +9,12 @@
         }
       "
       :class="{ selected: t.title === selected, disabled: t.disabled }"
-      class="coast-tab-nav-item"
+      class="coast-tabs-nav-item"
       @click="handleClick(t)"
     >
       {{ t.title }}
     </div>
-    <div ref="indicator" class="coast-tab-nav-indicator"></div>
+    <div ref="indicator" class="coast-tabs-nav-indicator"></div>
   </div>
 </template>
 
