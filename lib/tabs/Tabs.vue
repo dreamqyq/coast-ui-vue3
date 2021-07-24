@@ -1,22 +1,6 @@
 <template>
   <div class="coast-tabs">
-    <div ref="container" class="coast-tabs-nav">
-      <div
-        v-for="(t, index) in subElements"
-        :key="index"
-        :ref="
-          el => {
-            if (t.title === selected) selectedItem = el;
-          }
-        "
-        :class="{ selected: t.title === selected, disabled: t.disabled }"
-        class="coast-tabs-nav-item"
-        @click="selectHandle(t)"
-      >
-        {{ t.title }}
-      </div>
-      <div ref="indicator" class="coast-tabs-nav-indicator"></div>
-    </div>
+    <TabNav :subElements="subElements" :selected="selected" @change="selectHandle" />
     <div class="coast-tabs-content">
       <component :is="current" :key="current.props.title" />
     </div>
@@ -25,6 +9,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, watchEffect } from 'vue';
+import TabNav from './TabNav.vue';
 import TabPanel from './TabPanel.vue';
 
 export default defineComponent({
@@ -35,28 +20,9 @@ export default defineComponent({
       required: true,
     },
   },
+  components: { TabNav },
   emits: ['update:selected'],
   setup(props, context) {
-    const selectedItem = ref<HTMLElement>(null);
-    const indicator = ref<HTMLElement>(null);
-    const container = ref<HTMLElement>(null);
-
-    // https://v3.vuejs.org/guide/reactivity-computed-watchers.html#effect-flush-timing
-    // fire after component updates so you can access the updated DOM
-    watchEffect(
-      () => {
-        const { width, left: navItemLeft } = selectedItem.value.getBoundingClientRect();
-        const { left: containerLeft } = container.value.getBoundingClientRect();
-        indicator.value.style.width = width + 'px';
-        indicator.value.style.left = navItemLeft - containerLeft + 'px';
-      },
-      {
-        // this will also defer the initial run of the effect until the
-        // component's first render is finished.
-        flush: 'post',
-      },
-    );
-
     const defaults = context.slots.default();
     defaults.forEach(tag => {
       if (tag.type !== TabPanel) {
@@ -81,9 +47,6 @@ export default defineComponent({
       subElements,
       selectHandle,
       current,
-      selectedItem,
-      indicator,
-      container,
     };
   },
 });

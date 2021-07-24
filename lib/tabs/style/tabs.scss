@@ -1,7 +1,7 @@
 @import '../../style/common.scss';
 
 .coast-tabs {
-  &-nav {
+  .coast-tab-nav {
     display: flex;
     color: $colorDark;
     border-bottom: 1px solid $borderColorGray;
