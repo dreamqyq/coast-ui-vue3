@@ -1,25 +1,21 @@
 <template>
   <div ref="container" class="coast-tabs-nav">
-    <div
-      v-for="(t, index) in subElements"
-      :key="index"
-      :ref="
-        el => {
-          if (t.title === selected) selectedItem = el;
-        }
-      "
-      :class="{ selected: t.title === selected, disabled: t.disabled }"
-      class="coast-tabs-nav-item"
-      @click="handleClick(t)"
-    >
-      {{ t.title }}
-    </div>
+    <TabNavItem
+      v-for="t in subElements"
+      :key="t.title"
+      :selected="selected"
+      :title="t.title"
+      :disabled="t.disabled"
+      @change="handleClick"
+      @getSelectedElement="getSelectedElement"
+    />
     <div ref="indicator" class="coast-tabs-nav-indicator"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue';
+import TabNavItem from './TabNavItem.vue';
 
 export default defineComponent({
   name: 'CoastTabNav',
@@ -33,6 +29,7 @@ export default defineComponent({
       required: true,
     },
   },
+  components: { TabNavItem },
   emits: ['change'],
   setup(props, { emit }) {
     const container = ref<HTMLElement>(null);
@@ -43,10 +40,12 @@ export default defineComponent({
     // fire after component updates so you can access the updated DOM
     watchEffect(
       () => {
-        const { width, left: navItemLeft } = selectedItem.value.getBoundingClientRect();
-        const { left: containerLeft } = container.value.getBoundingClientRect();
-        indicator.value.style.width = width + 'px';
-        indicator.value.style.left = navItemLeft - containerLeft + 'px';
+        if (selectedItem.value) {
+          const { width, left: navItemLeft } = selectedItem.value.getBoundingClientRect();
+          const { left: containerLeft } = container.value.getBoundingClientRect();
+          indicator.value.style.width = width + 'px';
+          indicator.value.style.left = navItemLeft - containerLeft + 'px';
+        }
       },
       {
         // this will also defer the initial run of the effect until the
@@ -54,9 +53,13 @@ export default defineComponent({
         flush: 'post',
       },
     );
+    const getSelectedElement = (selectedElement: HTMLElement) => {
+      selectedItem.value = selectedElement;
+    };
 
-    const handleClick = (t: { title: string; disabled: boolean }) => {
-      emit('change', t);
+    const handleClick = (title: string, selectedElement: HTMLElement) => {
+      selectedItem.value = selectedElement;
+      emit('change', title);
     };
 
     return {
@@ -64,6 +67,7 @@ export default defineComponent({
       selectedItem,
       indicator,
       handleClick,
+      getSelectedElement,
     };
   },
 });

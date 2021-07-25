@@ -38,8 +38,7 @@ export default defineComponent({
       return defaults.filter(tag => tag.props.title === props.selected)[0];
     });
 
-    const selectHandle = ({ title, disabled }: { title: string; disabled: boolean }) => {
-      if (disabled === undefined || disabled === true || title === props.selected) return;
+    const selectHandle = (title: string) => {
       context.emit('update:selected', title);
     };
     return {
