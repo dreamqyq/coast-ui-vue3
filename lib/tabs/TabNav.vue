@@ -44,7 +44,7 @@ export default defineComponent({
           const { width, left: navItemLeft } = selectedItem.value.getBoundingClientRect();
           const { left: containerLeft } = container.value.getBoundingClientRect();
           indicator.value.style.width = width + 'px';
-          indicator.value.style.left = navItemLeft - containerLeft + 'px';
+          indicator.value.style.transform = `translateX(${navItemLeft - containerLeft}px)`;
         }
       },
       {
