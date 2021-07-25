@@ -5,6 +5,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+interface TabPanelProps {
+  title: string;
+  disabled: boolean;
+}
+
 export default defineComponent({
   name: 'CoastTabPanel',
   props: {

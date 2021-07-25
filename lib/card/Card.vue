@@ -14,7 +14,7 @@
 import type { PropType } from 'vue';
 import { computed, defineComponent } from 'vue';
 
-type CardTypeType = PropType<
+type CardTypeType =
   | 'secondary'
   | 'alert'
   | 'success'
@@ -24,8 +24,7 @@ type CardTypeType = PropType<
   | 'error'
   | 'cyan'
   | 'dark'
-  | 'lite'
->;
+  | 'lite';
 
 interface CardProps {
   title?: string;
@@ -50,7 +49,7 @@ export default defineComponent({
       required: false,
     },
     type: {
-      type: String as CardTypeType,
+      type: String as PropType<CardTypeType>,
       required: false,
       validator: (val: string) => {
         return [
@@ -68,7 +67,7 @@ export default defineComponent({
       },
     },
   },
-  setup(props) {
+  setup(props: CardProps) {
     const { hoverable, shadow, type } = props;
     const classes = computed(() => ({
       'coast-card-hoverable': hoverable,

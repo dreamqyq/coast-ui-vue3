@@ -45,9 +45,24 @@ import type { PropType } from 'vue';
 import { computed, defineComponent, nextTick, ref } from 'vue';
 import Icon from '../icon/Icon.vue';
 
-type InputStatusType = PropType<'normal' | 'secondary' | 'error' | 'warning' | 'success'>;
-type InputSizeType = PropType<'mini' | 'small' | 'medium' | 'large'>;
+type InputStatusType = 'normal' | 'secondary' | 'error' | 'warning' | 'success';
+type InputSizeType = 'mini' | 'small' | 'medium' | 'large';
 type InputElementEvent = Event & { target: HTMLInputElement };
+
+interface InputProps {
+  value: string | number;
+  type: string;
+  clearable: boolean;
+  maxlength: number;
+  placeholder: string;
+  disabled: boolean;
+  readonly: boolean;
+  width: string;
+  label: string;
+  labelRight: string;
+  status: InputStatusType;
+  size: InputSizeType;
+}
 
 export default defineComponent({
   name: 'CoastInput',
@@ -95,7 +110,7 @@ export default defineComponent({
       required: false,
     },
     status: {
-      type: String as InputStatusType,
+      type: String as PropType<InputStatusType>,
       required: false,
       default: 'normal',
       validator: (val: string) => {
@@ -103,7 +118,7 @@ export default defineComponent({
       },
     },
     size: {
-      type: String as InputSizeType,
+      type: String as PropType<InputSizeType>,
       required: false,
       default: 'medium',
       validator: (val: string) => {
@@ -112,7 +127,7 @@ export default defineComponent({
     },
   },
   emits: ['update:value', 'input', 'change', 'blur', 'focus', 'keydown', 'clear'],
-  setup(props, { emit }) {
+  setup(props: InputProps, { emit }) {
     const labelRightRef = ref<HTMLSpanElement>(null);
     const inputRef = ref<HTMLInputElement>(null);
     const passwordVisible = ref(false);

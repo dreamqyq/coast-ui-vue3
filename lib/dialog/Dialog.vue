@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
 import { defineComponent } from 'vue';
 import Button from '../button/Button.vue';
 
@@ -51,16 +52,16 @@ export default defineComponent({
       required: false,
     },
     confirm: {
-      type: Function,
+      type: Function as PropType<() => unknown>,
       required: false,
     },
     cancel: {
-      type: Function,
+      type: Function as PropType<() => unknown>,
       required: false,
     },
   },
   emits: ['update:visible'],
-  setup(props, { emit }) {
+  setup(props: DialogProps, { emit }) {
     const onClose = () => {
       emit('update:visible', false);
     };

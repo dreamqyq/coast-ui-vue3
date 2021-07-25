@@ -6,6 +6,17 @@ type SizeObjectType = {
   offset: number | string;
 };
 
+interface ColProps {
+  span: number | string;
+  offset: number | string;
+  xs: number | string | SizeObjectType;
+  sm: number | string | SizeObjectType;
+  md: number | string | SizeObjectType;
+  lg: number | string | SizeObjectType;
+  xl: number | string | SizeObjectType;
+  xxl: number | string | SizeObjectType;
+}
+
 const CoastCol = defineComponent({
   name: 'CoastCol',
   props: {
@@ -49,7 +60,7 @@ const CoastCol = defineComponent({
       default: () => ({} as SizeObjectType),
     },
   },
-  setup(props, { slots }) {
+  setup(props: ColProps, { slots }) {
     const { gutter } = inject('CoRow', { gutter: { value: 0 } });
 
     const classes = computed(() => {

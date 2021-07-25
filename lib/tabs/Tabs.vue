@@ -12,6 +12,10 @@ import { computed, defineComponent } from 'vue';
 import TabNav from './TabNav.vue';
 import TabPanel from './TabPanel.vue';
 
+interface TabsProps {
+  selected: string;
+}
+
 export default defineComponent({
   name: 'CoastTabs',
   props: {
@@ -22,7 +26,7 @@ export default defineComponent({
   },
   components: { TabNav },
   emits: ['update:selected'],
-  setup(props, context) {
+  setup(props: TabsProps, context) {
     const defaults = context.slots.default();
     defaults.forEach(tag => {
       if (tag.type !== TabPanel) {

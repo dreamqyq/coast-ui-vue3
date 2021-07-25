@@ -12,9 +12,9 @@ import type { PropType } from 'vue';
 import { computed, defineComponent } from 'vue';
 import Icon from '../icon/Icon.vue';
 
-type ButtonThemeType = PropType<'button' | 'link' | 'text'>;
-type ButtonSizeType = PropType<'normal' | 'big' | 'small'>;
-type ButtonLevelType = PropType<'normal' | 'main' | 'danger' | 'warning'>;
+type ButtonThemeType = 'button' | 'link' | 'text';
+type ButtonSizeType = 'normal' | 'big' | 'small';
+type ButtonLevelType = 'normal' | 'main' | 'danger' | 'warning';
 
 interface ButtonProps {
   theme: ButtonThemeType;
@@ -29,21 +29,21 @@ export default defineComponent({
   components: { Icon },
   props: {
     theme: {
-      type: String as ButtonThemeType,
+      type: String as PropType<ButtonThemeType>,
       default: 'button',
       validator: (val: string) => {
         return ['button', 'link', 'text'].includes(val);
       },
     },
     size: {
-      type: String as ButtonSizeType,
+      type: String as PropType<ButtonSizeType>,
       default: 'normal',
       validator: (val: string) => {
         return ['normal', 'big', 'small'].includes(val);
       },
     },
     level: {
-      type: String as ButtonLevelType,
+      type: String as PropType<ButtonLevelType>,
       default: 'normal',
       validator: (val: string) => {
         return ['normal', 'main', 'danger', 'warning'].includes(val);
@@ -58,7 +58,7 @@ export default defineComponent({
       default: false,
     },
   },
-  setup(props) {
+  setup(props: ButtonProps) {
     const { theme, size, level } = props;
     const classes = computed(() => {
       return {

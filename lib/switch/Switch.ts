@@ -1,5 +1,9 @@
 import { defineComponent, h } from 'vue';
 
+interface SwitchProps {
+  value: boolean;
+}
+
 const CoastSwitch = defineComponent({
   name: 'CoastSwitch',
   props: {
@@ -9,7 +13,7 @@ const CoastSwitch = defineComponent({
     },
   },
   emits: ['update:value'],
-  setup(props, { emit }) {
+  setup(props: SwitchProps, { emit }) {
     const toggle = () => {
       emit('update:value', !props.value);
     };

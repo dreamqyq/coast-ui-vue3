@@ -1,7 +1,12 @@
 import type { PropType } from 'vue';
 import { computed, defineComponent, h, provide } from 'vue';
 
-type RowJustifyType = PropType<'end' | 'start' | 'center' | 'space-around' | 'space-between'>;
+type RowJustifyType = 'end' | 'start' | 'center' | 'space-around' | 'space-between';
+
+interface RowProps {
+  gutter: number | string;
+  justify: RowJustifyType;
+}
 
 const CoastRow = defineComponent({
   name: 'CoastRow',
@@ -12,14 +17,14 @@ const CoastRow = defineComponent({
       default: 0,
     },
     justify: {
-      type: String as RowJustifyType,
+      type: String as PropType<RowJustifyType>,
       required: false,
       validator: (val: string) => {
         return ['end', 'start', 'center', 'space-between', 'space-around'].includes(val);
       },
     },
   },
-  setup(props, { slots }) {
+  setup(props: RowProps, { slots }) {
     const gutter = computed(() => props.gutter);
     provide('CoRow', { gutter });
 
