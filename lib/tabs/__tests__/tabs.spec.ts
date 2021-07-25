@@ -79,6 +79,10 @@ describe('Tabs', () => {
     const vm = wrapper.vm;
     const tabsWrapper = wrapper.findComponent(Tabs);
     const tabsNavItemList = tabsWrapper.findAll('.coast-tabs-nav-item');
+    tabsNavItemList[0].trigger('click');
+    await nextTick();
+    expect(vm.onChange).not.toHaveBeenCalled();
+
     tabsNavItemList[1].trigger('click');
     await nextTick();
     expect(vm.onChange).toHaveBeenCalled();
@@ -94,6 +98,7 @@ describe('Tabs', () => {
       <co-tabs v-model:selected="selected" @update:selected="onChange">
         <co-tab-panel title="tab1">内容1</co-tab-panel>
         <co-tab-panel title="tab2" :disabled="true">内容2</co-tab-panel>
+        <co-tab-panel title="tab3" disabled>内容3</co-tab-panel>
       </co-tabs>
     `,
       setup() {
@@ -106,15 +111,18 @@ describe('Tabs', () => {
     const vm = wrapper.vm;
     const tabsWrapper = wrapper.findComponent(Tabs);
     const tabsNavItemList = tabsWrapper.findAll('.coast-tabs-nav-item');
-    tabsNavItemList[1].trigger('click');
-    expect(tabsNavItemList[1].classes()).toContain('disabled');
-    expect(vm.onChange).not.toHaveBeenCalled();
-    expectActiveTabCorrectly(wrapper, 0);
+    for (let i = 1; i < 3; i++) {
+      tabsNavItemList[i].trigger('click');
+      expect(tabsNavItemList[i].classes()).toContain('disabled');
+      expect(vm.onChange).not.toHaveBeenCalled();
+      expectActiveTabCorrectly(wrapper, 0);
+    }
   });
 
   it('Tabs children must be TabPanel', () => {
     expect(() => {
       mount(Tabs, {
+        props: { selected: 'tab1' },
         slots: {
           default: () => `
           <div title="tab1">内容1</div>

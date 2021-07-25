@@ -40,7 +40,7 @@ export default defineComponent({
 
     const handleClick = () => {
       const { disabled, title, selected } = props;
-      if (disabled === undefined || disabled === true || title === selected) return;
+      if (disabled || title === selected) return;
       emit('change', props.title, navItem.value);
     };
 
