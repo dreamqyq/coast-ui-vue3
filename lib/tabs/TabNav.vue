@@ -3,7 +3,6 @@
     <TabNavItem
       v-for="t in subElements"
       :key="t.title"
-      :selected="selected"
       :title="t.title"
       :disabled="t.disabled"
       @change="handleClick"
@@ -22,10 +21,6 @@ export default defineComponent({
   props: {
     subElements: {
       type: Array,
-      required: true,
-    },
-    selected: {
-      type: String,
       required: true,
     },
   },

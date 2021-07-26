@@ -1,7 +1,7 @@
 <template>
   <div
     ref="navItem"
-    :class="{ selected: title === selected, disabled }"
+    :class="{ selected: title === currentSelected, disabled }"
     class="coast-tabs-nav-item"
     @click="handleClick"
   >
@@ -10,15 +10,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import type { Ref } from 'vue';
+import { defineComponent, inject, onMounted, ref } from 'vue';
 
 export default defineComponent({
   name: 'CoastTabNavItem',
   props: {
-    selected: {
-      type: String,
-      required: true,
-    },
     title: {
       type: String,
       required: true,
@@ -31,22 +28,24 @@ export default defineComponent({
   },
   emits: ['change', 'getSelectedElement'],
   setup(props, { emit }) {
+    const currentSelected = inject<Ref<string>>('currentSelected');
     const navItem = ref<HTMLElement>(null);
     onMounted(() => {
-      if (props.selected === props.title) {
+      if (currentSelected.value === props.title) {
         emit('getSelectedElement', navItem.value);
       }
     });
 
     const handleClick = () => {
-      const { disabled, title, selected } = props;
-      if (disabled || title === selected) return;
+      const { disabled, title } = props;
+      if (disabled || title === currentSelected.value) return;
       emit('change', props.title, navItem.value);
     };
 
     return {
       navItem,
       handleClick,
+      currentSelected,
     };
   },
 });
