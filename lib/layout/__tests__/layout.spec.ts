@@ -47,14 +47,26 @@ describe('Layout.vue', () => {
     const hasAsideClassName = 'coast-layout-has-aside';
 
     const wrapper1 = mount(TestComponent(childHasAside));
+    const LayoutComponent1 = wrapper1.findComponent(Layout);
+    expect(LayoutComponent1.vm.$slots).toBeTruthy();
+    expect(LayoutComponent1.vm.$slots.default).toBeTruthy();
+    expect(LayoutComponent1.vm.$slots.default().length > 0).toBeTruthy();
+    expect(LayoutComponent1.findAllComponents(Aside).length > 0).toBeTruthy();
     expect(wrapper1.classes()).toContain(hasAsideClassName);
 
     const wrapper2 = mount(TestComponent(childNotAside));
+    const LayoutComponent2 = wrapper2.findComponent(Layout);
+    expect(LayoutComponent2.vm.$slots).toBeTruthy();
+    expect(LayoutComponent2.vm.$slots.default).toBeTruthy();
+    expect(LayoutComponent2.vm.$slots.default().length > 0).toBeTruthy();
+    expect(LayoutComponent2.findAllComponents(Aside).length > 0).toBeFalsy();
     expect(wrapper2.classes()).not.toContain(hasAsideClassName);
 
     const wrapper3 = mount(TestComponent(childEmpty));
-    expect(wrapper3.vm.$slots).toMatchObject({});
-    expect(wrapper3.vm.$slots.default).toBeFalsy();
+    const LayoutComponent3 = wrapper3.findComponent(Layout);
+    expect(LayoutComponent3.vm.$slots).toBeTruthy();
+    expect(LayoutComponent3.vm.$slots.default).toBeFalsy();
+    expect(LayoutComponent3.vm.$slots).toMatchObject({});
     expect(wrapper3.classes()).not.toContain(hasAsideClassName);
   });
 });

@@ -4,7 +4,7 @@ const CoastLayout = defineComponent({
   name: 'CoastLayout',
   setup(props, { slots }) {
     const isHasAside = computed(() => {
-      if (slots && slots.default) {
+      if (slots?.default) {
         const children: Array<VNode> = slots.default();
         return children.some(child => {
           const tag = (child.type as Component).name;
