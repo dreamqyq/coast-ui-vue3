@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { ref } from 'vue';
 import Button from '../Button.vue';
-import ButtonGroup from '../ButtonGroup.vue';
+import ButtonGroup from '../ButtonGroup';
 
 jest.mock('../../style/iconfont/index.js');
 
@@ -107,18 +107,4 @@ describe('Button Group', () => {
     expect(wrapper.classes()).toContain('coast-button-group');
     expect(wrapper.findAll('button').length).toBe(2);
   });
-
-  it('ButtonGroup children must be Button', () => {
-    expect(() => {
-      mount(ButtonGroup, {
-        slots: {
-          default: () => `
-            <div>内容1</div>
-            <div>内容2</div>
-          `,
-        },
-      });
-    }).toThrowError('CoButtonGroup 的子标签必须为 CoButton');
-  });
-  
 });
