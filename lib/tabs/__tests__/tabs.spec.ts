@@ -118,18 +118,4 @@ describe('Tabs', () => {
       expectActiveTabCorrectly(wrapper, 0);
     }
   });
-
-  it('Tabs children must be TabPanel', () => {
-    expect(() => {
-      mount(Tabs, {
-        props: { selected: 'tab1' },
-        slots: {
-          default: () => `
-          <div title="tab1">内容1</div>
-          <div title="tab2">内容2</div>
-        `,
-        },
-      });
-    }).toThrowError('CoTabs 的子标签必须为 CoTabPanel');
-  });
 });

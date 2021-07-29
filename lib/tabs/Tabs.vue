@@ -32,11 +32,6 @@ export default defineComponent({
     provide<Ref<string>>('currentSelected', currentSelected);
 
     const defaults = context.slots.default();
-    defaults.forEach(tag => {
-      if (tag.type !== TabPanel) {
-        throw new Error('CoTabs 的子标签必须为 CoTabPanel');
-      }
-    });
     const subElements = defaults.map(tag => ({
       title: tag.props.title,
       disabled: tag.props.disabled === true || tag.props.disabled === '',
