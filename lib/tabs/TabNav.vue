@@ -1,19 +1,22 @@
 <template>
   <div ref="container" class="coast-tabs-nav">
-    <TabNavItem
-      v-for="t in subElements"
-      :key="t.title"
-      :title="t.title"
-      :disabled="t.disabled"
-      @change="getSelectedElement"
-    />
+    <div
+      v-for="tab in subElements"
+      class="coast-tabs-nav-item"
+      :class="{ selected: tab.title === currentSelected, disabled: tab.disabled }"
+      :ref="setSelectedElement"
+      :key="tab.title"
+      @click="handleClick(tab)"
+    >
+      {{ tab.title }}
+    </div>
     <div ref="indicator" class="coast-tabs-nav-indicator"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from 'vue';
-import TabNavItem from './TabNavItem.vue';
+import { defineComponent, inject, Ref, ref, watchEffect } from 'vue';
+import { TabPanelProps, UpdateSelectedFnType } from './tabs';
 
 export default defineComponent({
   name: 'CoastTabNav',
@@ -23,8 +26,10 @@ export default defineComponent({
       required: true,
     },
   },
-  components: { TabNavItem },
   setup() {
+    const currentSelected = inject<Ref<string>>('currentSelected');
+    const updateCurrentSelected = inject<UpdateSelectedFnType>('updateCurrentSelected');
+
     const container = ref<HTMLElement>(null);
     const selectedItem = ref<HTMLElement>(null);
     const indicator = ref<HTMLElement>(null);
@@ -46,15 +51,25 @@ export default defineComponent({
         flush: 'post',
       },
     );
-    const getSelectedElement = (selectedElement: HTMLElement) => {
-      selectedItem.value = selectedElement;
+
+    const setSelectedElement = (el: HTMLDivElement) => {
+      const title = el.innerText;
+      if (title === currentSelected.value) {
+        selectedItem.value = el;
+      }
+    };
+    const handleClick = (tab: TabPanelProps) => {
+      const { disabled, title } = tab;
+      if (disabled || title === currentSelected.value) return;
+      updateCurrentSelected(tab.title);
     };
 
     return {
       container,
-      selectedItem,
+      currentSelected,
       indicator,
-      getSelectedElement,
+      handleClick,
+      setSelectedElement,
     };
   },
 });
