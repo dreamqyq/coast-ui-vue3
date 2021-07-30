@@ -12,6 +12,7 @@
 <script lang="ts">
 import type { Ref } from 'vue';
 import { defineComponent, inject, onMounted, ref } from 'vue';
+import { UpdateSelectedFnType } from './tabs';
 
 export default defineComponent({
   name: 'CoastTabNavItem',
@@ -26,20 +27,22 @@ export default defineComponent({
       required: false,
     },
   },
-  emits: ['change', 'getSelectedElement'],
+  emits: ['change'],
   setup(props, { emit }) {
     const currentSelected = inject<Ref<string>>('currentSelected');
+    const updateCurrentSelected = inject<UpdateSelectedFnType>('updateCurrentSelected');
     const navItem = ref<HTMLElement>(null);
     onMounted(() => {
       if (currentSelected.value === props.title) {
-        emit('getSelectedElement', navItem.value);
+        emit('change', navItem.value);
       }
     });
 
     const handleClick = () => {
       const { disabled, title } = props;
       if (disabled || title === currentSelected.value) return;
-      emit('change', props.title, navItem.value);
+      emit('change', navItem.value);
+      updateCurrentSelected(props.title);
     };
 
     return {

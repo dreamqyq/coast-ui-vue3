@@ -5,8 +5,7 @@
       :key="t.title"
       :title="t.title"
       :disabled="t.disabled"
-      @change="handleClick"
-      @getSelectedElement="getSelectedElement"
+      @change="getSelectedElement"
     />
     <div ref="indicator" class="coast-tabs-nav-indicator"></div>
   </div>
@@ -25,8 +24,7 @@ export default defineComponent({
     },
   },
   components: { TabNavItem },
-  emits: ['change'],
-  setup(props, { emit }) {
+  setup() {
     const container = ref<HTMLElement>(null);
     const selectedItem = ref<HTMLElement>(null);
     const indicator = ref<HTMLElement>(null);
@@ -52,16 +50,10 @@ export default defineComponent({
       selectedItem.value = selectedElement;
     };
 
-    const handleClick = (title: string, selectedElement: HTMLElement) => {
-      selectedItem.value = selectedElement;
-      emit('change', title);
-    };
-
     return {
       container,
       selectedItem,
       indicator,
-      handleClick,
       getSelectedElement,
     };
   },

@@ -1,6 +1,6 @@
 <template>
   <div class="coast-tabs">
-    <TabNav :subElements="subElements" @change="selectHandle" />
+    <TabNav :subElements="subElements" />
     <div class="coast-tabs-content">
       <component :is="current" :key="current.props.title" />
     </div>
@@ -9,7 +9,12 @@
 
 <script lang="ts">
 import type { Ref } from 'vue';
-import type { TabPanelProps, TabsProps, UpdateTabPanelFnType } from './tabs.d';
+import type {
+  TabPanelProps,
+  TabsProps,
+  UpdateSelectedFnType,
+  UpdateTabPanelFnType,
+} from './tabs.d';
 
 import { computed, defineComponent, provide, ref } from 'vue';
 import TabNav from './TabNav.vue';
@@ -31,6 +36,9 @@ export default defineComponent({
     provide<UpdateTabPanelFnType>('updateTabPanelState', (state: TabPanelProps) => {
       tabPanelStateMap[state.uid] = state;
     });
+    provide<UpdateSelectedFnType>('updateCurrentSelected', (currentSelected: string) => {
+      selectHandle(currentSelected);
+    });
 
     const defaults = context.slots.default();
     const subElements = defaults.map(tag => ({
@@ -48,7 +56,6 @@ export default defineComponent({
     };
     return {
       subElements,
-      selectHandle,
       current,
     };
   },

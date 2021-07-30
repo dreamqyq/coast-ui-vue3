@@ -9,3 +9,5 @@ export interface TabPanelProps {
 }
 
 export type UpdateTabPanelFnType = (state: TabPanelProps) => void;
+
+export type UpdateSelectedFnType = (currentSelected: string) => void;
