@@ -3,7 +3,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, getCurrentInstance, inject } from 'vue';
+import { TabPanelProps, UpdateTabPanelFnType } from './tabs';
 
 export default defineComponent({
   name: 'CoastTabPanel',
@@ -16,6 +17,14 @@ export default defineComponent({
       type: Boolean,
       required: false,
     },
+  },
+  setup(props: TabPanelProps) {
+    const instance = getCurrentInstance();
+    const updateTabPanelState = inject<UpdateTabPanelFnType>('updateTabPanelState');
+    updateTabPanelState({
+      ...props,
+      uid: instance.uid,
+    });
   },
 });
 </script>

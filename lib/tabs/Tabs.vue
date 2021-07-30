@@ -9,13 +9,10 @@
 
 <script lang="ts">
 import type { Ref } from 'vue';
+import type { TabPanelProps, TabsProps, UpdateTabPanelFnType } from './tabs.d';
+
 import { computed, defineComponent, provide, ref } from 'vue';
 import TabNav from './TabNav.vue';
-import TabPanel from './TabPanel.vue';
-
-interface TabsProps {
-  selected: string;
-}
 
 export default defineComponent({
   name: 'CoastTabs',
@@ -29,7 +26,11 @@ export default defineComponent({
   emits: ['update:selected'],
   setup(props: TabsProps, context) {
     const currentSelected = ref(props.selected);
+    const tabPanelStateMap = ref<{ [key: number]: TabPanelProps }>({});
     provide<Ref<string>>('currentSelected', currentSelected);
+    provide<UpdateTabPanelFnType>('updateTabPanelState', (state: TabPanelProps) => {
+      tabPanelStateMap[state.uid] = state;
+    });
 
     const defaults = context.slots.default();
     const subElements = defaults.map(tag => ({
@@ -46,7 +47,6 @@ export default defineComponent({
       context.emit('update:selected', title);
     };
     return {
-      defaults,
       subElements,
       selectHandle,
       current,
