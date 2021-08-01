@@ -1,5 +1,5 @@
 <template>
-  <div ref="indicator" class="coast-tabs-nav-indicator"></div>
+  <div class="coast-tabs-nav-indicator" :style="indicatorStyle" />
 </template>
 
 <script lang="ts">
@@ -18,10 +18,10 @@ export default defineComponent({
   name: 'CoastTabIndicator',
   setup() {
     const currentSelected = inject<Ref<string>>('currentSelected');
-    const indicator = ref<HTMLElement>(null);
     const instance = getCurrentInstance();
     const parentContainer = ref<Element>(null);
     const containerLeft = ref(0);
+    const indicatorStyle = ref({} as CSSStyleDeclaration);
 
     const setIndicatorStyle = () => {
       const selectedItem = Array.from(parentContainer.value.children).filter(item => {
@@ -29,8 +29,8 @@ export default defineComponent({
       })[0];
       const navItemLeft = selectedItem.getBoundingClientRect().left;
       const width = selectedItem.getBoundingClientRect().width;
-      indicator.value.style.width = width + 'px';
-      indicator.value.style.transform = `translateX(${navItemLeft - containerLeft.value}px)`;
+      indicatorStyle.value.width = width + 'px';
+      indicatorStyle.value.transform = `translateX(${navItemLeft - containerLeft.value}px)`;
     };
 
     onMounted(() => {
@@ -43,9 +43,7 @@ export default defineComponent({
       nextTick(setIndicatorStyle);
     });
 
-    return {
-      indicator,
-    };
+    return { indicatorStyle };
   },
 });
 </script>
