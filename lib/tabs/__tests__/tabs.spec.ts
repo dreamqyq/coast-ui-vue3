@@ -119,3 +119,20 @@ describe('Tabs', () => {
     }
   });
 });
+
+describe('TabPanel', () => {
+  it('TabPanel must in Tabs', () => {
+    const errorMsg = 'CoTabPanel must use width CoTabs';
+    expect(() => {
+      mount({
+        components: { 'co-tab-panel': TabPanel },
+        template: `
+          <div>
+            <co-tab-panel title="tab1">内容1</co-tab-panel>
+            <co-tab-panel title="tab2">内容2</co-tab-panel>
+          </div>
+        `,
+      });
+    }).toThrowError(errorMsg);
+  });
+});

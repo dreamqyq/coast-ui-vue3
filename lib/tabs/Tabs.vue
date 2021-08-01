@@ -34,7 +34,7 @@ export default defineComponent({
     const tabPanelStateMap = ref<{ [key: number]: TabPanelProps }>({});
     provide<Ref<string>>('currentSelected', currentSelected);
     provide<UpdateTabPanelFnType>('updateTabPanelState', (state: TabPanelProps) => {
-      tabPanelStateMap[state.uid] = state;
+      tabPanelStateMap.value[state.uid] = state;
     });
     provide<UpdateSelectedFnType>('updateCurrentSelected', (currentSelected: string) => {
       selectHandle(currentSelected);

@@ -39,7 +39,7 @@ export default defineComponent({
       setIndicatorStyle();
     });
 
-    watch(currentSelected, (a, b) => {
+    watch(currentSelected, () => {
       nextTick(setIndicatorStyle);
     });
 

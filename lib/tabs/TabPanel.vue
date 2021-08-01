@@ -21,6 +21,11 @@ export default defineComponent({
   setup(props: TabPanelProps) {
     const instance = getCurrentInstance();
     const updateTabPanelState = inject<UpdateTabPanelFnType>('updateTabPanelState');
+
+    if (!updateTabPanelState) {
+      throw new Error('CoTabPanel must use width CoTabs');
+    }
+
     updateTabPanelState({
       ...props,
       uid: instance.uid,
