@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="aside-overlay" v-show="visible" @click="closeAsideNav"></div>
+    <div class="aside-overlay" v-show="overlayVisible" @click="closeAsideNav"></div>
     <aside :class="{ visible }" @click="clickAsideNav">
       <h2>文档</h2>
       <ol>
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { demoViewList } from '../router/exampleDocsRouter';
 
 export default defineComponent({
@@ -46,7 +46,14 @@ export default defineComponent({
         closeAsideNav();
       }
     };
-    return { demoViewList, clickAsideNav, closeAsideNav };
+
+    const overlayVisible = computed(() => {
+      const clientWidth = document.documentElement.clientWidth;
+      const { visible } = props;
+      return clientWidth <= 500 ? visible : false;
+    });
+
+    return { demoViewList, overlayVisible, clickAsideNav, closeAsideNav };
   },
 });
 </script>
