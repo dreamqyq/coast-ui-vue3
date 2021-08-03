@@ -22,37 +22,50 @@
   </div>
   <div class="content">
     <ul>
-      <li>
-        <co-icon name="vue" prefix="icon-" class="icon" />
-        <h3>Vue 3</h3>
-        <p>使用了最新的 Vue3 Composition API</p>
-      </li>
-      <li>
-        <co-icon name="ts" prefix="icon-" class="icon" />
-        <h3>TypeScript</h3>
-        <p>源代码采用了 TypeScript 编写</p>
-      </li>
-      <li>
-        <co-icon name="lightning" prefix="icon-" class="icon" />
-        <h3>Vite</h3>
-        <p>官网基于 Vite2.x 构建</p>
-      </li>
-      <li>
-        <co-icon name="light" prefix="icon-" class="icon" />
-        <h3>文档完整</h3>
-        <p>所有组件拥有完整的使用文档及示例</p>
+      <li v-for="item in contentList" :key="item.title">
+        <co-icon :name="item.iconName" prefix="icon-" class="icon" />
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import { CoButton, CoIcon } from 'coast-ui-vue3';
 import TopNav from '../components/TopNav.vue';
 
-export default {
+export default defineComponent({
+  name: 'Home',
   components: { TopNav, CoButton, CoIcon },
-};
+  setup() {
+    return {
+      contentList: [
+        {
+          iconName: 'vue',
+          title: 'Vue 3',
+          description: '使用了最新的 Vue3 Composition API',
+        },
+        {
+          iconName: 'ts',
+          title: 'TypeScript',
+          description: '源代码采用了 TypeScript 编写',
+        },
+        {
+          iconName: 'lightning',
+          title: 'Vite',
+          description: '官网基于 Vite2.x 构建',
+        },
+        {
+          iconName: 'light',
+          title: '文档完整',
+          description: '所有组件拥有完整的使用文档及示例',
+        },
+      ],
+    };
+  },
+});
 </script>
 <style lang="scss" scoped>
 $baseColor: #786ff8;
