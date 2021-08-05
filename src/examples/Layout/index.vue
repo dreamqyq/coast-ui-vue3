@@ -10,9 +10,7 @@ export default {
   components: { DemoList },
   setup() {
     return {
-      components: {
-        LayoutDefaultDemo,
-      },
+      components: [LayoutDefaultDemo],
     };
   },
 };
