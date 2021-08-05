@@ -16,3 +16,4 @@ export {
   Header as CoHeader,
   Layout as CoLayout,
 } from './layout';
+export { Popover as CoPopover } from './popover';
