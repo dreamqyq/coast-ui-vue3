@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body" v-if="visible">
-    <div class="coast-popover" :style="popoverStyle">
+    <div class="coast-popover" :style="popoverStyle" v-if="$slots.content">
       <slot name="content" />
     </div>
   </Teleport>
