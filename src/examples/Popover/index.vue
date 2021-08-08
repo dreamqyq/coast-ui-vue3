@@ -5,12 +5,13 @@
 <script lang="ts">
 import DemoList from '../../components/Demo/DemoList.vue';
 import PopoverDefaultDemo from './Popover.default.demo.vue';
+import PopoverPositionDemo from './Popover.position.demo.vue';
 
 export default {
   components: { DemoList },
   setup() {
     return {
-      components: [PopoverDefaultDemo],
+      components: [PopoverDefaultDemo, PopoverPositionDemo],
     };
   },
 };
