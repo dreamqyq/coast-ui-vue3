@@ -6,12 +6,36 @@
   top: 0;
   left: 0;
   min-width: 150px;
+  max-width: 20em;
   border-radius: $radius;
   border: 1px solid $borderColorGray;
   padding: 12px;
   color: $colorBlack;
   line-height: 1.4;
   text-align: justify;
-  box-shadow: rgba(0, 0, 0, 0.12) 0 2px 12px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.12));
   background: #fff;
+  transform: translateY(-100%);
+  margin-top: -20px;
+  word-break: break-all;
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    border: 10px solid;
+    border-color: transparent;
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 10px;
+  }
+  &::after {
+    top: calc(100% - 1px);
+    border-top-color: #fff;
+  }
+  &::before {
+    top: 100%;
+    border-top-color: $borderColorGray;
+  }
 }

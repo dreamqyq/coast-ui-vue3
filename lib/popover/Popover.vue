@@ -33,7 +33,6 @@ export default defineComponent({
       const { left, top } = popoverSlot.value.getBoundingClientRect();
       popoverStyle.value.left = `${left + window.scrollX}px`;
       popoverStyle.value.top = `${top + window.scrollY}px`;
-      popoverStyle.value.transform = `translate(-30%,-140%)`;
     };
 
     const handleDocumentClick = (event: Event) => {
