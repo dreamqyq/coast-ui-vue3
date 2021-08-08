@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 
 type TriggerType = 'click' | 'hover' | 'focus';
 
@@ -28,18 +28,15 @@ export default defineComponent({
     const popoverSlot = ref<HTMLSpanElement>(null);
     const popoverStyle = ref({} as CSSStyleDeclaration);
 
-    onMounted(() => {
-      const { left, top } = popoverSlot.value.getBoundingClientRect();
-      setPopoverStyle(left, top);
-    });
-
     const setPopoverStyle = (left: number, top: number) => {
-      popoverStyle.value.left = `${left}px`;
-      popoverStyle.value.top = `${top}px`;
-      popoverStyle.value.transform = `translateX(-30%) translateY(-140%)`;
+      popoverStyle.value.left = `${left + window.scrollX}px`;
+      popoverStyle.value.top = `${top + window.scrollY}px`;
+      popoverStyle.value.transform = `translate(-30%,-140%)`;
     };
 
     const handleClick = () => {
+      const { left, top } = popoverSlot.value.getBoundingClientRect();
+      setPopoverStyle(left, top);
       visible.value = !visible.value;
     };
 
