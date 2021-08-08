@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body" v-if="visible">
-    <div class="coast-popover" :style="popoverStyle" v-if="$slots.content">
+    <div class="coast-popover" :style="popoverStyle" v-if="$slots.content" ref="popoverElement">
       <slot name="content" />
     </div>
   </Teleport>
@@ -25,22 +25,46 @@ export default defineComponent({
   },
   setup() {
     const visible = ref(false);
+    const popoverElement = ref<HTMLDivElement>(null);
     const popoverSlot = ref<HTMLSpanElement>(null);
     const popoverStyle = ref({} as CSSStyleDeclaration);
 
-    const setPopoverStyle = (left: number, top: number) => {
+    const setPopoverStyle = () => {
+      const { left, top } = popoverSlot.value.getBoundingClientRect();
       popoverStyle.value.left = `${left + window.scrollX}px`;
       popoverStyle.value.top = `${top + window.scrollY}px`;
       popoverStyle.value.transform = `translate(-30%,-140%)`;
     };
 
-    const handleClick = () => {
-      const { left, top } = popoverSlot.value.getBoundingClientRect();
-      setPopoverStyle(left, top);
-      visible.value = !visible.value;
+    const handleDocumentClick = (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (target !== popoverElement.value && !popoverSlot.value.contains(target)) {
+        handleClose();
+      }
     };
 
-    return { visible, popoverStyle, popoverSlot, handleClick };
+    const handleOpen = () => {
+      setPopoverStyle();
+      visible.value = true;
+      document.addEventListener('click', handleDocumentClick);
+    };
+
+    const handleClose = () => {
+      visible.value = false;
+      document.removeEventListener('click', handleDocumentClick);
+    };
+
+    const handleClick = () => {
+      visible.value ? handleClose() : handleOpen();
+    };
+
+    return {
+      visible,
+      popoverStyle,
+      popoverSlot,
+      popoverElement,
+      handleClick,
+    };
   },
 });
 </script>
