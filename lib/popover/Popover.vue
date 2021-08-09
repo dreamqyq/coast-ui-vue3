@@ -10,7 +10,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, nextTick, onMounted, onUnmounted, PropType, ref } from 'vue';
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  PropType,
+  ref,
+} from 'vue';
 
 type TriggerType = 'click' | 'hover' | 'focus';
 type PositionType = 'top' | 'left' | 'right' | 'bottom';
@@ -41,38 +49,6 @@ export default defineComponent({
     const popoverElement = ref<HTMLDivElement>(null);
     const popoverSlot = ref<HTMLSpanElement>(null);
     const popoverStyle = ref({} as CSSStyleDeclaration);
-
-    onMounted(() => {
-      switch (props.trigger) {
-        case 'click':
-          popoverSlot.value.addEventListener(props.trigger, handleEvent);
-          break;
-        case 'hover':
-          popoverSlot.value.addEventListener('mouseenter', handleOpen);
-          popoverSlot.value.addEventListener('mouseleave', handleClose);
-          break;
-        case 'focus':
-          popoverSlot.value.addEventListener('focusin', handleOpen);
-          popoverSlot.value.addEventListener('focusout', handleClose);
-          break;
-      }
-    });
-
-    onUnmounted(() => {
-      switch (props.trigger) {
-        case 'click':
-          popoverSlot.value.removeEventListener(props.trigger, handleEvent);
-          break;
-        case 'hover':
-          popoverSlot.value.removeEventListener('mouseenter', handleOpen);
-          popoverSlot.value.removeEventListener('mouseleave', handleClose);
-          break;
-        case 'focus':
-          popoverSlot.value.addEventListener('focusin', handleOpen);
-          popoverSlot.value.addEventListener('focusout', handleClose);
-          break;
-      }
-    });
 
     const classes = computed(() => ({
       'coast-popover': true,
@@ -124,11 +100,37 @@ export default defineComponent({
       document.removeEventListener('click', handleDocumentClick);
     };
 
-    const handleEvent = () => {
+    const handleClick = () => {
       if (slots.content) {
         visible.value ? handleClose() : handleOpen();
       }
     };
+
+    const eventMap = {
+      click: [{ name: 'click', handle: handleClick }],
+      hover: [
+        { name: 'mouseenter', handle: handleOpen },
+        { name: 'mouseleave', handle: handleClose },
+      ],
+      focus: [
+        { name: 'focusin', handle: handleOpen },
+        { name: 'focusout', handle: handleClose },
+      ],
+    };
+
+    const currentEventList = eventMap[props.trigger];
+
+    onMounted(() => {
+      currentEventList.forEach(event => {
+        popoverSlot.value.addEventListener(event.name, event.handle);
+      });
+    });
+
+    onBeforeUnmount(() => {
+      currentEventList.forEach(event => {
+        popoverSlot.value.removeEventListener(event.name, event.handle);
+      });
+    });
 
     return {
       classes,
