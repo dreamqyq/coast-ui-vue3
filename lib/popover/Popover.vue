@@ -4,13 +4,13 @@
       <slot name="content" />
     </div>
   </Teleport>
-  <span @click="handleClick" ref="popoverSlot" class="coast-popover-slot">
+  <span ref="popoverSlot" class="coast-popover-slot">
     <slot />
   </span>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, nextTick, PropType, ref } from 'vue';
+import { computed, defineComponent, nextTick, onMounted, onUnmounted, PropType, ref } from 'vue';
 
 type TriggerType = 'click' | 'hover' | 'focus';
 type PositionType = 'top' | 'left' | 'right' | 'bottom';
@@ -41,6 +41,34 @@ export default defineComponent({
     const popoverElement = ref<HTMLDivElement>(null);
     const popoverSlot = ref<HTMLSpanElement>(null);
     const popoverStyle = ref({} as CSSStyleDeclaration);
+
+    onMounted(() => {
+      switch (props.trigger) {
+        case 'click':
+          popoverSlot.value.addEventListener(props.trigger, handleEvent);
+          break;
+        case 'hover':
+          popoverSlot.value.addEventListener('mouseenter', handleOpen);
+          popoverSlot.value.addEventListener('mouseleave', handleClose);
+          break;
+        case 'focus':
+          break;
+      }
+    });
+
+    onUnmounted(() => {
+      switch (props.trigger) {
+        case 'click':
+          popoverSlot.value.removeEventListener(props.trigger, handleEvent);
+          break;
+        case 'hover':
+          popoverSlot.value.removeEventListener('mouseenter', handleOpen);
+          popoverSlot.value.removeEventListener('mouseleave', handleClose);
+          break;
+        case 'focus':
+          break;
+      }
+    });
 
     const classes = computed(() => ({
       'coast-popover': true,
@@ -92,7 +120,7 @@ export default defineComponent({
       document.removeEventListener('click', handleDocumentClick);
     };
 
-    const handleClick = () => {
+    const handleEvent = () => {
       if (slots.content) {
         visible.value ? handleClose() : handleOpen();
       }
@@ -104,7 +132,6 @@ export default defineComponent({
       popoverStyle,
       popoverSlot,
       popoverElement,
-      handleClick,
     };
   },
 });
