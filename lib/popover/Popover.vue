@@ -36,7 +36,7 @@ export default defineComponent({
       validator: (val: string) => ['top', 'left', 'right', 'bottom'].includes(val),
     },
   },
-  setup(props: PopoverProps) {
+  setup(props: PopoverProps, { slots }) {
     const visible = ref(false);
     const popoverElement = ref<HTMLDivElement>(null);
     const popoverSlot = ref<HTMLSpanElement>(null);
@@ -93,7 +93,9 @@ export default defineComponent({
     };
 
     const handleClick = () => {
-      visible.value ? handleClose() : handleOpen();
+      if (slots.content) {
+        visible.value ? handleClose() : handleOpen();
+      }
     };
 
     return {
