@@ -52,6 +52,8 @@ export default defineComponent({
           popoverSlot.value.addEventListener('mouseleave', handleClose);
           break;
         case 'focus':
+          popoverSlot.value.addEventListener('focusin', handleOpen);
+          popoverSlot.value.addEventListener('focusout', handleClose);
           break;
       }
     });
@@ -66,6 +68,8 @@ export default defineComponent({
           popoverSlot.value.removeEventListener('mouseleave', handleClose);
           break;
         case 'focus':
+          popoverSlot.value.addEventListener('focusin', handleOpen);
+          popoverSlot.value.addEventListener('focusout', handleClose);
           break;
       }
     });
