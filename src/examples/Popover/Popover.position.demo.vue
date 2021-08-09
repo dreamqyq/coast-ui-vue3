@@ -4,25 +4,25 @@
 </demo>
 
 <template>
-  <co-popover position="top">
+  <co-popover position="top" trigger="hover">
     <template #content>
       这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。
     </template>
     <co-button>上方弹出</co-button>
   </co-popover>
-  <co-popover position="bottom">
+  <co-popover position="bottom" trigger="hover">
     <template #content>
       这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。
     </template>
     <co-button>下方弹出</co-button>
   </co-popover>
-  <co-popover position="left">
+  <co-popover position="left" trigger="hover">
     <template #content>
       这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。
     </template>
     <co-button>左边弹出</co-button>
   </co-popover>
-  <co-popover position="right">
+  <co-popover position="right" trigger="hover">
     <template #content>
       这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。
     </template>
