@@ -35,6 +35,10 @@
   &-top {
     margin-top: -10px;
     transform: translateY(-100%);
+    &::after,
+    &::before {
+      border-bottom: none;
+    }
     &::after {
       left: 10px;
       top: calc(100% - 1px);
@@ -49,6 +53,10 @@
 
   &-bottom {
     margin-top: 10px;
+    &::after,
+    &::before {
+      border-top: none;
+    }
     &::after {
       left: 10px;
       bottom: calc(100% - 1px);
@@ -73,6 +81,10 @@
   &-left {
     margin-left: -10px;
     transform: translateX(-100%);
+    &::after,
+    &::before {
+      border-right: none;
+    }
     &::after {
       left: calc(100% - 1px);
       border-left-color: #fff;
@@ -85,6 +97,10 @@
 
   &-right {
     margin-left: -10px;
+    &::after,
+    &::before {
+      border-left: none;
+    }
     &::after {
       right: calc(100% - 1px);
       border-right-color: #fff;
