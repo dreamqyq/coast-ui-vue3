@@ -26,6 +26,7 @@ type PositionType = 'top' | 'left' | 'right' | 'bottom';
 interface PopoverProps {
   trigger: TriggerType;
   position: PositionType;
+  width: number | string;
 }
 
 export default defineComponent({
@@ -43,6 +44,11 @@ export default defineComponent({
       default: 'top',
       validator: (val: string) => ['top', 'left', 'right', 'bottom'].includes(val),
     },
+    width: {
+      type: [String, Number],
+      required: false,
+      default: '',
+    },
   },
   setup(props: PopoverProps, { slots }) {
     const visible = ref(false);
@@ -54,6 +60,11 @@ export default defineComponent({
       'coast-popover': true,
       [`coast-popover-${props.position}`]: props.position,
     }));
+
+    const setPopoverWidth = () => {
+      const { width } = props;
+      popoverStyle.value.width = typeof width === 'number' ? `${width}px` : width;
+    };
 
     const setPopoverStyle = () => {
       const { left, top, height, width } = popoverSlot.value.getBoundingClientRect();
@@ -90,6 +101,7 @@ export default defineComponent({
     const handleOpen = () => {
       visible.value = true;
       nextTick(() => {
+        props.width && setPopoverWidth();
         setPopoverStyle();
         document.addEventListener('click', handleDocumentClick);
       });
