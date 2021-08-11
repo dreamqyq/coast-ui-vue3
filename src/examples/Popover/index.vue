@@ -7,12 +7,13 @@ import DemoList from '../../components/Demo/DemoList.vue';
 import PopoverDefaultDemo from './Popover.default.demo.vue';
 import PopoverPositionDemo from './Popover.position.demo.vue';
 import PopoverWidthDemo from './Popover.width.demo.vue';
+import PopoverCloseDemo from './Popover.close.demo.vue';
 
 export default {
   components: { DemoList },
   setup() {
     return {
-      components: [PopoverDefaultDemo, PopoverPositionDemo, PopoverWidthDemo],
+      components: [PopoverDefaultDemo, PopoverPositionDemo, PopoverWidthDemo, PopoverCloseDemo],
     };
   },
 };
