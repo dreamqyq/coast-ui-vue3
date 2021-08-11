@@ -66,7 +66,7 @@ export default defineComponent({
       popoverStyle.value.width = typeof width === 'number' ? `${width}px` : width;
     };
 
-    const setPopoverStyle = () => {
+    const setPopoverPosition = () => {
       const { left, top, height, width } = popoverTrigger.value.getBoundingClientRect();
       const { height: popoverHeight } = popoverElement.value.getBoundingClientRect();
       const positionMap = {
@@ -91,6 +91,13 @@ export default defineComponent({
       popoverStyle.value.top = `${positionMap[props.position].top}px`;
     };
 
+    const setPopoverStyle = () => {
+      props.width && setPopoverWidth();
+      nextTick(() => {
+        setPopoverPosition();
+      });
+    };
+
     const handleDocumentClick = (event: Event) => {
       const target = event.target as HTMLElement;
       /**
@@ -111,7 +118,6 @@ export default defineComponent({
     const handleOpen = () => {
       visible.value = true;
       nextTick(() => {
-        props.width && setPopoverWidth();
         setPopoverStyle();
         document.addEventListener('click', handleDocumentClick);
       });
