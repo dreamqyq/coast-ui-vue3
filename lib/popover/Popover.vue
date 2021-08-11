@@ -4,7 +4,7 @@
       <slot name="content" />
     </div>
   </Teleport>
-  <span ref="popoverSlot" class="coast-popover-slot">
+  <span ref="popoverTrigger" class="coast-popover-slot">
     <slot />
   </span>
 </template>
@@ -53,7 +53,7 @@ export default defineComponent({
   setup(props: PopoverProps, { slots }) {
     const visible = ref(false);
     const popoverElement = ref<HTMLDivElement>(null);
-    const popoverSlot = ref<HTMLSpanElement>(null);
+    const popoverTrigger = ref<HTMLSpanElement>(null);
     const popoverStyle = ref({} as CSSStyleDeclaration);
 
     const classes = computed(() => ({
@@ -67,8 +67,8 @@ export default defineComponent({
     };
 
     const setPopoverStyle = () => {
-      const { left, top, height, width } = popoverSlot.value.getBoundingClientRect();
-      const { height: h2 } = popoverElement.value.getBoundingClientRect();
+      const { left, top, height, width } = popoverTrigger.value.getBoundingClientRect();
+      const { height: popoverHeight } = popoverElement.value.getBoundingClientRect();
       const positionMap = {
         top: {
           left: left + window.scrollX,
@@ -80,11 +80,11 @@ export default defineComponent({
         },
         left: {
           left: left + window.scrollX,
-          top: top + (height - h2) / 2 + window.scrollY,
+          top: top + (height - popoverHeight) / 2 + window.scrollY,
         },
         right: {
           left: left + width + window.scrollX,
-          top: top + (height - h2) / 2 + window.scrollY,
+          top: top + (height - popoverHeight) / 2 + window.scrollY,
         },
       };
       popoverStyle.value.left = `${positionMap[props.position].left}px`;
@@ -93,7 +93,17 @@ export default defineComponent({
 
     const handleDocumentClick = (event: Event) => {
       const target = event.target as HTMLElement;
-      if (target !== popoverElement.value && !popoverSlot.value?.contains(target)) {
+      /**
+       * The click is not the popover itself or the element in the popover,
+       * and the click is not the element in the trigger
+       * (which will cause the popover to be closed immediately after opening),
+       * to execute the handleClose event
+       */
+      if (
+        target !== popoverElement.value &&
+        !popoverElement.value?.contains(target) &&
+        !popoverTrigger.value?.contains(target)
+      ) {
         handleClose();
       }
     };
@@ -134,13 +144,13 @@ export default defineComponent({
 
     onMounted(() => {
       currentEventList.forEach(event => {
-        popoverSlot.value.addEventListener(event.name, event.handle);
+        popoverTrigger.value.addEventListener(event.name, event.handle);
       });
     });
 
     onBeforeUnmount(() => {
       currentEventList.forEach(event => {
-        popoverSlot.value.removeEventListener(event.name, event.handle);
+        popoverTrigger.value.removeEventListener(event.name, event.handle);
       });
     });
 
@@ -148,7 +158,7 @@ export default defineComponent({
       classes,
       visible,
       popoverStyle,
-      popoverSlot,
+      popoverTrigger,
       popoverElement,
     };
   },
