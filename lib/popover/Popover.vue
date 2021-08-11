@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body" v-if="visible">
     <div :class="classes" :style="popoverStyle" v-if="$slots.content" ref="popoverElement">
-      <slot name="content" />
+      <slot name="content" :close="handleClose" />
     </div>
   </Teleport>
   <span ref="popoverTrigger" class="coast-popover-slot">
@@ -160,6 +160,7 @@ export default defineComponent({
       popoverStyle,
       popoverTrigger,
       popoverElement,
+      handleClose,
     };
   },
 });
