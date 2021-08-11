@@ -16,16 +16,12 @@
     </template>
     <co-button>下方弹出</co-button>
   </co-popover>
-  <co-popover position="left" trigger="hover">
-    <template #content>
-      这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。
-    </template>
+  <co-popover position="left" trigger="hover" :width="150">
+    <template #content> 这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。 </template>
     <co-button>左边弹出</co-button>
   </co-popover>
-  <co-popover position="right" trigger="hover">
-    <template #content>
-      这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。
-    </template>
+  <co-popover position="right" trigger="hover" :width="150">
+    <template #content> 这是一段文字，很高兴你看见了它。这是一段文字，很高兴你看见了它。 </template>
     <co-button>右边弹出</co-button>
   </co-popover>
 </template>
