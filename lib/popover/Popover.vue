@@ -19,15 +19,7 @@ import {
   PropType,
   ref,
 } from 'vue';
-
-type TriggerType = 'click' | 'hover' | 'focus';
-type PositionType = 'top' | 'left' | 'right' | 'bottom';
-
-interface PopoverProps {
-  trigger: TriggerType;
-  position: PositionType;
-  width: number | string;
-}
+import type { TriggerType, PositionType, PopoverProps } from './popover.d';
 
 export default defineComponent({
   name: 'CoastPopover',
