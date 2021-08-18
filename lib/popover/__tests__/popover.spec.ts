@@ -8,10 +8,17 @@ const AXIOM = 'Tomorrow will be even better';
 
 const _mount = (props: PopoverProps = {}) => {
   const bindTrigger = props.trigger ? `trigger="${props.trigger}"` : '';
+  const bindPosition = props.position ? `position="${props.position}"` : '';
+  const bindWidthPrefix = typeof props.width === 'number' ? ':' : '';
+  const bindWidth = props.width ? `${bindWidthPrefix}width="${props.width}"` : '';
   return mount({
     components: { 'co-popover': Popover },
     template: `
-      <co-popover ${bindTrigger}>
+      <co-popover 
+        ${bindTrigger}
+        ${bindPosition}
+        ${bindWidth}
+      >
         <template #content>${AXIOM}</template>
         <button>button</button>
       </co-popover>
@@ -74,16 +81,25 @@ const expectPopoverTriggerCorrectly = async (trigger: TriggerType) => {
   wrapper.unmount();
 };
 
+const handleInitAndReturnPopover = async (
+  expectCallback: (popover: Element) => void,
+  props: PopoverProps = {},
+) => {
+  const wrapper = _mount(props);
+  expectBodyIsEmpty(wrapper);
+  await handleTriggerEvent('click', wrapper, 0);
+  const { bodyChildren: afterBody, lastElementChild } = getBodyElement();
+  expect(afterBody.length).toBe(1);
+  expectCallback(lastElementChild);
+  wrapper.unmount();
+};
+
 describe('Popover', () => {
   it('create', async () => {
-    const wrapper = _mount();
-    expectBodyIsEmpty(wrapper);
-    await handleTriggerEvent('click', wrapper, 0);
-    const { bodyChildren: afterBody, lastElementChild } = getBodyElement();
-    expect(afterBody.length).toBe(1);
-    expect(lastElementChild.className).toContain('coast-popover');
-    expect(lastElementChild.className).toContain('coast-popover-top');
-    wrapper.unmount();
+    await handleInitAndReturnPopover(popover => {
+      expect(popover.className).toContain('coast-popover');
+      expect(popover.className).toContain('coast-popover-top');
+    });
   });
 
   it('trigger event', async () => {
@@ -91,5 +107,32 @@ describe('Popover', () => {
     for (const trigger of triggerList) {
       await expectPopoverTriggerCorrectly(trigger);
     }
+  });
+
+  it('position', async () => {
+    await handleInitAndReturnPopover(
+      popover => {
+        expect(popover.className).toContain('coast-popover-bottom');
+      },
+      { position: 'bottom' },
+    );
+  });
+
+  it('number width', async () => {
+    await handleInitAndReturnPopover(
+      popover => {
+        expect(popover.getAttribute('style')).toContain('width: 20px');
+      },
+      { width: 20 },
+    );
+  });
+
+  it('string width', async () => {
+    await handleInitAndReturnPopover(
+      popover => {
+        expect(popover.getAttribute('style')).toContain('width: 20%');
+      },
+      { width: '20%' },
+    );
   });
 });
