@@ -81,16 +81,18 @@ const expectPopoverTriggerCorrectly = async (trigger: TriggerType) => {
   wrapper.unmount();
 };
 
+type ExpectCBType = (popover: Element, vm?: ComponentPublicInstance) => void;
 const handleInitAndReturnPopover = async (
-  expectCallback: (popover: Element) => void,
+  expectCallback: ExpectCBType,
   props: PopoverProps = {},
 ) => {
   const wrapper = _mount(props);
   expectBodyIsEmpty(wrapper);
+  const popoverVm = wrapper.findComponent(Popover).vm;
   await handleTriggerEvent('click', wrapper, 0);
   const { bodyChildren: afterBody, lastElementChild } = getBodyElement();
   expect(afterBody.length).toBe(1);
-  expectCallback(lastElementChild);
+  expectCallback(lastElementChild, popoverVm);
   wrapper.unmount();
 };
 
@@ -110,18 +112,23 @@ describe('Popover', () => {
   });
 
   it('position', async () => {
+    const position = 'bottom';
     await handleInitAndReturnPopover(
-      popover => {
-        expect(popover.className).toContain('coast-popover-bottom');
+      (popover, vm) => {
+        const props = vm.$props as PopoverProps;
+        expect(props.position).toBe(position);
+        expect(popover.className).toContain(`coast-popover-${position}`);
       },
-      { position: 'bottom' },
+      { position },
     );
   });
 
   it('number width', async () => {
     await handleInitAndReturnPopover(
-      popover => {
+      (popover, vm) => {
+        const props = vm.$props as PopoverProps;
         expect(popover.getAttribute('style')).toContain('width: 20px');
+        expect(typeof props.width).toBe('number');
       },
       { width: 20 },
     );
@@ -129,8 +136,10 @@ describe('Popover', () => {
 
   it('string width', async () => {
     await handleInitAndReturnPopover(
-      popover => {
+      (popover, vm) => {
+        const props = vm.$props as PopoverProps;
         expect(popover.getAttribute('style')).toContain('width: 20%');
+        expect(typeof props.width).toBe('string');
       },
       { width: '20%' },
     );
