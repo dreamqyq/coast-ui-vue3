@@ -2,7 +2,7 @@ import { getBodyElement } from '@coast/__tests__/utils/utils';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { PopoverProps, TriggerType } from './../popover.d';
 import Popover from '../Popover.vue';
-import { ComponentPublicInstance } from 'vue';
+import { ComponentPublicInstance, nextTick } from 'vue';
 
 const AXIOM = 'Tomorrow will be even better';
 
@@ -81,7 +81,11 @@ const expectPopoverTriggerCorrectly = async (trigger: TriggerType) => {
   wrapper.unmount();
 };
 
-type ExpectCBType = (popover: Element, vm?: ComponentPublicInstance) => void;
+type ExpectCBType = (
+  popover: HTMLElement,
+  vm?: ComponentPublicInstance,
+  wrapper?: VueWrapper<ComponentPublicInstance>,
+) => void;
 const handleInitAndReturnPopover = async (
   expectCallback: ExpectCBType,
   props: PopoverProps = {},
@@ -92,7 +96,7 @@ const handleInitAndReturnPopover = async (
   await handleTriggerEvent('click', wrapper, 0);
   const { bodyChildren: afterBody, lastElementChild } = getBodyElement();
   expect(afterBody.length).toBe(1);
-  expectCallback(lastElementChild, popoverVm);
+  await expectCallback(lastElementChild as HTMLElement, popoverVm, wrapper);
   wrapper.unmount();
 };
 
@@ -111,7 +115,7 @@ describe('Popover', () => {
     }
   });
 
-  it('position', async () => {
+  it('position props', async () => {
     const position = 'bottom';
     await handleInitAndReturnPopover(
       (popover, vm) => {
@@ -142,6 +146,22 @@ describe('Popover', () => {
         expect(typeof props.width).toBe('string');
       },
       { width: '20%' },
+    );
+  });
+
+  it('click document, auto close', async () => {
+    await handleInitAndReturnPopover(
+      async (popover, vm, wrapper) => {
+        // click self
+        popover.click();
+        await nextTick();
+        expectPopoverExist(wrapper);
+        // click document
+        document.body.click();
+        await nextTick();
+        expectBodyIsEmpty(wrapper);
+      },
+      { trigger: 'click' },
     );
   });
 });
