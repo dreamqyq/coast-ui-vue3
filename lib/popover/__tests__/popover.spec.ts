@@ -76,7 +76,13 @@ const expectPopoverTriggerCorrectly = async (trigger: TriggerType) => {
   expectPopoverExist(wrapper);
 
   await handleTriggerEvent(trigger, wrapper, 1);
-  expectBodyIsEmpty(wrapper);
+  if (trigger === 'hover') {
+    setTimeout(() => {
+      expectBodyIsEmpty(wrapper);
+    }, 200);
+  } else {
+    expectBodyIsEmpty(wrapper);
+  }
 
   wrapper.unmount();
 };
@@ -164,4 +170,6 @@ describe('Popover', () => {
       { trigger: 'click' },
     );
   });
+
+  it('hover trigger, mouseover popover cannot close', () => {});
 });

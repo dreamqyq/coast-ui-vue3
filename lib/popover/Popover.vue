@@ -47,6 +47,7 @@ export default defineComponent({
     const popoverElement = ref<HTMLDivElement>(null);
     const popoverTrigger = ref<HTMLSpanElement>(null);
     const popoverStyle = ref({} as CSSStyleDeclaration);
+    const timer = ref(0);
 
     const classes = computed(() => ({
       'coast-popover': true,
@@ -109,15 +110,36 @@ export default defineComponent({
 
     const handleOpen = () => {
       visible.value = true;
+      if (props.trigger === 'hover') {
+        clearTimeout(timer.value);
+      }
       nextTick(() => {
+        if (props.trigger === 'hover') {
+          popoverElement.value.addEventListener('mouseenter', () => {
+            clearTimeout(timer.value);
+          });
+          popoverElement.value.addEventListener('mouseleave', () => {
+            handleClose();
+          });
+        }
         setPopoverStyle();
         document.addEventListener('click', handleDocumentClick);
       });
     };
 
-    const handleClose = () => {
+    const closePopoverAndRemoveEvent = () => {
       visible.value = false;
       document.removeEventListener('click', handleDocumentClick);
+    };
+
+    const handleClose = () => {
+      if (props.trigger === 'hover') {
+        timer.value = window.setTimeout(() => {
+          closePopoverAndRemoveEvent();
+        }, 200);
+      } else {
+        closePopoverAndRemoveEvent();
+      }
     };
 
     const handleClick = () => {
