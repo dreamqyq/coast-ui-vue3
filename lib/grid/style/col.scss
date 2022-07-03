@@ -1,17 +1,13 @@
-// TODO sass:math rollup fail
-// @use "sass:math";
+@use "sass:math";
 
 @mixin grid-size($class-prefix) {
   @for $n from 0 through 24 {
     &.#{$class-prefix}-span-#{$n} {
-      // max-width: (math.div(1, 24) * $n * 100) * 1%;
-      // flex: 0 0 (math.div(1, 24) * $n * 100) * 1%;
-      max-width: (1 / 24) * $n * 100 * 1%;
-      flex: 0 0 (1 / 24) * $n * 100 * 1%;
+      max-width: (math.div(1, 24) * $n * 100) * 1%;
+      flex: 0 0 (math.div(1, 24) * $n * 100) * 1%;
     }
     &.#{$class-prefix}-offset-#{$n} {
-      // margin-left: (math.div(1, 24) * $n * 100) * 1%;
-      margin-left: (1 / 24) * $n * 100 * 1%;
+      margin-left: (math.div(1, 24) * $n * 100) * 1%;
     }
   }
 }
