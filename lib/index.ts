@@ -1,5 +1,3 @@
-import './style/coast.scss';
-
 export { Switch as CoSwitch } from './switch';
 export { Button as CoButton, ButtonGroup as CoButtonGroup } from './button';
 export { Tabs as CoTabs, TabPanel as CoTabPanel } from './tabs';
