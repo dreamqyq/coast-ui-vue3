@@ -1,12 +1,14 @@
 name: Unit Test
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'dev'
     paths:
       - 'lib/**'
       - 'package.json'
+      - 'yarn.lock'
 
 jobs:
   build:
