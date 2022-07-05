@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:style": "gulp",
+    "build:style": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
     "build:lib": "rollup -c",
     "test:lib": "jest lib",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -41,6 +41,7 @@
     "vue": "^3.2.0"
   },
   "devDependencies": {
+    "@esbuild-kit/cjs-loader": "^2.3.0",
     "@types/gulp": "^4.0.9",
     "@types/jest": "^26.0.23",
     "@types/marked": "^2.0.2",

@@ -365,6 +365,22 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@esbuild-kit/cjs-loader@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.npm.wps.cn/@esbuild-kit/cjs-loader/download/@esbuild-kit/cjs-loader-2.3.0.tgz#db61e68aa746ab776af315844a72d85fb86095fd"
+  integrity sha1-22HmiqdGq3dq8xWESnLYX7hglf0=
+  dependencies:
+    "@esbuild-kit/core-utils" "^2.0.0"
+    get-tsconfig "^4.1.0"
+
+"@esbuild-kit/core-utils@^2.0.0":
+  version "2.0.2"
+  resolved "https://registry.npm.wps.cn/@esbuild-kit/core-utils/download/@esbuild-kit/core-utils-2.0.2.tgz#2b12beb95252ab4a207de16cd2dafcb4de1e1f86"
+  integrity sha1-KxK+uVJSq0ogfeFs0tr8tN4eH4Y=
+  dependencies:
+    esbuild "~0.14.47"
+    source-map-support "^0.5.21"
+
 "@eslint/eslintrc@^0.4.0":
   version "0.4.0"
   resolved "https://registry.nlark.com/@eslint/eslintrc/download/@eslint/eslintrc-0.4.0.tgz#99cc0a0584d72f1df38b900fb062ba995f395547"
@@ -2169,7 +2185,7 @@ esbuild-windows-arm64@0.14.48:
   resolved "https://registry.yarnpkg.com/esbuild-windows-arm64/-/esbuild-windows-arm64-0.14.48.tgz#762c0562127d8b09bfb70a3c816460742dd82880"
   integrity sha512-HHaOMCsCXp0rz5BT2crTka6MPWVno121NKApsGs/OIW5QC0ggC69YMGs1aJct9/9FSUF4A1xNE/cLvgB5svR4g==
 
-esbuild@^0.14.27:
+esbuild@^0.14.27, esbuild@~0.14.47:
   version "0.14.48"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.14.48.tgz#da5d8d25cd2d940c45ea0cfecdca727f7aee2b85"
   integrity sha512-w6N1Yn5MtqK2U1/WZTX9ZqUVb8IOLZkZ5AdHkT6x3cHDMVsYWC7WPdiLmx19w3i4Rwzy5LqsEMtVihG3e4rFzA==
@@ -2747,6 +2763,11 @@ get-stream@^5.0.0:
   integrity sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==
   dependencies:
     pump "^3.0.0"
+
+get-tsconfig@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.wps.cn/get-tsconfig/download/get-tsconfig-4.1.0.tgz#325fd5a58ee94596037263ce8b7db0ce8ac7b925"
+  integrity sha1-Ml/VpY7pRZYDcmPOi32wzorHuSU=
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
@@ -5442,6 +5463,14 @@ source-map-support@^0.5.17, source-map-support@^0.5.6, source-map-support@~0.5.1
   version "0.5.19"
   resolved "https://registry.npm.taobao.org/source-map-support/download/source-map-support-0.5.19.tgz?cache=0&sync_timestamp=1589682814927&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsource-map-support%2Fdownload%2Fsource-map-support-0.5.19.tgz#a98b62f86dcaf4f67399648c085291ab9e8fed61"
   integrity sha1-qYti+G3K9PZzmWSMCFKRq56P7WE=
+  dependencies:
+    buffer-from "^1.0.0"
+    source-map "^0.6.0"
+
+source-map-support@^0.5.21:
+  version "0.5.21"
+  resolved "https://registry.npm.wps.cn/source-map-support/download/source-map-support-0.5.21.tgz#04fe7c7f9e1ed2d662233c28cb2b35b9f63f6e4f"
+  integrity sha1-BP58f54e0tZiIzwoyys1ufY/bk8=
   dependencies:
     buffer-from "^1.0.0"
     source-map "^0.6.0"
