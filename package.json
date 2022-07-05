@@ -10,9 +10,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:style": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
     "build:js": "rollup -c",
     "build:lib": "yarn build:js && yarn build:style",
-    "test:lib": "vitest",
+    "test:lib": "vitest run",
+    "test:watch": "vitest",
     "coverage:lib": "vitest run --coverage",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },

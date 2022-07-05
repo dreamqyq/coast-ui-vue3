@@ -54,7 +54,8 @@ export default defineConfig({
     transformMode: {
       web: [/\.[jt]sx$/],
     },
-    reporters: ['junit'],
-    outputFile: 'coverage/clover.xml',
+    coverage: {
+      reporter: ['clover', 'html'],
+    },
   },
 });
