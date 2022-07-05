@@ -38,7 +38,7 @@ export default defineConfig({
   resolve: {
     alias: {
       'coast-ui-vue3': path.resolve('lib'),
-      '@coast': path.resolve('lib')
+      '@coast': path.resolve('lib'),
     },
   },
   test: {
@@ -49,10 +49,12 @@ export default defineConfig({
       '**/dist/**',
       '**/cypress/**',
       '**/.{idea,git,cache,output,temp}/**',
-      'lib/__tests__/utils'
+      'lib/__tests__/utils',
     ],
     transformMode: {
       web: [/\.[jt]sx$/],
     },
+    reporters: ['junit'],
+    outputFile: 'coverage/clover.xml',
   },
 });
