@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest';
 import { ComponentPublicInstance, nextTick, ref } from 'vue';
 import { mount, VueWrapper } from '@vue/test-utils';
 import Tabs from '../Tabs.vue';
@@ -72,7 +73,7 @@ describe('Tabs', () => {
     `,
       setup() {
         const selected = ref('tab1');
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         return { selected, onChange };
       },
     });
@@ -103,7 +104,7 @@ describe('Tabs', () => {
     `,
       setup() {
         const selected = ref('tab1');
-        const onChange = jest.fn();
+        const onChange = vi.fn();
         return { selected, onChange };
       },
     });

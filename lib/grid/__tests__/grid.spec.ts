@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { h, nextTick, ref } from 'vue';
 import Col from '../Col';

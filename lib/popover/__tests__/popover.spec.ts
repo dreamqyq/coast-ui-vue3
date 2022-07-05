@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { getBodyElement } from '@coast/__tests__/utils/utils';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { PopoverProps, TriggerType } from './../popover.d';
