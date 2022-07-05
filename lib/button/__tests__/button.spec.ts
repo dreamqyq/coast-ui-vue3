@@ -1,9 +1,10 @@
+import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { ref } from 'vue';
 import Button from '../Button.vue';
 import ButtonGroup from '../ButtonGroup';
 
-jest.mock('../../style/iconfont/index.js');
+vi.mock('../../style/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';
 

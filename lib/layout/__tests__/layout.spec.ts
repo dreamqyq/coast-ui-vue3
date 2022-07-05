@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import Layout from '../Layout';
 import Header from '../Header';
@@ -8,7 +9,7 @@ import Footer from '../Footer';
 const AXIOM = 'Tomorrow will be even better';
 
 describe('Layout.vue', () => {
-  test('Layout render test', () => {
+  it('Layout render test', () => {
     const wrapper = mount(Layout, {
       slots: {
         default: AXIOM,
@@ -18,7 +19,7 @@ describe('Layout.vue', () => {
     expect(wrapper.text()).toEqual(AXIOM);
   });
 
-  test('Layout check for any aside', () => {
+  it('Layout check for any aside', () => {
     const childHasAside = `
       <co-header></co-header>
       <co-aside></co-aside>
@@ -72,12 +73,12 @@ describe('Layout.vue', () => {
 });
 
 describe('Header', () => {
-  test('create header', () => {
+  it('create header', () => {
     const wrapper = mount(Header);
     expect(wrapper.classes()).toContain('coast-header');
   });
 
-  test('header height', () => {
+  it('header height', () => {
     const wrapper = mount(Header, { props: { height: '100px' } });
     const vm = wrapper.vm;
     expect(vm.$el.style.height).toBe('100px');
@@ -85,12 +86,12 @@ describe('Header', () => {
 });
 
 describe('Aside', () => {
-  test('aside create', () => {
+  it('aside create', () => {
     const wrapper = mount(Aside);
     expect(wrapper.classes()).toContain('coast-aside');
   });
 
-  test('aside width', () => {
+  it('aside width', () => {
     const wrapper = mount(Aside, { props: { width: '200px' } });
     const vm = wrapper.vm;
     expect(vm.$el.style.width).toEqual('200px');
@@ -98,19 +99,19 @@ describe('Aside', () => {
 });
 
 describe('Content', () => {
-  test('main create', () => {
+  it('main create', () => {
     const wrapper = mount(Content);
     expect(wrapper.classes()).toContain('coast-content');
   });
 });
 
 describe('Footer', () => {
-  test('footer create', () => {
+  it('footer create', () => {
     const wrapper = mount(Footer);
     expect(wrapper.classes()).toContain('coast-footer');
   });
 
-  test('footer height', () => {
+  it('footer height', () => {
     const wrapper = mount(Footer, { props: { height: '100px' } });
     const vm = wrapper.vm;
     expect(vm.$el.style.height).toEqual('100px');
