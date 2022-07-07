@@ -2,7 +2,7 @@
   <DemoList :components="components" title="Button 文档" />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import DemoList from '../../components/Demo/DemoList.vue';
 import ButtonDefaultDemo from './Button.default.demo.vue';
 import ButtonSizeDemo from './Button.size.demo.vue';
@@ -11,21 +11,14 @@ import ButtonDisabledDemo from './Button.disabled.demo.vue';
 import ButtonLoadingDemo from './Button.loading.demo.vue';
 import ButtonGroupDemo from './ButtonGroup.demo.vue';
 
-export default {
-  components: { DemoList },
-  setup() {
-    return {
-      components: [
-        ButtonDefaultDemo,
-        ButtonSizeDemo,
-        ButtonLevelDemo,
-        ButtonDisabledDemo,
-        ButtonLoadingDemo,
-        ButtonGroupDemo,
-      ],
-    };
-  },
-};
+const components = [
+  ButtonDefaultDemo,
+  ButtonSizeDemo,
+  ButtonLevelDemo,
+  ButtonDisabledDemo,
+  ButtonLoadingDemo,
+  ButtonGroupDemo,
+];
 </script>
 
 <style lang="scss" scoped>

@@ -8,10 +8,6 @@
   <div><co-input value="readonly" readonly /></div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoInput } from 'coast-ui-vue3';
-
-export default {
-  components: { CoInput },
-};
 </script>

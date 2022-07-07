@@ -8,31 +8,22 @@
   <co-button @click="onClick2">可关闭，delay: 0</co-button>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoToast, CoButton } from 'coast-ui-vue3';
-
-export default {
-  components: { CoButton },
-  setup() {
-    const onClick1 = () => {
-      CoToast({
-        text: '这是一条可以关闭的消息提示~',
-        showClose: true,
-        delay: 5,
-      });
-    };
-    const onClick2 = () => {
-      CoToast({
-        text: '这是一条可以关闭的消息提示~',
-        showClose: true,
-        delay: 0,
-      });
-    };
-
-    return { onClick1, onClick2 };
-  },
+const onClick1 = () => {
+  CoToast({
+    text: '这是一条可以关闭的消息提示~',
+    showClose: true,
+    delay: 5,
+  });
+};
+const onClick2 = () => {
+  CoToast({
+    text: '这是一条可以关闭的消息提示~',
+    showClose: true,
+    delay: 0,
+  });
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

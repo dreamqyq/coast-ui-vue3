@@ -21,12 +21,8 @@
   </co-row>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoRow, CoCol } from 'coast-ui-vue3';
-
-export default {
-  components: { CoRow, CoCol },
-};
 </script>
 
 <style lang="scss" scoped>

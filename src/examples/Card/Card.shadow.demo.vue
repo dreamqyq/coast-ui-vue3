@@ -6,12 +6,6 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoCard } from 'coast-ui-vue3';
-
-export default {
-  components: {
-    CoCard,
-  },
-};
 </script>

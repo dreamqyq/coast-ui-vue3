@@ -9,24 +9,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoButton, CoDialog } from 'coast-ui-vue3';
 import { ref } from 'vue';
-
-export default {
-  components: {
-    CoDialog,
-    CoButton,
-  },
-  setup() {
-    const visible = ref(false);
-    const toggle = () => {
-      visible.value = !visible.value;
-    };
-    return {
-      toggle,
-      visible,
-    };
-  },
+const visible = ref(false);
+const toggle = () => {
+  visible.value = !visible.value;
 };
 </script>

@@ -7,21 +7,11 @@
   </co-tabs>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoTabPanel, CoTabs } from 'coast-ui-vue3';
 import { ref } from 'vue';
-
-export default {
-  components: {
-    CoTabs,
-    CoTabPanel,
-  },
-  setup() {
-    const selected = ref('导航2');
-    const handleChange = (currentValue: string) => {
-      console.log('tabs value change', currentValue);
-    };
-    return { selected,handleChange };
-  },
+const selected = ref('导航2');
+const handleChange = (currentValue: string) => {
+  console.log('tabs value change', currentValue);
 };
 </script>

@@ -11,30 +11,22 @@
   <co-button @click="onClick5">错误 error</co-button>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoToast, CoButton } from 'coast-ui-vue3';
-
-export default {
-  components: { CoButton },
-  setup() {
-    const onClick1 = () => {
-      CoToast({ text: '这是一条普通的消息提示~', type: 'normal' });
-    };
-    const onClick2 = () => {
-      CoToast({ text: '这是一条次要的消息提示~', type: 'secondary' });
-    };
-    const onClick3 = () => {
-      CoToast({ text: '这是一条成功的消息提示~', type: 'success' });
-    };
-    const onClick4 = () => {
-      CoToast({ text: '这是一条警告提示~', type: 'warning' });
-    };
-    const onClick5 = () => {
-      CoToast({ text: '这是一条错误提示~', type: 'error' });
-    };
-
-    return { onClick1, onClick2, onClick3, onClick4, onClick5 };
-  },
+const onClick1 = () => {
+  CoToast({ text: '这是一条普通的消息提示~', type: 'normal' });
+};
+const onClick2 = () => {
+  CoToast({ text: '这是一条次要的消息提示~', type: 'secondary' });
+};
+const onClick3 = () => {
+  CoToast({ text: '这是一条成功的消息提示~', type: 'success' });
+};
+const onClick4 = () => {
+  CoToast({ text: '这是一条警告提示~', type: 'warning' });
+};
+const onClick5 = () => {
+  CoToast({ text: '这是一条错误提示~', type: 'error' });
 };
 </script>
 

@@ -13,12 +13,8 @@
   </co-popover>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoButton, CoPopover } from 'coast-ui-vue3';
-
-export default {
-  components: { CoButton, CoPopover },
-};
 </script>
 
 <style lang="scss" scoped>

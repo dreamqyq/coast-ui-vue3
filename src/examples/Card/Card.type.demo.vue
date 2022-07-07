@@ -8,32 +8,20 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoCard } from 'coast-ui-vue3';
-
-export default {
-  components: {
-    CoCard,
-  },
-  setup() {
-    const types = [
-      'secondary',
-      'alert',
-      'success',
-      'purple',
-      'warning',
-      'violet',
-      'error',
-      'cyan',
-      'dark',
-      'lite',
-    ];
-
-    return {
-      types,
-    };
-  },
-};
+const types = [
+  'secondary',
+  'alert',
+  'success',
+  'purple',
+  'warning',
+  'violet',
+  'error',
+  'cyan',
+  'dark',
+  'lite',
+];
 </script>
 
 <style lang="scss" scoped>

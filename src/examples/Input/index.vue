@@ -2,7 +2,7 @@
   <DemoList :components="components" title="Input 文档" />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import DemoList from '../../components/Demo/DemoList.vue';
 import InputClearableDemo from './Input.clearable.demo.vue';
 import InputDefaultDemo from './Input.default.demo.vue';
@@ -16,24 +16,17 @@ import InputUnwriteableDemo from './Input.unwriteable.demo.vue';
 import InputVmodelDemo from './Input.vmodel.demo.vue';
 import InputWidthDemo from './Input.width.demo.vue';
 
-export default {
-  components: { DemoList },
-  setup() {
-    return {
-      components: [
-        InputClearableDemo,
-        InputDefaultDemo,
-        InputEventsDemo,
-        InputLabelDemo,
-        InputMaxlengthDemo,
-        InputPasswordDemo,
-        InputSizeDemo,
-        InputStatusDemo,
-        InputUnwriteableDemo,
-        InputVmodelDemo,
-        InputWidthDemo,
-      ],
-    };
-  },
-};
+const components = [
+  InputDefaultDemo,
+  InputClearableDemo,
+  InputEventsDemo,
+  InputLabelDemo,
+  InputMaxlengthDemo,
+  InputPasswordDemo,
+  InputSizeDemo,
+  InputStatusDemo,
+  InputUnwriteableDemo,
+  InputVmodelDemo,
+  InputWidthDemo,
+];
 </script>

@@ -16,19 +16,12 @@
   <br />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { CoInput } from 'coast-ui-vue3';
-
-export default {
-  components: { CoInput },
-  setup() {
-    const value1 = ref('');
-    const value2 = ref('');
-    const value3 = ref('');
-    const value4 = ref('');
-    const value5 = ref('');
-    return { value1, value2, value3, value4, value5 };
-  },
-};
+const value1 = ref('');
+const value2 = ref('');
+const value3 = ref('');
+const value4 = ref('');
+const value5 = ref('');
 </script>

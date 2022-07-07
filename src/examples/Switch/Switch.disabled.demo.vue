@@ -4,15 +4,8 @@
   <co-switch v-model:value="defaultValue" disabled />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { CoSwitch } from 'coast-ui-vue3';
-
-export default {
-  components: { CoSwitch },
-  setup() {
-    const defaultValue = ref(false);
-    return { defaultValue };
-  },
-};
+const defaultValue = ref(false);
 </script>
