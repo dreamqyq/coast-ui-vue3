@@ -51,7 +51,7 @@
     "@vue/test-utils": "^2.0.2",
     "c8": "^7.11.3",
     "eslint": "^7.24.0",
-    "eslint-plugin-vue": "^7.9.0",
+    "eslint-plugin-vue": "^9.2.0",
     "github-markdown-css": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-rename": "^2.0.0",

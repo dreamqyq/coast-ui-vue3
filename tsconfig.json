@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["vite", "vite/client", "@types/jest"],
+    "types": ["vite", "vite/client", "@types/gulp"],
     "module": "ESNext",
     "declaration": true,
     "noImplicitAny": false,
