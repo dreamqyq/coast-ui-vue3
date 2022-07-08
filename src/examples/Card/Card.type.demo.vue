@@ -2,8 +2,8 @@
 
 <template>
   <div class="wrap">
-    <template v-for="type in types" :key="type">
-      <co-card :title="type" :type="type">{{ type }} card</co-card>
+    <template v-for="cardType in types" :key="cardType">
+      <co-card :title="cardType" :type="cardType">{{ cardType }} card</co-card>
     </template>
   </div>
 </template>
