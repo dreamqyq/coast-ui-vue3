@@ -22,5 +22,8 @@
     "markdown",
     "json",
     "jsonc"
-  ]
+  ],
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

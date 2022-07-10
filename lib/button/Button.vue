@@ -13,10 +13,10 @@ export default { name: 'CoastButton' };
 
 
 <script lang="ts" setup>
-import { defineProps, PropType } from 'vue';
 import { computed } from 'vue';
 import Icon from '../icon/Icon.vue';
-import type { ButtonThemeType, ButtonSizeType, ButtonLevelType, ButtonProps } from './Button';
+import type { PropType } from 'vue';
+import type { ButtonThemeType, ButtonSizeType, ButtonLevelType } from './Button';
 
 const props = defineProps({
   theme: {
