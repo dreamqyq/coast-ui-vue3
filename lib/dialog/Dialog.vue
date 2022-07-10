@@ -22,70 +22,53 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent } from 'vue';
+export default { name: 'CoastDialog' };
+</script>
+
+<script lang="ts" setup>
+import { PropType } from 'vue';
 import Button from '../button/Button.vue';
 
-interface DialogProps {
-  title?: string;
-  visible: boolean;
-  overlayClosable?: boolean;
-  confirm?: () => unknown;
-  cancel?: () => unknown;
-}
-
-export default defineComponent({
-  name: 'CoastDialog',
-  components: { Button },
-  props: {
-    title: {
-      type: String,
-      default: '提示',
-    },
-    visible: {
-      required: true,
-      type: Boolean,
-    },
-    overlayClosable: {
-      type: Boolean,
-      default: true,
-      required: false,
-    },
-    confirm: {
-      type: Function as PropType<() => unknown>,
-      required: false,
-    },
-    cancel: {
-      type: Function as PropType<() => unknown>,
-      required: false,
-    },
+const props = defineProps({
+  title: {
+    type: String,
+    default: '提示',
   },
-  emits: ['update:visible'],
-  setup(props: DialogProps, { emit }) {
-    const onClose = () => {
-      emit('update:visible', false);
-    };
-    const overlayClick = () => {
-      if (props.overlayClosable) {
-        onClose();
-      }
-    };
-    const onConfirm = () => {
-      if (props.confirm?.() !== false) {
-        onClose();
-      }
-    };
-    const onCancel = () => {
-      if (props.cancel?.() !== false) {
-        onClose();
-      }
-    };
-    return {
-      onClose,
-      overlayClick,
-      onConfirm,
-      onCancel,
-    };
+  visible: {
+    required: true,
+    type: Boolean,
+  },
+  overlayClosable: {
+    type: Boolean,
+    default: true,
+    required: false,
+  },
+  confirm: {
+    type: Function as PropType<() => unknown>,
+    required: false,
+  },
+  cancel: {
+    type: Function as PropType<() => unknown>,
+    required: false,
   },
 });
+const emits = defineEmits(['update:visible']);
+const onClose = () => {
+  emits('update:visible', false);
+};
+const overlayClick = () => {
+  if (props.overlayClosable) {
+    onClose();
+  }
+};
+const onConfirm = () => {
+  if (props.confirm?.() !== false) {
+    onClose();
+  }
+};
+const onCancel = () => {
+  if (props.cancel?.() !== false) {
+    onClose();
+  }
+};
 </script>
