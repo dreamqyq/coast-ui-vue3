@@ -25,46 +25,35 @@
   </footer>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 import { onBeforeRouteUpdate, useRouter } from 'vue-router';
 
 type ActionType = 'prev' | 'next';
 
-export default defineComponent({
-  setup() {
-    const router = useRouter();
-    const prevName = ref(router.currentRoute.value.meta.prev);
-    const nextName = ref(router.currentRoute.value.meta.next);
+const router = useRouter();
+const prevName = ref(router.currentRoute.value.meta.prev);
+const nextName = ref(router.currentRoute.value.meta.next);
 
-    onBeforeRouteUpdate(to => {
-      prevName.value = to.meta.prev;
-      nextName.value = to.meta.next;
-    });
-
-    const onKeypress = (event: KeyboardEvent, type: ActionType) => {
-      if (event.key === 'Enter') {
-        toAdjacentPage(type);
-      }
-    };
-
-    const toAdjacentPage = (type: ActionType) => {
-      const name = type === 'prev' ? prevName.value : nextName.value;
-      router.push({ name });
-      window.scrollTo({
-        top: 0,
-        left: 0,
-      });
-    };
-
-    return {
-      prevName,
-      nextName,
-      toAdjacentPage,
-      onKeypress,
-    };
-  },
+onBeforeRouteUpdate(to => {
+  prevName.value = to.meta.prev;
+  nextName.value = to.meta.next;
 });
+
+const onKeypress = (event: KeyboardEvent, type: ActionType) => {
+  if (event.key === 'Enter') {
+    toAdjacentPage(type);
+  }
+};
+
+const toAdjacentPage = (type: ActionType) => {
+  const name = (type === 'prev' ? prevName.value : nextName.value) as string;
+  router.push({ name });
+  window.scrollTo({
+    top: 0,
+    left: 0,
+  });
+};
 </script>
 
 <style lang="scss" scoped>

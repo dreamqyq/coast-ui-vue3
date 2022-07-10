@@ -17,8 +17,8 @@ export default { name: 'CoastToast' };
 
 <script lang="ts" setup>
 import type { PropType } from 'vue';
-import { computed, defineComponent, onMounted, ref } from 'vue';
-import type { ToastType, ToastProps } from './toast.d';
+import { computed, onMounted, ref } from 'vue';
+import type { ToastType } from './toast.d';
 import Icon from '../icon/Icon.vue';
 
 const props = defineProps({

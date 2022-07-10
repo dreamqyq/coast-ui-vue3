@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-export default { name: 'CoastCard' };
+export default { name: 'CoastPopover' };
 </script>
 
 <script lang="ts" setup>
