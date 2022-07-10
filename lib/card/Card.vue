@@ -11,70 +11,50 @@
 </template>
 
 <script lang="ts">
+export default { name: 'CoastCard' };
+</script>
+
+<script lang="ts" setup>
+import { computed } from 'vue';
 import type { PropType } from 'vue';
-import { computed, defineComponent } from 'vue';
+import type { CardTypeType } from './Card';
 
-type CardTypeType =
-  | 'secondary'
-  | 'alert'
-  | 'success'
-  | 'purple'
-  | 'warning'
-  | 'violet'
-  | 'error'
-  | 'cyan'
-  | 'dark'
-  | 'lite';
-
-interface CardProps {
-  title?: string;
-  hoverable?: boolean;
-  shadow?: boolean;
-  type?: CardTypeType;
-}
-
-export default defineComponent({
-  name: 'CoastCard',
-  props: {
-    title: {
-      type: String,
-      required: false,
-    },
-    hoverable: {
-      type: Boolean,
-      required: false,
-    },
-    shadow: {
-      type: Boolean,
-      required: false,
-    },
-    type: {
-      type: String as PropType<CardTypeType>,
-      required: false,
-      validator: (val: string) => {
-        return [
-          'secondary',
-          'alert',
-          'success',
-          'purple',
-          'warning',
-          'violet',
-          'error',
-          'cyan',
-          'dark',
-          'lite',
-        ].includes(val);
-      },
-    },
+const props = defineProps({
+  title: {
+    type: String,
+    required: false,
   },
-  setup(props: CardProps) {
-    const { hoverable, shadow, type } = props;
-    const classes = computed(() => ({
-      'coast-card-hoverable': hoverable,
-      'coast-card-shadow': shadow,
-      [`coast-card-${type}`]: type,
-    }));
-    return { classes };
+  hoverable: {
+    type: Boolean,
+    required: false,
+  },
+  shadow: {
+    type: Boolean,
+    required: false,
+  },
+  type: {
+    type: String as PropType<CardTypeType>,
+    required: false,
+    validator: (val: string) => {
+      return [
+        'secondary',
+        'alert',
+        'success',
+        'purple',
+        'warning',
+        'violet',
+        'error',
+        'cyan',
+        'dark',
+        'lite',
+      ].includes(val);
+    },
   },
 });
+const { hoverable, shadow, type } = props;
+const classes = computed(() => ({
+  'coast-card-hoverable': hoverable,
+  'coast-card-shadow': shadow,
+  [`coast-card-${type}`]: type,
+}));
 </script>
