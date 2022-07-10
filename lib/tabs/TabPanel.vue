@@ -3,33 +3,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, inject } from 'vue';
-import { TabPanelProps, UpdateTabPanelFnType } from './tabs';
+export default { name: 'CoastTabPanel' };
+</script>
 
-export default defineComponent({
-  name: 'CoastTabPanel',
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-    },
+<script lang="ts" setup>
+import { getCurrentInstance, inject } from 'vue';
+import { UpdateTabPanelFnType } from './tabs';
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
   },
-  setup(props: TabPanelProps) {
-    const instance = getCurrentInstance();
-    const updateTabPanelState = inject<UpdateTabPanelFnType>('updateTabPanelState');
-
-    if (!updateTabPanelState) {
-      throw new Error('CoTabPanel must use width CoTabs');
-    }
-
-    updateTabPanelState({
-      ...props,
-      uid: instance.uid,
-    });
+  disabled: {
+    type: Boolean,
+    required: false,
   },
+});
+const instance = getCurrentInstance();
+const updateTabPanelState = inject<UpdateTabPanelFnType>('updateTabPanelState');
+
+if (!updateTabPanelState) {
+  throw new Error('CoTabPanel must use width CoTabs');
+}
+
+updateTabPanelState({
+  ...props,
+  uid: instance.uid,
 });
 </script>

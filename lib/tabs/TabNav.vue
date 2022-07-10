@@ -14,36 +14,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, Ref, ref } from 'vue';
+export default { name: 'CoastTabNav' };
+</script>
+
+<script lang="ts" setup>
+import { inject, Ref, ref } from 'vue';
 import { TabPanelProps, UpdateSelectedFnType } from './tabs';
 import TabIndicator from './TabIndicator.vue';
 
-export default defineComponent({
-  name: 'CoastTabNav',
-  props: {
-    subElements: {
-      type: Array,
-      required: true,
-    },
-  },
-  components: { TabIndicator },
-  setup() {
-    const currentSelected = inject<Ref<string>>('currentSelected');
-    const updateCurrentSelected = inject<UpdateSelectedFnType>('updateCurrentSelected');
-
-    const container = ref<HTMLElement>(null);
-
-    const handleClick = (tab: TabPanelProps) => {
-      const { disabled, title } = tab;
-      if (disabled || title === currentSelected.value) return;
-      updateCurrentSelected(tab.title);
-    };
-
-    return {
-      container,
-      currentSelected,
-      handleClick,
-    };
+defineProps({
+  subElements: {
+    type: Array,
+    required: true,
   },
 });
+const currentSelected = inject<Ref<string>>('currentSelected');
+const updateCurrentSelected = inject<UpdateSelectedFnType>('updateCurrentSelected');
+
+const container = ref<HTMLElement>(null);
+
+const handleClick = (tab: TabPanelProps) => {
+  const { disabled, title } = tab;
+  if (disabled || title === currentSelected.value) return;
+  updateCurrentSelected(tab.title);
+};
 </script>
