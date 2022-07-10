@@ -1,3 +1,22 @@
+# [0.5.0](https://github.com/dreamqyq/coast-ui-vue3/compare/v0.4.1...v0.5.0) (2022-07-10)
+
+
+### Features
+
+* add Popover component ([62e33ce](https://github.com/dreamqyq/coast-ui-vue3/commit/62e33ce9706dbaeb0f06bc7ecaa1fef0bf88b40c))
+* **ButtonGroup:** cancel verification of "ButtonGroup's children" ([9daab8d](https://github.com/dreamqyq/coast-ui-vue3/commit/9daab8d372095e9f4584fa689f1487846d7f8b08))
+* **TabPanel:** check CoTabPanel must use width CoTabs ([b751ab1](https://github.com/dreamqyq/coast-ui-vue3/commit/b751ab1eb06df1de8b61e084231b1728ad468a80))
+* **Tabs:** cancel verification of "Tabs's children" ([5a8f39a](https://github.com/dreamqyq/coast-ui-vue3/commit/5a8f39a005f0a6ef92031f6e67799b7bfcedc6ae))
+
+### Refactors
+- rewrite components with `<script setup>`([#14](https://github.com/dreamqyq/coast-ui-vue3/pull/14))
+
+### Chores
+- upgrade Vue to v3.2.37
+- change unit test framework: replace jest with vitest
+- optimize building scheme of scss: replace rollup-plugin-scss with gulp-sass
+
+
 ## [0.4.1](https://github.com/dreamqyq/coast-ui-vue3/compare/v0.4.0...v0.4.1) (2021-07-18)
 
 

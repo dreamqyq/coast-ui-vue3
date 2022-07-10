@@ -1,6 +1,6 @@
 {
   "name": "coast-ui-vue3",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Coast UI for Vue3",
   "files": [
     "package",
