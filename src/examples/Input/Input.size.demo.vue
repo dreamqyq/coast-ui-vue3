@@ -10,15 +10,8 @@
   <div><co-input v-model:value="value" placeholder="large input" size="large" /></div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { CoInput } from 'coast-ui-vue3';
-
-export default {
-  components: { CoInput },
-  setup() {
-    const value = ref('');
-    return { value };
-  },
-};
+const value = ref('');
 </script>

@@ -20,12 +20,6 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoButton } from 'coast-ui-vue3';
-
-export default {
-  components: {
-    CoButton,
-  },
-};
 </script>

@@ -1,4 +1,4 @@
-import { render, createVNode } from 'vue';
+import { createVNode, render } from 'vue';
 import Dialog from './Dialog.vue';
 
 interface Options {

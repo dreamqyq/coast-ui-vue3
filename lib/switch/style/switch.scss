@@ -1,30 +1,5 @@
-<template>
-  <button :class="{ 'coast-checked': value }" class="coast-switch" @click="toggle">
-    <span></span>
-  </button>
-</template>
+@import '../../style/common.scss';
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
-  name: 'CoastSwitch',
-  props: {
-    value: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  emits: ['update:value'],
-  setup(props, { emit }) {
-    const toggle = () => {
-      emit('update:value', !props.value);
-    };
-    return { toggle };
-  },
-});
-</script>
-
-<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
 .coast-switch {
@@ -47,7 +22,7 @@ $h2: $h - 4px;
   }
 
   &.coast-checked {
-    background: #409eff;
+    background: $checkedBGColor;
   }
 
   &.coast-checked > span {
@@ -71,4 +46,3 @@ $h2: $h - 4px;
     }
   }
 }
-</style>

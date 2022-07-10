@@ -1,8 +1,10 @@
+import { describe, it, expect, vi } from 'vitest';
 import { ref } from 'vue';
 import { mount } from '@vue/test-utils';
 import Input from '../Input.vue';
 import Icon from '../../icon/Icon.vue';
-jest.mock('../../theme-chalk/iconfont/index.js');
+
+vi.mock('../../style/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';
 
@@ -32,8 +34,8 @@ const _mountEvent = (bindEventName: EventNameType, initialValue = '') => {
     `,
     setup() {
       const value = ref(initialValue);
-      const handle1 = jest.fn();
-      const handle2 = jest.fn();
+      const handle1 = vi.fn();
+      const handle2 = vi.fn();
       return { value, handle1, handle2 };
     },
   });

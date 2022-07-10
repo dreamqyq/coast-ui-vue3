@@ -1,9 +1,11 @@
+import { describe, it, expect, vi } from 'vitest';
 import { mount, VueWrapper } from '@vue/test-utils';
 import { ComponentPublicInstance, nextTick, ref } from 'vue';
 import { getBodyElement } from '@coast/__tests__/utils/utils';
 import Dialog from '../Dialog.vue';
 import { openDialog } from './../openDialog';
-jest.mock('../../theme-chalk/iconfont/index.js');
+
+vi.mock('../../style/iconfont/index.js');
 
 const AXIOM = 'Tomorrow will be even better';
 const DEFAULT_TITLE = '提示';
@@ -39,7 +41,7 @@ const _mount = (
     setup() {
       const visible = ref(true);
       const handle = fn;
-      const handleChange = jest.fn();
+      const handleChange = vi.fn();
       return { visible, handle, handleChange };
     },
   });
@@ -62,7 +64,7 @@ const handleClickOverlay = async () => {
 
 const handleTriggerEventAndExpect = async (
   fnName: DialogEventNameType,
-  fn: () => unknown = jest.fn(),
+  fn: () => unknown = vi.fn(),
 ) => {
   const wrapper = _mount({ fnName, fn });
   const vm = wrapper.vm;
@@ -160,14 +162,14 @@ describe('Dialog', () => {
   it('confirm event, return true, close dialog', async () => {
     await handleTriggerEventAndExpect(
       'confirm',
-      jest.fn(() => true),
+      vi.fn(() => true),
     );
   });
 
   it('confirm event, return false, cannot close dialog', async () => {
     await handleTriggerEventAndExpect(
       'confirm',
-      jest.fn(() => false),
+      vi.fn(() => false),
     );
   });
 
@@ -178,14 +180,14 @@ describe('Dialog', () => {
   it('cancel event, return true, close dialog', async () => {
     await handleTriggerEventAndExpect(
       'cancel',
-      jest.fn(() => true),
+      vi.fn(() => true),
     );
   });
 
   it('cancel event, return false, cannot close dialog', async () => {
     await handleTriggerEventAndExpect(
       'cancel',
-      jest.fn(() => false),
+      vi.fn(() => false),
     );
   });
 });
@@ -211,7 +213,7 @@ describe('openDialog', () => {
   });
 
   it('confirm event', async () => {
-    const confirm = jest.fn();
+    const confirm = vi.fn();
     openDialog({ content: AXIOM, confirm });
     await expectEventTriggerCorrectly({
       fn: confirm,
@@ -219,7 +221,7 @@ describe('openDialog', () => {
     });
   });
   it('cancel event', async () => {
-    const cancel = jest.fn();
+    const cancel = vi.fn();
     openDialog({ content: AXIOM, cancel });
     await expectEventTriggerCorrectly({
       fn: cancel,

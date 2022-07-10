@@ -1,20 +1,9 @@
 <template>
-  <div>
-    <h1>Layout 文档</h1>
-    <Demo :component="LayoutDefaultDemo" />
-  </div>
+  <DemoList :components="components" title="Layout 文档" />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import DemoList from '../../components/Demo/DemoList.vue';
 import LayoutDefaultDemo from './Layout.default.demo.vue';
-import Demo from '../../components/Demo.vue';
-
-export default {
-  components: { Demo },
-  setup() {
-    return {
-      LayoutDefaultDemo,
-    };
-  },
-};
+const components = [LayoutDefaultDemo];
 </script>

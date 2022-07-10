@@ -7,23 +7,14 @@
   <co-button @click="onClick">打开 toast</co-button>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoToast, CoButton } from 'coast-ui-vue3';
-
-export default {
-  components: { CoButton },
-  setup() {
-    const onClick = () => {
-      CoToast({
-        text: '这是一条居中的消息提示~',
-        center: true,
-      });
-    };
-
-    return { onClick };
-  },
+const onClick = () => {
+  CoToast({
+    text: '这是一条居中的消息提示~',
+    center: true,
+  });
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

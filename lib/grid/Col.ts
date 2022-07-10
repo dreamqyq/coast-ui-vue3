@@ -1,10 +1,6 @@
 import { computed, defineComponent, h, inject } from 'vue';
 import type { PropType } from 'vue';
-
-type SizeObjectType = {
-  span: number | string;
-  offset: number | string;
-};
+import type { SizeObjectType, ColProps } from './Col.d';
 
 const CoastCol = defineComponent({
   name: 'CoastCol',
@@ -49,7 +45,7 @@ const CoastCol = defineComponent({
       default: () => ({} as SizeObjectType),
     },
   },
-  setup(props, { slots }) {
+  setup(props: ColProps, { slots }) {
     const { gutter } = inject('CoRow', { gutter: { value: 0 } });
 
     const classes = computed(() => {

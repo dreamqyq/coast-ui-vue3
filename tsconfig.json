@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["vite", "vite/client", "@types/jest"],
+    "types": ["vite", "vite/client", "@types/gulp"],
     "module": "ESNext",
     "declaration": true,
     "noImplicitAny": false,
@@ -11,7 +11,7 @@
     "noLib": false,
     "target": "es6",
     "sourceMap": true,
-    "lib": ["ESNext", "DOM"],
+    "lib": ["ESNext", "DOM", "ES2020"],
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "paths": {

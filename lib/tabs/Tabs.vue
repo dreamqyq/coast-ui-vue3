@@ -1,22 +1,6 @@
 <template>
   <div class="coast-tabs">
-    <div ref="container" class="coast-tabs-nav">
-      <div
-        v-for="(t, index) in subElements"
-        :key="index"
-        :ref="
-          el => {
-            if (t.title === selected) selectedItem = el;
-          }
-        "
-        :class="{ selected: t.title === selected, disabled: t.disabled }"
-        class="coast-tabs-nav-item"
-        @click="selectHandle(t)"
-      >
-        {{ t.title }}
-      </div>
-      <div ref="indicator" class="coast-tabs-nav-indicator"></div>
-    </div>
+    <TabNav :subElements="subElements" />
     <div class="coast-tabs-content">
       <component :is="current" :key="current.props.title" />
     </div>
@@ -24,117 +8,51 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, watchEffect } from 'vue';
-import TabPanel from './TabPanel.vue';
-
-export default defineComponent({
-  name: 'CoastTabs',
-  props: {
-    selected: {
-      type: String,
-      required: true,
-    },
-  },
-  emits: ['update:selected'],
-  setup(props, context) {
-    const selectedItem = ref<HTMLElement>(null);
-    const indicator = ref<HTMLElement>(null);
-    const container = ref<HTMLElement>(null);
-
-    // https://v3.vuejs.org/guide/reactivity-computed-watchers.html#effect-flush-timing
-    // fire after component updates so you can access the updated DOM
-    watchEffect(
-      () => {
-        const { width, left: navItemLeft } = selectedItem.value.getBoundingClientRect();
-        const { left: containerLeft } = container.value.getBoundingClientRect();
-        indicator.value.style.width = width + 'px';
-        indicator.value.style.left = navItemLeft - containerLeft + 'px';
-      },
-      {
-        // this will also defer the initial run of the effect until the
-        // component's first render is finished.
-        flush: 'post',
-      },
-    );
-
-    const defaults = context.slots.default();
-    defaults.forEach(tag => {
-      if (tag.type !== TabPanel) {
-        throw new Error('CoTabs 的子标签必须为 CoTabPanel');
-      }
-    });
-    const subElements = defaults.map(tag => ({
-      title: tag.props.title,
-      disabled: tag.props.disabled === true || tag.props.disabled === '',
-    }));
-
-    const current = computed(() => {
-      return defaults.filter(tag => tag.props.title === props.selected)[0];
-    });
-
-    const selectHandle = ({ title, disabled }: { title: string; disabled: boolean }) => {
-      if (disabled === undefined || disabled === true || title === props.selected) return;
-      context.emit('update:selected', title);
-    };
-    return {
-      defaults,
-      subElements,
-      selectHandle,
-      current,
-      selectedItem,
-      indicator,
-      container,
-    };
-  },
-});
+export default { name: 'CoastTabs' };
 </script>
 
-<style lang="scss">
-$theme: #000;
-$color: #333;
-$border-color: #d9d9d9;
-.coast-tabs {
-  &-nav {
-    display: flex;
-    color: $color;
-    border-bottom: 1px solid $border-color;
-    position: relative;
+<script lang="ts" setup>
+import { Ref, useSlots } from 'vue';
+import type {
+  TabPanelProps,
+  TabsProps,
+  UpdateSelectedFnType,
+  UpdateTabPanelFnType,
+} from './tabs.d';
 
-    &-item {
-      padding: 8px 0;
-      margin: 0 16px;
-      cursor: pointer;
-      color: #666;
-      transition: all 0.25s;
+import { computed, provide, ref } from 'vue';
+import TabNav from './TabNav.vue';
 
-      &:first-child {
-        margin-left: 0;
-      }
+const props = defineProps({
+  selected: {
+    type: String,
+    required: true,
+  },
+});
+const emits = defineEmits(['update:selected']);
+const slots = useSlots();
+const currentSelected = ref(props.selected);
+const tabPanelStateMap = ref<{ [key: number]: TabPanelProps }>({});
+provide<Ref<string>>('currentSelected', currentSelected);
+provide<UpdateTabPanelFnType>('updateTabPanelState', (state: TabPanelProps) => {
+  tabPanelStateMap.value[state.uid] = state;
+});
+provide<UpdateSelectedFnType>('updateCurrentSelected', (currentSelected: string) => {
+  selectHandle(currentSelected);
+});
 
-      &.selected {
-        color: $theme;
-        font-weight: 500;
-      }
-      &.disabled {
-        color: #999;
-        cursor: not-allowed;
-        user-select: none;
-      }
-    }
+const defaults = slots.default();
+const subElements = defaults.map(tag => ({
+  title: tag.props.title,
+  disabled: tag.props.disabled === true || tag.props.disabled === '',
+}));
 
-    &-indicator {
-      position: absolute;
-      height: 2px;
-      background: $theme;
-      left: 0;
-      bottom: -1px;
-      width: 100px;
-      transition: all 0.25s;
-    }
-  }
+const current = computed(() => {
+  return defaults.filter(tag => tag.props.title === props.selected)[0];
+});
 
-  &-content {
-    padding: 8px 0;
-  }
-}
-</style>
+const selectHandle = (title: string) => {
+  currentSelected.value = title;
+  emits('update:selected', title);
+};
+</script>

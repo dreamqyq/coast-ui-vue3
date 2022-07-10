@@ -1,6 +1,7 @@
+import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { ref } from 'vue';
-import Switch from '../Switch.vue';
+import Switch from '../Switch';
 
 describe('Switch', () => {
   it('create', () => {

@@ -10,28 +10,14 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoButton, CoDialog } from 'coast-ui-vue3';
 import { ref } from 'vue';
-
-export default {
-  components: {
-    CoDialog,
-    CoButton,
-  },
-  setup() {
-    const visible = ref(false);
-    const toggle = () => {
-      visible.value = !visible.value;
-    };
-    const handleChange = (visible: boolean) => {
-      console.log('dialog visible change', visible);
-    };
-    return {
-      toggle,
-      visible,
-      handleChange,
-    };
-  },
+const visible = ref(false);
+const toggle = () => {
+  visible.value = !visible.value;
+};
+const handleChange = (visible: boolean) => {
+  console.log('dialog visible change', visible);
 };
 </script>

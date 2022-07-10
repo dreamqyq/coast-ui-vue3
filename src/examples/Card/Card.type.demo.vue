@@ -2,38 +2,26 @@
 
 <template>
   <div class="wrap">
-    <template v-for="type in types" :key="type">
-      <co-card :title="type" :type="type">{{ type }} card</co-card>
+    <template v-for="cardType in types" :key="cardType">
+      <co-card :title="cardType" :type="cardType">{{ cardType }} card</co-card>
     </template>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoCard } from 'coast-ui-vue3';
-
-export default {
-  components: {
-    CoCard,
-  },
-  setup() {
-    const types = [
-      'secondary',
-      'alert',
-      'success',
-      'purple',
-      'warning',
-      'violet',
-      'error',
-      'cyan',
-      'dark',
-      'lite',
-    ];
-
-    return {
-      types,
-    };
-  },
-};
+const types = [
+  'secondary',
+  'alert',
+  'success',
+  'purple',
+  'warning',
+  'violet',
+  'error',
+  'cyan',
+  'dark',
+  'lite',
+];
 </script>
 
 <style lang="scss" scoped>

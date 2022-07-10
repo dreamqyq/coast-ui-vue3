@@ -1,0 +1,91 @@
+@import '../../style/common.scss';
+
+$border-color: #eaeaea;
+.coast-card {
+  border: 1px solid $border-color;
+  width: 100%;
+  transition: all 0.25s;
+  border-radius: $radius;
+
+  &-hoverable:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0 5px 10px;
+  }
+
+  &-shadow {
+    box-shadow: rgba(0, 0, 0, 0.12) 0 5px 10px;
+
+    &.coast-card-hoverable:hover {
+      box-shadow: rgba(0, 0, 0, 0.12) 0 8px 30px;
+    }
+  }
+
+  &-secondary {
+    background: $secondary;
+    color: #fff;
+  }
+
+  &-alert {
+    background: $alert;
+    color: #fff;
+  }
+
+  &-success {
+    background: $success;
+    color: #fff;
+  }
+
+  &-purple {
+    background: $purple;
+    color: #fff;
+  }
+
+  &-warning {
+    background: $warning;
+    color: #fff;
+  }
+
+  &-violet {
+    background: $violet;
+    color: #fff;
+  }
+
+  &-error {
+    background: $error;
+    color: #fff;
+  }
+
+  &-cyan {
+    background: $cyan;
+    color: #fff;
+  }
+
+  &-dark {
+    background: $theme;
+    color: #fff;
+  }
+
+  &-lite {
+    background: #fff;
+    color: $colorBlack;
+    border-color: #fff;
+
+    .coast-card-title {
+      border-bottom: none;
+    }
+  }
+
+  &-title {
+    font-size: 20px;
+    padding: 8px 16px;
+    border-bottom: 1px solid $border-color;
+  }
+
+  &-content,
+  &-footer {
+    padding: 16px;
+  }
+
+  &-footer {
+    border-top: 1px dashed $border-color;
+  }
+}

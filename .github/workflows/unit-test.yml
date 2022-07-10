@@ -1,12 +1,14 @@
 name: Unit Test
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'dev'
     paths:
       - 'lib/**'
       - 'package.json'
+      - 'yarn.lock'
 
 jobs:
   build:
@@ -17,8 +19,18 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '16'
       - name: Install dependencies
         run: yarn install
       - name: Test lib
         run: yarn test:lib
+      - name: Generate coverage report
+        run: yarn coverage:lib
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: ./coverage/clover.xml
+          flags: unit-tests
+          name: coast-ui-vue3
+          fail_ci_if_error: true
+          verbose: true

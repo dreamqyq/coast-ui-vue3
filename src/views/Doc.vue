@@ -18,6 +18,7 @@ import TopNav from '../components/TopNav.vue';
 import FooterNav from '../components/FooterNav.vue';
 
 export default {
+  name: "Doc",
   components: { AsideNav, TopNav, FooterNav },
   inject: ['asideVisible'],
   setup() {

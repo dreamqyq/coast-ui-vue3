@@ -6,31 +6,21 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoButton, openDialog } from 'coast-ui-vue3';
 
-export default {
-  components: {
-    CoButton,
-  },
-  setup() {
-    const showDialog = () => {
-      openDialog({
-        content: '文档内容',
-        title: '标题',
-        overlayClosable: false,
-        confirm() {
-          console.log('confirm');
-          return false;
-        },
-        cancel() {
-          console.log('cancel');
-        },
-      });
-    };
-    return {
-      showDialog,
-    };
-  },
+const showDialog = () => {
+  openDialog({
+    content: '文档内容',
+    title: '标题',
+    overlayClosable: false,
+    confirm() {
+      console.log('confirm');
+      return false;
+    },
+    cancel() {
+      console.log('cancel');
+    },
+  });
 };
 </script>

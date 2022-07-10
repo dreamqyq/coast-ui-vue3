@@ -1,24 +1,10 @@
 <template>
-  <div>
-    <h1>Switch 文档</h1>
-    <Demo :component="SwitchDefaultDemo" />
-    <Demo :component="SwitchDisabledDemo" />
-  </div>
+  <DemoList :components="components" title="Switch 文档" />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import DemoList from '../../components/Demo/DemoList.vue';
 import SwitchDefaultDemo from './Switch.default.demo.vue';
 import SwitchDisabledDemo from './Switch.disabled.demo.vue';
-import Demo from '../../components/Demo.vue';
-
-export default {
-  components: { Demo },
-  setup() {
-    return {
-      SwitchDefaultDemo,
-      SwitchDisabledDemo,
-    };
-  },
-};
+const components = [SwitchDefaultDemo, SwitchDisabledDemo];
 </script>
-

@@ -57,19 +57,18 @@
   </co-layout>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoAside, CoFooter, CoHeader, CoContent, CoLayout } from 'coast-ui-vue3';
-
-export default {
-  components: { CoAside, CoFooter, CoHeader, CoContent, CoLayout },
-};
 </script>
 
 <style lang="scss" scoped>
 .demo-component > .coast-layout {
   margin-bottom: 40px;
   color: #fff;
-  text-align: center;
+
+  * {
+    text-align: center;
+  }
 
   &:last-child {
     margin-bottom: 0;

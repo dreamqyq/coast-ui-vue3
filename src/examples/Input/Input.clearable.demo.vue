@@ -6,18 +6,11 @@
   <co-input v-model:value="value" placeholder="clearable" clearable @clear="handleClear" />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { CoInput } from 'coast-ui-vue3';
-
-export default {
-  components: { CoInput },
-  setup() {
-    const value = ref('');
-    const handleClear = () => {
-      console.log('clear input value');
-    };
-    return { value, handleClear };
-  },
+const value = ref('');
+const handleClear = () => {
+  console.log('clear input value');
 };
 </script>

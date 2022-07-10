@@ -7,18 +7,11 @@
   input value: {{ value }}
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { CoInput } from 'coast-ui-vue3';
-
-export default {
-  components: { CoInput },
-  setup() {
-    const value = ref('');
-    const handleUpdate = (newValue: string) => {
-      console.log('input get new value', newValue);
-    };
-    return { value, handleUpdate };
-  },
+const value = ref('');
+const handleUpdate = (newValue: string) => {
+  console.log('input get new value', newValue);
 };
 </script>

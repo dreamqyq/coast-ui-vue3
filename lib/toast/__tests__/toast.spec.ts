@@ -1,8 +1,10 @@
+import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import ToastConstructor from '../ToastConstructor.vue';
 import { Toast as CoToast } from '../toast';
-jest.mock('../../theme-chalk/iconfont/index.js');
-jest.useFakeTimers();
+
+vi.mock('../../style/iconfont/index.js');
+vi.useFakeTimers();
 const AXIOM = 'Tomorrow will be even better';
 const selector = '.coast-toast';
 
@@ -61,7 +63,7 @@ describe('ToastConstructor', () => {
     });
     const { vm } = wrapper;
     expect(vm.visible).toBe(true);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(vm.visible).toBe(false);
   });
 
@@ -72,11 +74,11 @@ describe('ToastConstructor', () => {
     const { vm } = wrapper;
     expect(vm.visible).toBe(true);
     await wrapper.find(selector).trigger('mouseenter');
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(vm.visible).toBe(true);
     await wrapper.find(selector).trigger('mouseleave');
     expect(vm.visible).toBe(true);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(vm.visible).toBe(false);
   });
 
@@ -86,12 +88,12 @@ describe('ToastConstructor', () => {
     });
     const { vm } = wrapper;
     expect(vm.visible).toBe(true);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(vm.visible).toBe(true);
   });
 
   it('showClose', async () => {
-    const onDestroy = jest.fn();
+    const onDestroy = vi.fn();
     const wrapper = mount(ToastConstructor, {
       props: { onDestroy, showClose: true },
     });
@@ -108,7 +110,7 @@ describe('Toast on command', () => {
     expect(document.querySelector(selector)).toBeFalsy();
     CoToast({ text: AXIOM });
     expect(document.querySelector(selector)).toBeTruthy();
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(document.querySelector(selector)).toBeFalsy();
   });
 

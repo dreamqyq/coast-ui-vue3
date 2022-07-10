@@ -12,25 +12,16 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { CoButton } from 'coast-ui-vue3';
 import { ref } from 'vue';
 
-export default {
-  components: {
-    CoButton,
-  },
-  setup() {
-    const msg = ref('点我开始加载');
-    const loading = ref(false);
+const msg = ref('点我开始加载');
+const loading = ref(false);
 
-    const handleClick = () => {
-      loading.value = true;
-      msg.value = '加载中';
-    };
-
-    return { msg, loading, handleClick };
-  },
+const handleClick = () => {
+  loading.value = true;
+  msg.value = '加载中';
 };
 </script>
 

@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { md } from './plugins/md';
 import fs from 'fs';
 import path from 'path';
@@ -36,6 +38,24 @@ export default defineConfig({
   resolve: {
     alias: {
       'coast-ui-vue3': path.resolve('lib'),
+      '@coast': path.resolve('lib'),
+    },
+  },
+  test: {
+    clearMocks: true,
+    environment: 'jsdom',
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/cypress/**',
+      '**/.{idea,git,cache,output,temp}/**',
+      'lib/__tests__/utils',
+    ],
+    transformMode: {
+      web: [/\.[jt]sx$/],
+    },
+    coverage: {
+      reporter: ['clover', 'html'],
     },
   },
 });

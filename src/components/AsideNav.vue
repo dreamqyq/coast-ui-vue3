@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="aside-overlay" v-show="visible" @click="closeAsideNav"></div>
+    <div class="aside-overlay" v-show="overlayVisible" @click="closeAsideNav"></div>
     <aside :class="{ visible }" @click="clickAsideNav">
       <h2>文档</h2>
       <ol>
@@ -24,30 +24,31 @@
   </Teleport>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 import { demoViewList } from '../router/exampleDocsRouter';
 
-export default defineComponent({
-  props: {
-    visible: {
-      type: Boolean,
-      required: true,
-    },
+const props = defineProps({
+  visible: {
+    type: Boolean,
+    required: true,
   },
-  emits: ['change'],
-  setup(props, context) {
-    const closeAsideNav = () => {
-      context.emit('change', false);
-    };
+});
+const emits = defineEmits(['change']);
+const closeAsideNav = () => {
+  emits('change', false);
+};
 
-    const clickAsideNav = (e: MouseEvent) => {
-      if ((<HTMLElement>e.target).tagName === 'A') {
-        closeAsideNav();
-      }
-    };
-    return { demoViewList, clickAsideNav, closeAsideNav };
-  },
+const clickAsideNav = (e: MouseEvent) => {
+  if ((<HTMLElement>e.target).tagName === 'A') {
+    closeAsideNav();
+  }
+};
+
+const overlayVisible = computed(() => {
+  const clientWidth = document.documentElement.clientWidth;
+  const { visible } = props;
+  return clientWidth <= 500 ? visible : false;
 });
 </script>
 

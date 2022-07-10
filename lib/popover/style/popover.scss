@@ -1,0 +1,113 @@
+@import '../../style/common.scss';
+
+.coast-popover {
+  position: absolute;
+  z-index: $popoverIndex;
+  top: 0;
+  left: 0;
+  min-width: 10px;
+  max-width: 20em;
+  border-radius: $radius;
+  border: 1px solid $borderColorGray;
+  padding: 12px;
+  color: $colorBlack;
+  line-height: 1.4;
+  text-align: justify;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.12));
+  background: #fff;
+  word-break: break-all;
+
+  &-slot {
+    display: inline-block;
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    border: 10px solid;
+    border-color: transparent;
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  &-top {
+    margin-top: -10px;
+    transform: translateY(-100%);
+    &::after,
+    &::before {
+      border-bottom: none;
+    }
+    &::after {
+      left: 10px;
+      top: calc(100% - 1px);
+      border-top-color: #fff;
+    }
+    &::before {
+      left: 10px;
+      top: 100%;
+      border-top-color: $borderColorGray;
+    }
+  }
+
+  &-bottom {
+    margin-top: 10px;
+    &::after,
+    &::before {
+      border-top: none;
+    }
+    &::after {
+      left: 10px;
+      bottom: calc(100% - 1px);
+      border-bottom-color: #fff;
+    }
+    &::before {
+      left: 10px;
+      bottom: 100%;
+      border-bottom-color: $borderColorGray;
+    }
+  }
+
+  &-left,
+  &-right {
+    &::after,
+    &::before {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &-left {
+    margin-left: -10px;
+    transform: translateX(-100%);
+    &::after,
+    &::before {
+      border-right: none;
+    }
+    &::after {
+      left: calc(100% - 1px);
+      border-left-color: #fff;
+    }
+    &::before {
+      left: 100%;
+      border-left-color: $borderColorGray;
+    }
+  }
+
+  &-right {
+    margin-left: -10px;
+    &::after,
+    &::before {
+      border-left: none;
+    }
+    &::after {
+      right: calc(100% - 1px);
+      border-right-color: #fff;
+    }
+    &::before {
+      right: 100%;
+      border-right-color: $borderColorGray;
+    }
+  }
+}
