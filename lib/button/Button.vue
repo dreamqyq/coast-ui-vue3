@@ -8,67 +8,54 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { computed, defineComponent } from 'vue';
+export default { name: 'CoastButton' };
+</script>
+
+
+<script lang="ts" setup>
+import { defineProps, PropType } from 'vue';
+import { computed } from 'vue';
 import Icon from '../icon/Icon.vue';
+import type { ButtonThemeType, ButtonSizeType, ButtonLevelType, ButtonProps } from './Button';
 
-type ButtonThemeType = 'button' | 'link' | 'text';
-type ButtonSizeType = 'normal' | 'big' | 'small';
-type ButtonLevelType = 'normal' | 'main' | 'danger' | 'warning';
-
-interface ButtonProps {
-  theme: ButtonThemeType;
-  size: ButtonSizeType;
-  level: ButtonLevelType;
-  disabled: boolean;
-  loading: boolean;
-}
-
-export default defineComponent({
-  name: 'CoastButton',
-  components: { Icon },
-  props: {
-    theme: {
-      type: String as PropType<ButtonThemeType>,
-      default: 'button',
-      validator: (val: string) => {
-        return ['button', 'link', 'text'].includes(val);
-      },
-    },
-    size: {
-      type: String as PropType<ButtonSizeType>,
-      default: 'normal',
-      validator: (val: string) => {
-        return ['normal', 'big', 'small'].includes(val);
-      },
-    },
-    level: {
-      type: String as PropType<ButtonLevelType>,
-      default: 'normal',
-      validator: (val: string) => {
-        return ['normal', 'main', 'danger', 'warning'].includes(val);
-      },
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    loading: {
-      type: Boolean,
-      default: false,
+const props = defineProps({
+  theme: {
+    type: String as PropType<ButtonThemeType>,
+    default: 'button',
+    validator: (val: string) => {
+      return ['button', 'link', 'text'].includes(val);
     },
   },
-  setup(props: ButtonProps) {
-    const { theme, size, level } = props;
-    const classes = computed(() => {
-      return {
-        [`coast-button-theme-${theme}`]: theme,
-        [`coast-button-size-${size}`]: size,
-        [`coast-button-level-${level}`]: level,
-        'coast-button-loading': props.loading,
-      };
-    });
-    return { classes };
+  size: {
+    type: String as PropType<ButtonSizeType>,
+    default: 'normal',
+    validator: (val: string) => {
+      return ['normal', 'big', 'small'].includes(val);
+    },
   },
+  level: {
+    type: String as PropType<ButtonLevelType>,
+    default: 'normal',
+    validator: (val: string) => {
+      return ['normal', 'main', 'danger', 'warning'].includes(val);
+    },
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+});
+const { theme, size, level } = props;
+const classes = computed(() => {
+  return {
+    [`coast-button-theme-${theme}`]: theme,
+    [`coast-button-size-${size}`]: size,
+    [`coast-button-level-${level}`]: level,
+    'coast-button-loading': props.loading,
+  };
 });
 </script>
