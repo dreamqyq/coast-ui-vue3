@@ -1,12 +1,6 @@
-import type { PropType } from 'vue';
 import { computed, defineComponent, h, provide } from 'vue';
-
-type RowJustifyType = 'end' | 'start' | 'center' | 'space-around' | 'space-between';
-
-interface RowProps {
-  gutter: number | string;
-  justify: RowJustifyType;
-}
+import type { PropType } from 'vue';
+import type { RowJustifyType, RowProps } from './Row.d';
 
 const CoastRow = defineComponent({
   name: 'CoastRow',
