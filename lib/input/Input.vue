@@ -41,161 +41,125 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { computed, defineComponent, nextTick, ref } from 'vue';
-import Icon from '../icon/Icon.vue';
-
-type InputStatusType = 'normal' | 'secondary' | 'error' | 'warning' | 'success';
-type InputSizeType = 'mini' | 'small' | 'medium' | 'large';
-type InputElementEvent = Event & { target: HTMLInputElement };
-
-interface InputProps {
-  value: string | number;
-  type: string;
-  clearable: boolean;
-  maxlength: number;
-  placeholder: string;
-  disabled: boolean;
-  readonly: boolean;
-  width: string;
-  label: string;
-  labelRight: string;
-  status: InputStatusType;
-  size: InputSizeType;
-}
-
-export default defineComponent({
-  name: 'CoastInput',
-  components: { Icon },
-  props: {
-    value: {
-      type: [String, Number],
-      required: true,
-    },
-    type: {
-      type: String,
-      default: 'text',
-    },
-    clearable: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-    maxlength: {
-      type: Number,
-      required: false,
-    },
-    placeholder: {
-      type: String,
-      required: false,
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-    },
-    readonly: {
-      type: Boolean,
-      required: false,
-    },
-    width: {
-      type: String,
-      required: false,
-    },
-    label: {
-      type: String,
-      required: false,
-    },
-    labelRight: {
-      type: String,
-      required: false,
-    },
-    status: {
-      type: String as PropType<InputStatusType>,
-      required: false,
-      default: 'normal',
-      validator: (val: string) => {
-        return ['normal', 'secondary', 'success', 'warning', 'error'].includes(val);
-      },
-    },
-    size: {
-      type: String as PropType<InputSizeType>,
-      required: false,
-      default: 'medium',
-      validator: (val: string) => {
-        return ['mini', 'small', 'medium', 'large'].includes(val);
-      },
-    },
-  },
-  emits: ['update:value', 'input', 'change', 'blur', 'focus', 'keydown', 'clear'],
-  setup(props: InputProps, { emit }) {
-    const labelRightRef = ref<HTMLSpanElement>(null);
-    const inputRef = ref<HTMLInputElement>(null);
-    const passwordVisible = ref(false);
-
-    const classes = computed(() => ({
-      'coast-input-label-left': props.label,
-      'coast-input-label-right': props.labelRight,
-      'coast-input-suffix-clear': props.clearable,
-      'coast-input-suffix-password': props.type === 'password',
-      [`coast-input-status-${props.status}`]: props.status,
-    }));
-
-    const actionIconTransform = computed(() => {
-      const labelRightOffsetWidth = labelRightRef.value ? labelRightRef.value.offsetWidth : 0;
-      const passwordIconOffsetWidth = props.type === 'password' ? 24 : 0;
-      return -labelRightOffsetWidth - passwordIconOffsetWidth;
-    });
-
-    const focus = () => {
-      nextTick(() => {
-        inputRef.value.focus();
-      });
-    };
-
-    const onClear = () => {
-      emit('update:value', '');
-      emit('change', '');
-      emit('clear');
-      focus();
-    };
-
-    const onTogglePasswordVisible = () => {
-      passwordVisible.value = !passwordVisible.value;
-      focus();
-    };
-
-    const onInput = (event: InputElementEvent) => {
-      emit('update:value', event.target.value);
-      emit('input', event.target.value);
-    };
-    const onChange = (event: InputElementEvent) => {
-      emit('change', event.target.value);
-    };
-    const onBlur = (event: InputElementEvent) => {
-      emit('blur', event);
-    };
-    const onFocus = (event: InputElementEvent) => {
-      emit('focus', event);
-    };
-    const onKeydown = (event: KeyboardEvent) => {
-      emit('keydown', event);
-    };
-
-    return {
-      classes,
-      onClear,
-      onInput,
-      onChange,
-      onBlur,
-      onFocus,
-      onKeydown,
-      onTogglePasswordVisible,
-      inputRef,
-      labelRightRef,
-      actionIconTransform,
-      passwordVisible,
-    };
-  },
-});
+export default { name: 'CoastInput' };
 </script>
 
+<script lang="ts" setup>
+import { computed, nextTick, ref } from 'vue';
+import Icon from '../icon/Icon.vue';
+import type { PropType } from 'vue';
+import type { InputStatusType, InputSizeType, InputElementEvent } from './Input.d';
+
+const props = defineProps({
+  value: {
+    type: [String, Number],
+    required: true,
+  },
+  type: {
+    type: String,
+    default: 'text',
+  },
+  clearable: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  maxlength: {
+    type: Number,
+    required: false,
+  },
+  placeholder: {
+    type: String,
+    required: false,
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
+  readonly: {
+    type: Boolean,
+    required: false,
+  },
+  width: {
+    type: String,
+    required: false,
+  },
+  label: {
+    type: String,
+    required: false,
+  },
+  labelRight: {
+    type: String,
+    required: false,
+  },
+  status: {
+    type: String as PropType<InputStatusType>,
+    required: false,
+    default: 'normal',
+    validator: (val: string) => {
+      return ['normal', 'secondary', 'success', 'warning', 'error'].includes(val);
+    },
+  },
+  size: {
+    type: String as PropType<InputSizeType>,
+    required: false,
+    default: 'medium',
+    validator: (val: string) => {
+      return ['mini', 'small', 'medium', 'large'].includes(val);
+    },
+  },
+});
+const emits = defineEmits(['update:value', 'input', 'change', 'blur', 'focus', 'keydown', 'clear']);
+const labelRightRef = ref<HTMLSpanElement>(null);
+const inputRef = ref<HTMLInputElement>(null);
+const passwordVisible = ref(false);
+
+const classes = computed(() => ({
+  'coast-input-label-left': props.label,
+  'coast-input-label-right': props.labelRight,
+  'coast-input-suffix-clear': props.clearable,
+  'coast-input-suffix-password': props.type === 'password',
+  [`coast-input-status-${props.status}`]: props.status,
+}));
+
+const actionIconTransform = computed(() => {
+  const labelRightOffsetWidth = labelRightRef.value ? labelRightRef.value.offsetWidth : 0;
+  const passwordIconOffsetWidth = props.type === 'password' ? 24 : 0;
+  return -labelRightOffsetWidth - passwordIconOffsetWidth;
+});
+
+const focus = () => {
+  nextTick(() => {
+    inputRef.value.focus();
+  });
+};
+
+const onClear = () => {
+  emits('update:value', '');
+  emits('change', '');
+  emits('clear');
+  focus();
+};
+
+const onTogglePasswordVisible = () => {
+  passwordVisible.value = !passwordVisible.value;
+  focus();
+};
+
+const onInput = (event: InputElementEvent) => {
+  emits('update:value', event.target.value);
+  emits('input', event.target.value);
+};
+const onChange = (event: InputElementEvent) => {
+  emits('change', event.target.value);
+};
+const onBlur = (event: InputElementEvent) => {
+  emits('blur', event);
+};
+const onFocus = (event: InputElementEvent) => {
+  emits('focus', event);
+};
+const onKeydown = (event: KeyboardEvent) => {
+  emits('keydown', event);
+};
+</script>
