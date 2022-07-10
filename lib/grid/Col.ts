@@ -1,21 +1,6 @@
-import type { PropType } from 'vue';
 import { computed, defineComponent, h, inject } from 'vue';
-
-type SizeObjectType = {
-  span: number | string;
-  offset: number | string;
-};
-
-interface ColProps {
-  span: number | string;
-  offset: number | string;
-  xs: number | string | SizeObjectType;
-  sm: number | string | SizeObjectType;
-  md: number | string | SizeObjectType;
-  lg: number | string | SizeObjectType;
-  xl: number | string | SizeObjectType;
-  xxl: number | string | SizeObjectType;
-}
+import type { PropType } from 'vue';
+import type { SizeObjectType, ColProps } from './Col.d';
 
 const CoastCol = defineComponent({
   name: 'CoastCol',
