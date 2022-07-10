@@ -5,22 +5,21 @@
 </template>
 
 <script lang="ts">
-import '../style/iconfont';
-import { defineComponent } from 'vue';
+export default { name: 'CoastIcon' };
+</script>
 
-export default defineComponent({
-  name: 'CoastIcon',
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    prefix: {
-      type: String,
-      required: false,
-      default: 'coast-icon-',
-    },
+<script lang="ts" setup>
+import '../style/iconfont';
+
+defineProps({
+  name: {
+    type: String,
+    required: true,
   },
-  setup() {},
+  prefix: {
+    type: String,
+    required: false,
+    default: 'coast-icon-',
+  },
 });
 </script>
