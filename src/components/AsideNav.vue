@@ -24,37 +24,31 @@
   </Teleport>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 import { demoViewList } from '../router/exampleDocsRouter';
 
-export default defineComponent({
-  props: {
-    visible: {
-      type: Boolean,
-      required: true,
-    },
+const props = defineProps({
+  visible: {
+    type: Boolean,
+    required: true,
   },
-  emits: ['change'],
-  setup(props, context) {
-    const closeAsideNav = () => {
-      context.emit('change', false);
-    };
+});
+const emits = defineEmits(['change']);
+const closeAsideNav = () => {
+  emits('change', false);
+};
 
-    const clickAsideNav = (e: MouseEvent) => {
-      if ((<HTMLElement>e.target).tagName === 'A') {
-        closeAsideNav();
-      }
-    };
+const clickAsideNav = (e: MouseEvent) => {
+  if ((<HTMLElement>e.target).tagName === 'A') {
+    closeAsideNav();
+  }
+};
 
-    const overlayVisible = computed(() => {
-      const clientWidth = document.documentElement.clientWidth;
-      const { visible } = props;
-      return clientWidth <= 500 ? visible : false;
-    });
-
-    return { demoViewList, overlayVisible, clickAsideNav, closeAsideNav };
-  },
+const overlayVisible = computed(() => {
+  const clientWidth = document.documentElement.clientWidth;
+  const { visible } = props;
+  return clientWidth <= 500 ? visible : false;
 });
 </script>
 

@@ -32,40 +32,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+export default { name: 'Home' };
+</script>
+
+<script lang="ts" setup>
 import { CoButton, CoIcon } from 'coast-ui-vue3';
 import TopNav from '../components/TopNav.vue';
 
-export default defineComponent({
-  name: 'Home',
-  components: { TopNav, CoButton, CoIcon },
-  setup() {
-    return {
-      contentList: [
-        {
-          iconName: 'vue',
-          title: 'Vue 3',
-          description: '使用了最新的 Vue3 Composition API',
-        },
-        {
-          iconName: 'ts',
-          title: 'TypeScript',
-          description: '源代码采用了 TypeScript 编写',
-        },
-        {
-          iconName: 'lightning',
-          title: 'Vite',
-          description: '官网基于 Vite2.x 构建',
-        },
-        {
-          iconName: 'light',
-          title: '文档完整',
-          description: '所有组件拥有完整的使用文档及示例',
-        },
-      ],
-    };
+const contentList = [
+  {
+    iconName: 'vue',
+    title: 'Vue 3',
+    description: '使用了最新的 Vue3 Composition API',
   },
-});
+  {
+    iconName: 'ts',
+    title: 'TypeScript',
+    description: '源代码采用了 TypeScript 编写',
+  },
+  {
+    iconName: 'lightning',
+    title: 'Vite',
+    description: '官网基于 Vite2.x 构建',
+  },
+  {
+    iconName: 'light',
+    title: '文档完整',
+    description: '所有组件拥有完整的使用文档及示例',
+  },
+];
 </script>
 <style lang="scss" scoped>
 $baseColor: #786ff8;
